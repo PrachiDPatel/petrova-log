@@ -10,12 +10,12 @@ import { getFirestore }   from 'https://www.gstatic.com/firebasejs/10.12.0/fireb
 // 5. Add the security rules from README.md
 // ─────────────────────────────────────────────────────────────────
 const firebaseConfig = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_PROJECT.firebaseapp.com",
-  projectId:         "YOUR_PROJECT",
-  storageBucket:     "YOUR_PROJECT.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId:             "YOUR_APP_ID"
+  apiKey:            "AIzaSyBg5lWmRpdHrXa0FQ3Evlf774ptkMWR8PQ",
+  authDomain:        "petrova-log.firebaseapp.com",
+  projectId:         "petrova-log",
+  storageBucket:     "petrova-log.firebasestorage.app",
+  messagingSenderId: "230144991931",
+  appId:             "1:230144991931:web:ccd6ee054426ad186e3f9e"
 };
 
 // Name → Firebase email (emails are internal only, never shown)
