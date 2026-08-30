@@ -1,0 +1,14 @@
+{
+  "name": "petrova-log",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A two-person letter-writing app themed after Project Hail Mary. The site itself has no dependencies; these are tooling only.",
+  "scripts": {
+    "seed": "node tools/seed.mjs",
+    "cut-seal": "node tools/cut-seal.mjs"
+  },
+  "devDependencies": {
+    "firebase-admin": "^13.6.0"
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "from": "ryland",
+    "date": "2026-03-02",
+    "salutation": "Rocky,",
+    "content": "REPLACE THIS. One entry per letter, alternating writers. Each needs at least 250 words to match what the app asks of a real letter — a shorter one will look wrong next to the counter in the compose screen. Keep the voice consistent with whoever is writing: Ryland is a junior-high science teacher who explains things to keep himself calm, and who counts. Rocky is precise, literal, warm in a way that arrives sideways, and does not use contractions.",
+    "signoffWord": "Onward,",
+    "signoffName": "Ryland"
+  },
+  {
+    "from": "rocky",
+    "date": "2026-03-03",
+    "salutation": "Question, friend,",
+    "content": "REPLACE THIS TOO. The demo reads best when the letters answer each other — a question in one picked up in the next, a running thread across the six. Dates must be YYYY-MM-DD and should alternate so the archive shows a real back-and-forth rather than two monologues.",
+    "signoffWord": "Amaze,",
+    "signoffName": "Rocky"
+  }
+]

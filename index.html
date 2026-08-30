@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petrova Log</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <meta name="theme-color" content="#1a1006">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Petrova Log">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=11">
+</head>
+<body>
+
+<!-- Full-screen cover shown instantly on stamp click to hide theme-switch flash -->
+<div id="transition-cover" aria-hidden="true">
+  <div class="tc-stamp">
+    <div class="tc-seal-wrap">
+
+      <!-- Ryland — artwork src copied from login button by JS -->
+      <div class="tc-seal tc-seal-ryland">
+        <img class="tc-seal-art" src="" alt="" aria-hidden="true">
+      </div>
+
+      <!-- Rocky — artwork src copied from login button by JS -->
+      <div class="tc-seal tc-seal-rocky">
+        <img class="tc-seal-art" src="" alt="" aria-hidden="true">
+      </div>
+
+      <!-- ripple ring expands outward after stamp lands -->
+      <div class="tc-ripple"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════════════ -->
+<div id="screen-login">
+  <div class="stars"></div>
+
+  <!-- ── ATMOSPHERIC NIGHT-OCEAN SCENE (decorative) ── -->
+  <div class="scene" aria-hidden="true">
+
+    <!-- glowing moon -->
+    <svg class="moon" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <mask id="crescent-mask">
+          <circle cx="36" cy="36" r="30" fill="white"/>
+          <circle cx="44" cy="35" r="27" fill="black"/>
+        </mask>
+      </defs>
+      <circle cx="36" cy="36" r="30" fill="rgba(215,228,255,0.88)" mask="url(#crescent-mask)"/>
+    </svg>
+
+    <!-- the Petrova line — a faint thread of red light across the sky -->
+    <svg class="petrova-line" viewBox="0 0 1440 600" width="1440" height="600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="petrova-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#ff3b30" stop-opacity="0"/>
+          <stop offset="15%"  stop-color="#ff3b30" stop-opacity=".55"/>
+          <stop offset="50%"  stop-color="#ff5a45" stop-opacity=".8"/>
+          <stop offset="85%"  stop-color="#ff3b30" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#ff3b30" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <line x1="-60" y1="90" x2="1500" y2="330" stroke="url(#petrova-grad)" stroke-width="1.4"/>
+    </svg>
+
+
+    <!-- sparkle stars scattered in the sky -->
+    <svg class="scene-stars" viewBox="0 0 1440 600" width="1440" height="600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <!-- 4-pointed sparkle stars -->
+      <path d="M120 80 L122 88 L130 90 L122 92 L120 100 L118 92 L110 90 L118 88Z" fill="rgba(232,244,252,0.43)"/>
+      <path d="M380 45 L381.5 51 L388 52.5 L381.5 54 L380 60 L378.5 54 L372 52.5 L378.5 51Z" fill="rgba(232,244,252,0.53)"/>
+      <path d="M750 30 L752 40 L762 42 L752 44 L750 54 L748 44 L738 42 L748 40Z" fill="rgba(232,244,252,0.37)"/>
+      <path d="M1050 65 L1051.5 72 L1058 73.5 L1051.5 75 L1050 82 L1048.5 75 L1042 73.5 L1048.5 72Z" fill="rgba(232,244,252,0.46)"/>
+      <path d="M1300 40 L1301.5 46 L1308 47.5 L1301.5 49 L1300 55 L1298.5 49 L1292 47.5 L1298.5 46Z" fill="rgba(232,244,252,0.5)"/>
+      <path d="M220 160 L221 165 L226 166 L221 167 L220 172 L219 167 L214 166 L219 165Z" fill="rgba(232,244,252,0.31)"/>
+      <path d="M900 120 L901.5 127 L908 128.5 L901.5 130 L900 137 L898.5 130 L892 128.5 L898.5 127Z" fill="rgba(232,244,252,0.4)"/>
+      <!-- 8-pointed stars -->
+      <path d="M550 90 L551.8 96.2 L556 92 L552 96.2 L558 98 L552 99.8 L556 104 L551.8 99.8 L550 106 L548.2 99.8 L544 104 L548 99.8 L542 98 L548 96.2 L544 92 L548.2 96.2Z" fill="rgba(232,244,252,0.28)"/>
+      <path d="M1200 55 L1201.5 59.5 L1205 56 L1201.5 59.5 L1206 61 L1201.5 62.5 L1205 66 L1201.5 62.5 L1200 67 L1198.5 62.5 L1195 66 L1198.5 62.5 L1194 61 L1198.5 59.5 L1195 56 L1198.5 59.5Z" fill="rgba(232,244,252,0.34)"/>
+      <!-- additional scattered sparkle + dot stars -->
+      <path d="M70 215 L71.5 221 L78 222.5 L71.5 224 L70 230 L68.5 224 L62 222.5 L68.5 221Z" fill="rgba(232,244,252,0.37)"/>
+      <path d="M470 100 L471.5 106 L478 107.5 L471.5 109 L470 115 L468.5 109 L462 107.5 L468.5 106Z" fill="rgba(232,244,252,0.43)"/>
+      <path d="M660 170 L661.5 175 L666 176 L661.5 177 L660 182 L658.5 177 L654 176 L658.5 175Z" fill="rgba(232,244,252,0.31)"/>
+      <path d="M1000 35 L1001.5 41 L1008 42.5 L1001.5 44 L1000 50 L998.5 44 L992 42.5 L998.5 41Z" fill="rgba(232,244,252,0.53)"/>
+      <path d="M1380 130 L1381.5 136 L1388 137.5 L1381.5 139 L1380 145 L1378.5 139 L1372 137.5 L1378.5 136Z" fill="rgba(232,244,252,0.4)"/>
+      <circle cx="300" cy="200" r="1.6" fill="rgba(232,244,252,0.34)"/>
+      <circle cx="820" cy="75" r="1.8" fill="rgba(232,244,252,0.43)"/>
+      <circle cx="1130" cy="190" r="1.5" fill="rgba(232,244,252,0.28)"/>
+      <circle cx="160" cy="120" r="1.4" fill="rgba(232,244,252,0.31)"/>
+    </svg>
+
+    <!-- animated swimming fish in the ocean -->
+    <div class="scene-fish" aria-hidden="true">
+      <svg class="swim-fish sf-1" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(100,195,215,.68)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(100,195,215,.68)"/></svg>
+      <svg class="swim-fish sf-2" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(135,180,230,.65)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(135,180,230,.65)"/></svg>
+      <svg class="swim-fish sf-3" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(65,205,200,.62)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(65,205,200,.62)"/></svg>
+      <svg class="swim-fish sf-4" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(115,165,210,.60)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(115,165,210,.60)"/></svg>
+      <svg class="swim-fish sf-5" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(160,220,225,.68)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(160,220,225,.68)"/></svg>
+      <svg class="swim-fish sf-6" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(85,150,220,.63)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(85,150,220,.63)"/></svg>
+      <svg class="swim-fish sf-right sf-7" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(120,190,215,.66)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(120,190,215,.66)"/></svg>
+      <svg class="swim-fish sf-right sf-8" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(95,175,225,.62)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(95,175,225,.62)"/></svg>
+    </div>
+
+    <!-- layered ocean waves at the foot of the screen -->
+    <svg class="waves" viewBox="0 0 1440 220" width="1440" height="220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="rgba(20,50,120,0.25)" d="M0 30 C 180 5 360 58 540 36 C 760 12 920 66 1140 42 C 1300 24 1380 48 1440 34 L1440 220 L0 220 Z"/>
+      <path fill="rgba(15,40,100,0.45)" d="M0 70 C 200 44 380 96 600 72 C 820 50 1000 102 1220 78 C 1340 64 1400 84 1440 72 L1440 220 L0 220 Z"/>
+      <path fill="rgba(10,30,80,0.68)" d="M0 110 C 220 88 420 130 660 114 C 900 98 1080 136 1280 118 C 1370 108 1410 122 1440 116 L1440 220 L0 220 Z"/>
+    </svg>
+
+  </div>
+
+  <div class="login-card">
+    <div class="login-envelope">
+      <div class="le-body"></div>
+      <div class="le-flap"></div>
+      <div class="le-seal">✦</div>
+    </div>
+
+    <h1 class="brand">Petrova Log</h1>
+    <p class="tagline">correspondence across the line</p>
+
+    <div id="login-form">
+      <p class="who-prompt">who's writing today?</p>
+      <p id="login-error" class="form-error hidden"></p>
+      <div class="seal-choices">
+
+        <button type="button" class="seal-btn" id="btn-ryland">
+          <img class="seal-art" src="assets/stamp-ryland.png" alt="">
+          <span class="seal-name">Ryland</span>
+        </button>
+
+        <button type="button" class="seal-btn" id="btn-rocky">
+          <img class="seal-art" src="assets/stamp-rocky.png" alt="">
+          <span class="seal-name">Rocky</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     APP SCREEN
+══════════════════════════════════════════════ -->
+<div id="screen-app" class="hidden">
+
+
+  <!-- Ryland: 4-pointed sparkle star glints -->
+  <div class="scene-space-stars" aria-hidden="true">
+    <svg class="glint-star gs-1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.88)"/></svg>
+    <svg class="glint-star gs-2" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.80)"/></svg>
+    <svg class="glint-star gs-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.92)"/></svg>
+    <svg class="glint-star gs-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.75)"/></svg>
+    <svg class="glint-star gs-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.82)"/></svg>
+    <svg class="glint-star gs-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.78)"/></svg>
+    <svg class="glint-star gs-7" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.70)"/></svg>
+    <svg class="glint-star gs-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.85)"/></svg>
+    <svg class="glint-star gs-9"  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.80)"/></svg>
+    <svg class="glint-star gs-10" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.74)"/></svg>
+    <svg class="glint-star gs-11" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.90)"/></svg>
+    <svg class="glint-star gs-12" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.68)"/></svg>
+    <svg class="glint-star gs-13" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.86)"/></svg>
+    <svg class="glint-star gs-14" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.76)"/></svg>
+    <svg class="glint-star gs-15" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.82)"/></svg>
+    <svg class="glint-star gs-16" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.72)"/></svg>
+
+    <!-- Two featured star clusters, no connecting lines — just denser groupings -->
+    <svg class="constellation rocky-shape" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(20,12) scale(0.462)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.85)"/></g>
+      <g transform="translate(78,18) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.75)"/></g>
+      <g transform="translate(38,62) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.8)"/></g>
+      <g transform="translate(50,67) scale(0.374)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.85)"/></g>
+      <g transform="translate(62,72) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.8)"/></g>
+      <g transform="translate(18,118) scale(0.506)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.92)"/></g>
+      <g transform="translate(72,122) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.78)"/></g>
+    </svg>
+    <svg class="constellation pleiades-shape" viewBox="0 0 46 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="translate(10,6) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.85)"/></g>
+      <g transform="translate(19,3) scale(0.286)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.7)"/></g>
+      <g transform="translate(27,9) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.9)"/></g>
+      <g transform="translate(33,5) scale(0.264)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.65)"/></g>
+      <g transform="translate(16,16) scale(0.308)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.75)"/></g>
+      <g transform="translate(24,20) scale(0.286)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.7)"/></g>
+      <g transform="translate(8,22) scale(0.264)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(216,222,245,.6)"/></g>
+    </svg>
+
+    <!-- Moon, phase set by JS to match the real current moon phase -->
+    <svg class="ryland-moon" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <mask id="ryland-moon-mask">
+          <circle cx="36" cy="36" r="30" fill="white"/>
+          <circle id="ryland-moon-shadow" cx="36" cy="36" r="30" fill="black"/>
+        </mask>
+      </defs>
+      <circle cx="36" cy="36" r="30" fill="rgba(216,222,245,.92)" mask="url(#ryland-moon-mask)"/>
+    </svg>
+  </div>
+
+
+
+
+
+
+  <header class="app-header">
+    <nav class="app-nav">
+      <div class="nav-left">
+        <button class="nav-btn" data-view="mailbox">Home</button>
+        <button id="logout-btn" class="nav-btn">Sign out</button>
+      </div>
+      <h1 class="brand nav-brand">Petrova Log</h1>
+      <div class="nav-right">
+        <button class="nav-btn" data-view="write">Write</button>
+        <button class="nav-btn nav-settings-btn" id="nav-settings-btn" aria-label="Settings" title="Settings">⚙</button>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">&#9776;</button>
+      <div class="nav-popup" id="nav-popup" aria-hidden="true">
+        <button class="nav-btn" data-view="mailbox"><span class="nav-sym">◈</span> Home</button>
+        <button class="nav-btn" id="nav-popup-logout"><span class="nav-sym">←</span> Sign out</button>
+        <button class="nav-btn" data-view="write"><span class="nav-sym">✦</span> Write</button>
+      </div>
+    </nav>
+  </header>
+  <div id="nav-backdrop"></div>
+
+  <!-- ── MAILBOX VIEW ─────────────────────────── -->
+  <section id="view-mailbox" class="view">
+    <div class="view-inner">
+
+      <div class="today-header">
+        <p class="section-label">today's correspondence</p>
+        <div class="date-adjust-row">
+          <button class="date-adj-btn" id="date-adj-prev" aria-label="Previous day">‹</button>
+          <p id="today-date-display" class="today-date"></p>
+          <button class="date-adj-btn" id="date-adj-next" aria-label="Next day">›</button>
+        </div>
+        <div id="streak-display" class="streak-display hidden">
+          <span class="streak-flame">🪶</span>
+          <span id="streak-count"></span>
+          <span class="streak-label">days in a row</span>
+        </div>
+      </div>
+
+      <div class="today-grid">
+        <div id="my-slot" class="slot"></div>
+        <div id="partner-slot" class="slot"></div>
+      </div>
+
+      <div class="archive-wrap">
+        <p class="section-label">the archive</p>
+        <div id="archive-list" class="archive-list">
+          <p class="placeholder-text">Loading correspondence…</p>
+        </div>
+      </div>
+
+      <!-- faint compass rose — sets the nautical tone in the empty lower area -->
+      <svg class="compass-rose" viewBox="0 0 200 200" width="200" height="200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#4a80a8" stroke-opacity="0.55">
+          <circle cx="100" cy="100" r="78" stroke-width="1"/>
+          <circle cx="100" cy="100" r="62" stroke-width="0.6" stroke-dasharray="2 4"/>
+          <circle cx="100" cy="100" r="14" stroke-width="1"/>
+        </g>
+        <!-- secondary (diagonal) points -->
+        <g fill="#5aaba0" fill-opacity="0.30">
+          <path d="M100 100 L132 68 L112 88 Z"/>
+          <path d="M100 100 L132 132 L112 112 Z"/>
+          <path d="M100 100 L68 132 L88 112 Z"/>
+          <path d="M100 100 L68 68 L88 88 Z"/>
+        </g>
+        <!-- primary (cardinal) points -->
+        <g fill="#4a80a8" fill-opacity="0.5">
+          <path d="M100 100 L106 94 L100 18 L94 94 Z"/>
+          <path d="M100 100 L106 106 L182 100 L106 94 Z"/>
+          <path d="M100 100 L94 106 L100 182 L106 106 Z"/>
+          <path d="M100 100 L94 94 L18 100 L94 106 Z"/>
+        </g>
+        <circle cx="100" cy="100" r="5" fill="#c8a84a" fill-opacity="0.6"/>
+        <!-- cardinal letters -->
+        <g fill="#5aaba0" fill-opacity="0.55" font-family="'Playfair Display', serif" font-size="13" text-anchor="middle">
+          <text x="100" y="14">N</text>
+          <text x="190" y="105">E</text>
+          <text x="100" y="198">S</text>
+          <text x="11" y="105">W</text>
+        </g>
+      </svg>
+
+    </div>
+  </section>
+
+  <!-- ── WRITE VIEW ──────────────────────────── -->
+  <section id="view-write" class="view hidden">
+    <div class="view-inner write-inner">
+
+      <div id="already-wrote-notice" class="already-wrote hidden">
+        <p class="aw-text">Your letter for today has already been sent.</p>
+        <button class="btn-text" onclick="window._viewMyTodayLetter()">Read it ›</button>
+      </div>
+
+      <div id="paper-write" class="paper">
+        <p class="paper-date-line" id="write-date"></p>
+
+        <div
+          id="write-salutation"
+          class="salutation-field"
+          contenteditable="true"
+          spellcheck="false"
+          data-placeholder="Dear Rocky,"></div>
+
+        <div class="floral-rule">
+          <span>✦</span><span class="rule-line"></span><span>✦</span><span class="rule-line"></span><span>✦</span>
+        </div>
+
+        <textarea
+          id="letter-body"
+          placeholder="tell me about your day…"
+          spellcheck="true"
+        ></textarea>
+
+        <div class="signoff-wrap">
+          <span
+            id="write-signoff-word"
+            class="signoff-field"
+            contenteditable="true"
+            spellcheck="false"
+            data-placeholder="Onward,"></span>
+          <span
+            id="write-signoff-name"
+            class="signoff-field signoff-name"
+            contenteditable="true"
+            spellcheck="false"
+            data-placeholder="Ryland"></span>
+        </div>
+
+        <div class="mood-picker-wrap hidden" id="mood-picker-wrap">
+          <p class="mood-label">today's mood</p>
+          <div class="mood-pills" id="mood-pills"></div>
+        </div>
+
+        <div class="paper-footer">
+          <div class="wc-wrap">
+            <span id="wc-num" class="wc-num">0</span>
+            <span class="wc-label"> / 250 words</span>
+            <div class="wc-bar"><div id="wc-fill" class="wc-fill"></div></div>
+          </div>
+          <button id="send-btn" class="btn-wax btn-send" disabled>
+            <span class="btn-label">Seal &amp; Send ✦</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /screen-app -->
+
+  <!-- Rocky fauna: brittle stars + crabs -->
+  <div class="scene-fauna fauna-rocky" aria-hidden="true">
+    <!-- Brittle star 1 — filled tapered arms, 72° apart -->
+    <svg class="drift-star star-1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="6.5" fill="rgba(90,171,223,.68)"/>
+      <circle cx="40" cy="40" r="4"   fill="rgba(150,210,255,.30)"/>
+      <path fill="rgba(90,171,223,.54)" transform="rotate(0   40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(90,171,223,.50)" transform="rotate(72  40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(90,171,223,.52)" transform="rotate(144 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(90,171,223,.48)" transform="rotate(216 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(90,171,223,.52)" transform="rotate(288 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+    </svg>
+    <!-- Brittle star 2 — slightly wavy arms, lighter blue -->
+    <svg class="drift-star star-2" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="5.5" fill="rgba(120,190,240,.62)"/>
+      <circle cx="40" cy="40" r="3.5" fill="rgba(170,225,255,.28)"/>
+      <path fill="rgba(120,190,240,.48)" transform="rotate(0   40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+      <path fill="rgba(120,190,240,.44)" transform="rotate(72  40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+      <path fill="rgba(120,190,240,.46)" transform="rotate(144 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+      <path fill="rgba(120,190,240,.42)" transform="rotate(216 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+      <path fill="rgba(120,190,240,.46)" transform="rotate(288 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+    </svg>
+    <!-- Brittle star 3 — broader arms, deeper blue -->
+    <svg class="drift-star star-3" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="7"   fill="rgba(90,171,223,.65)"/>
+      <circle cx="40" cy="40" r="4.5" fill="rgba(140,205,255,.28)"/>
+      <path fill="rgba(90,171,223,.55)" transform="rotate(0   40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
+      <path fill="rgba(90,171,223,.50)" transform="rotate(72  40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
+      <path fill="rgba(90,171,223,.53)" transform="rotate(144 40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
+      <path fill="rgba(90,171,223,.48)" transform="rotate(216 40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
+      <path fill="rgba(90,171,223,.52)" transform="rotate(288 40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
+    </svg>
+    <svg class="swim-crab crab-1" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(90,171,223,.28)"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(90,171,223,.26)"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(90,171,223,.26)"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(90,171,223,.26)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(90,171,223,.26)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="rgba(90,171,223,.38)"/>
+      <circle cx="35" cy="13" r="2" fill="rgba(90,171,223,.38)"/>
+    </svg>
+    <svg class="swim-crab crab-2 crab-right" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(120,190,240,.24)"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(120,190,240,.22)"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(120,190,240,.22)"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(120,190,240,.22)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(120,190,240,.22)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="rgba(120,190,240,.32)"/>
+      <circle cx="35" cy="13" r="2" fill="rgba(120,190,240,.32)"/>
+    </svg>
+    <!-- Brittle star 4 — smaller, tilted start -->
+    <svg class="drift-star star-4" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="5" fill="rgba(100,180,230,.62)"/>
+      <circle cx="40" cy="40" r="3" fill="rgba(160,215,255,.28)"/>
+      <path fill="rgba(100,180,230,.50)" transform="rotate(36  40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(100,180,230,.46)" transform="rotate(108 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(100,180,230,.48)" transform="rotate(180 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(100,180,230,.44)" transform="rotate(252 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(100,180,230,.48)" transform="rotate(324 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+    </svg>
+    <!-- Brittle star 5 — medium, looser arms -->
+    <svg class="drift-star star-5" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="6" fill="rgba(90,171,223,.60)"/>
+      <circle cx="40" cy="40" r="3.8" fill="rgba(150,210,255,.26)"/>
+      <path fill="rgba(90,171,223,.52)" transform="rotate(0   40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+      <path fill="rgba(90,171,223,.48)" transform="rotate(72  40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+      <path fill="rgba(90,171,223,.50)" transform="rotate(144 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+      <path fill="rgba(90,171,223,.46)" transform="rotate(216 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+      <path fill="rgba(90,171,223,.50)" transform="rotate(288 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
+    </svg>
+    <!-- Crab 3 — medium, between the others -->
+    <svg class="swim-crab crab-3" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(90,171,223,.30)"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(90,171,223,.28)"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(90,171,223,.28)"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(90,171,223,.28)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(90,171,223,.28)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="rgba(90,171,223,.40)"/>
+      <circle cx="35" cy="13" r="2" fill="rgba(90,171,223,.40)"/>
+    </svg>
+    <!-- Crab 4 — smallest, far right -->
+    <svg class="swim-crab crab-4 crab-right" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(110,185,235,.22)"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(110,185,235,.20)"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(110,185,235,.20)"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(110,185,235,.20)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(110,185,235,.20)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="rgba(110,185,235,.30)"/>
+      <circle cx="35" cy="13" r="2" fill="rgba(110,185,235,.30)"/>
+    </svg>
+  </div>
+
+  <!-- fixed ocean waves at the foot of every app view (decorative) -->
+  <svg class="app-waves" viewBox="0 0 1440 220" width="1440" height="220" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <path fill="rgba(20,50,120,0.25)" d="M0 30 C 180 5 360 58 540 36 C 760 12 920 66 1140 42 C 1300 24 1380 48 1440 34 L1440 220 L0 220 Z"/>
+    <g class="sail-boat">
+      <path d="M-20 8 C-14 14 14 14 20 8 L17 11 C10 16 -10 16 -17 11 Z" fill="rgba(180,200,230,.5)"/>
+      <line x1="0" y1="8" x2="0" y2="-22" stroke="rgba(180,200,230,.45)" stroke-width="1.2"/>
+      <path d="M0 -22 L0 6 L13 6 Z" fill="rgba(180,200,230,.4)"/>
+    </g>
+    <path fill="rgba(15,40,100,0.45)" d="M0 70 C 200 44 380 96 600 72 C 820 50 1000 102 1220 78 C 1340 64 1400 84 1440 72 L1440 220 L0 220 Z"/>
+    <path fill="rgba(10,30,80,0.68)" d="M0 110 C 220 88 420 130 660 114 C 900 98 1080 136 1280 118 C 1370 108 1410 122 1440 116 L1440 220 L0 220 Z"/>
+  </svg>
+
+
+<!-- ══════════════════════════════════════════════
+     READ MODAL
+══════════════════════════════════════════════ -->
+<div id="modal-read" class="modal hidden">
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+
+  <div class="modal-inner">
+    <!-- Phase 1: envelope animation -->
+    <div id="phase-envelope" class="phase-envelope">
+      <div class="env-big">
+        <div class="env-big-body">
+          <div class="env-big-tri-left"></div>
+          <div class="env-big-tri-right"></div>
+          <div class="env-big-tri-bottom"></div>
+        </div>
+        <div class="env-big-flap"></div>
+        <div class="env-big-peek"></div>
+        <div class="env-big-seal" id="env-big-seal">✦</div>
+      </div>
+      <p class="env-opening-label">opening…</p>
+    </div>
+
+    <!-- Phase 2: full letter -->
+    <div id="phase-letter" class="phase-letter hidden">
+      <div class="paper paper-read">
+        <div id="read-stamp" class="paper-stamp" aria-hidden="true"></div>
+        <p class="paper-date-line" id="read-date"></p>
+
+        <div id="read-salutation" class="salutation-field salutation-readonly"></div>
+
+        <div class="floral-rule">
+          <span>✦</span><span class="rule-line"></span><span>✦</span><span class="rule-line"></span><span>✦</span>
+        </div>
+
+        <div id="read-content" class="read-content"></div>
+
+        <div class="signoff-wrap signoff-readonly">
+          <span id="read-signoff-word" class="signoff-field"></span>
+          <span id="read-signoff-name" class="signoff-field signoff-name"></span>
+        </div>
+
+        <div id="read-mood-wrap" class="read-mood-wrap hidden">
+          <span id="read-mood" class="read-mood"></span>
+        </div>
+
+        <div class="paper-footer read-footer">
+          <span id="read-wc" class="wc-label"></span>
+          <div class="read-actions">
+            <span id="edit-timer" class="edit-timer hidden"></span>
+            <button id="edit-btn" class="btn-text hidden">edit letter</button>
+          </div>
+        </div>
+      </div>
+
+      <button id="close-modal-btn" class="btn-close-modal">close envelope</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SETTINGS MODAL
+══════════════════════════════════════════════ -->
+<div id="modal-settings" class="modal hidden">
+  <div class="modal-backdrop" id="settings-backdrop"></div>
+  <div class="modal-inner modal-inner-settings">
+    <h2 class="settings-title">Edit Letter Date</h2>
+    <p class="settings-desc">Move one of your letters to a different date.</p>
+    <div class="settings-form">
+      <label class="settings-label" for="settings-letter-select">Letter</label>
+      <select id="settings-letter-select" class="settings-select"></select>
+      <label class="settings-label" for="settings-date-input">New date</label>
+      <input type="date" id="settings-date-input" class="settings-date-input">
+      <p id="settings-status" class="settings-status hidden"></p>
+      <button id="settings-save-btn" class="btn-wax settings-save">Move letter</button>
+    </div>
+    <button id="close-settings-btn" class="btn-close-modal">close</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOASTS
+══════════════════════════════════════════════ -->
+<div id="toast-error"   class="toast toast-error   hidden"></div>
+<div id="toast-success" class="toast toast-success hidden">📡 Your entry has been sealed &amp; sent.</div>
+
+<script type="module" src="app.js?v=11"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# ─────────────────────────────────────────────────────────────────────
+# This repo is PUBLIC. Nothing that identifies a real Firebase project,
+# a real person, or a real credential belongs in it.
+#
+# firebase-config.js is committed on purpose, carrying YOUR_* placeholders
+# so the setup steps in the README make sense. If you ever paste real
+# values into it for local testing, DO NOT commit them — copy it to
+# firebase-config.local.js instead, which is ignored below.
+# ─────────────────────────────────────────────────────────────────────
+
+*.local.js
+firebase-config.local.js
+
+# Service-account keys. These are genuine secrets — they grant admin
+# access to the whole project.
+serviceAccount*.json
+*-firebase-adminsdk-*.json
+.env
+.env.*
+
+# Seed content with real names or addresses in it
+seed-letters.json
+
+# Screenshots taken while working
+_shot-*.png
+
+# Originals kept by tools/cut-seal.mjs — useful locally, noise in the repo
+*.orig.png
+
+node_modules/
+.firebase/
+firebase-debug.log
+.DS_Store
