@@ -8,13 +8,20 @@ import {
   browserLocalPersistence
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
+// Firestore comes through demo-store.js, not straight from the SDK. With
+// DEMO_MODE off it re-exports the real functions unchanged; with it on, writes
+// are kept in a per-tab overlay so visitors can use every feature without
+// altering the archive. Nothing below this line knows the difference.
 import {
   collection, doc, setDoc, getDoc, getDocs, deleteDoc,
   query, where, orderBy, onSnapshot,
-  serverTimestamp, Timestamp
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+  serverTimestamp, Timestamp,
+  mountDemoBanner
+} from './demo-store.js';
 
 // Copy seal artwork from login buttons into transition cover (avoids duplicating base64)
+mountDemoBanner();
+
 document.querySelector('.tc-seal-ryland .tc-seal-art').src =
   document.querySelector('#btn-ryland .seal-art')?.src ?? '';
 document.querySelector('.tc-seal-rocky .tc-seal-art').src =

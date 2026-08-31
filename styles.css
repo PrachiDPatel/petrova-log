@@ -2396,3 +2396,94 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
   display: none !important;
 }
 
+
+/* ═══════════════════════════════════════════════════
+   DEMO SANDBOX
+   Shown only when DEMO_MODE is on. The banner sits above
+   everything and the app is pushed down to meet it, so it
+   cannot be mistaken for part of the letter.
+═══════════════════════════════════════════════════ */
+
+.demo-banner {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 1.1rem;
+  background: rgba(24, 14, 12, 0.96);
+  border-bottom: 1px solid rgba(214, 92, 72, 0.55);
+  color: #e9ded2;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+
+.demo-banner::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  /* the Petrova line, in miniature */
+  background: #d65c48;
+  box-shadow: 0 0 8px rgba(214, 92, 72, 0.9);
+}
+
+.demo-reset {
+  flex: none;
+  padding: 0.2rem 0.7rem;
+  background: transparent;
+  border: 1px solid rgba(233, 222, 210, 0.4);
+  border-radius: 3px;
+  color: #e9ded2;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.demo-reset:hover {
+  background: rgba(233, 222, 210, 0.12);
+  border-color: rgba(233, 222, 210, 0.75);
+}
+
+/* Push the app down so the banner never covers the nav. */
+body.has-demo-banner { padding-top: 3rem; }
+
+.demo-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.6rem;
+  transform: translate(-50%, 1.2rem);
+  z-index: 9999;
+  max-width: min(30rem, calc(100vw - 2rem));
+  padding: 0.65rem 1.1rem;
+  background: rgba(24, 14, 12, 0.96);
+  border: 1px solid rgba(214, 92, 72, 0.5);
+  border-radius: 4px;
+  color: #e9ded2;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.95rem;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+.demo-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 40rem) {
+  .demo-banner { font-size: 0.85rem; padding: 0.55rem 0.8rem; }
+  body.has-demo-banner { padding-top: 4.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-toast { transition-duration: 0.01ms; }
+}

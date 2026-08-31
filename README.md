@@ -159,11 +159,36 @@ Change `AUTH_PASS` to something private first, and give each person their own
 password rather than sharing one.
 </details>
 
-### 6. Seed the demo letters
+### 6. Demo mode
+
+`firebase-config.js` carries one switch:
+
+```js
+export const DEMO_MODE = true;
+```
+
+**On** (the public demo): visitors can write, edit, move and delete letters and
+see every feature work — but writes are intercepted by `demo-store.js` and kept
+in a `sessionStorage` overlay for that tab only. Nothing reaches Firestore, so
+the next visitor finds the correspondence exactly as it was. A banner says so up
+front, and a toast confirms it on every write.
+
+**Off** (two real people): every wrapper becomes a pass-through and writes go to
+the database. Publish the writable ruleset above if you do this — the demo rules
+refuse writes regardless of this flag.
+
+The rules and the flag are deliberately independent. `demo-store.js` exists so
+the demo is *fun*; the rules are what make it *safe*. Delete the module tomorrow
+and the archive is still protected.
+
+The whole thing is one import line in `app.js` — nothing else in the app knows
+demo mode exists, so it can be removed without archaeology.
+
+### 7. Seed the demo letters
 
 An empty demo is a bad demo. See `tools/seed.mjs`.
 
-### 7. Deploy
+### 8. Deploy
 
 Any static host. For Cloudflare Pages: connect the repo, framework preset
 **None**, build command empty, output directory `/`.

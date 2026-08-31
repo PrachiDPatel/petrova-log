@@ -46,3 +46,10 @@ export const VAPID_KEY = 'YOUR_VAPID_KEY';
 
 // Shared sign-in credential — set both Firebase accounts to this password
 export const AUTH_PASS = 'astrophage';
+
+// Demo sandbox. true  → visitors can use every feature, but writes are kept in
+//                       a per-tab overlay and never reach Firestore.
+//               false → a normal app; writes go to the database. If you set
+//                       this, also publish the writable ruleset from README.md,
+//                       which the published rules currently refuse.
+export const DEMO_MODE = true;
