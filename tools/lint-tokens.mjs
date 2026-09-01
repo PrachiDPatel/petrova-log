@@ -66,12 +66,17 @@ for (const file of FILES) {
     continue;
   }
 
-  const lines = src.split('\n');
+  // Block comments are stripped across the whole file first, with newlines
+  // kept so reported line numbers still point at the real line. Stripping them
+  // per-line only catches single-line ones, and a multi-line comment that
+  // documents a colour then reads as a violation.
+  const blanked = src.replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '));
+  const lines = blanked.split('\n');
   const hits = [];
 
   lines.forEach((line, i) => {
     // A line that is only a comment cannot paint anything.
-    const stripped = line.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*(\/\/|\*|<!--).*/, '');
+    const stripped = line.replace(/^\s*(\/\/|\*|<!--).*/, '');
     for (const m of stripped.matchAll(COLOUR)) {
       const rgb = parse(m[0]);
       if (!rgb) {

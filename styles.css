@@ -996,12 +996,8 @@ body[data-user="ryland"] .mood-pill.selected {
 .env-art-seal {
   position: absolute; top: 28px; left: 50%;
   transform: translate(-50%, -50%);
-  width: 22px; height: 22px;
-  background: var(--seal); border: 2px solid var(--seal-rim);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .55rem; color: rgb(var(--gold-rgb) / .85);
-  box-shadow: 0 1px 5px rgba(0,0,0,.5);
+  width: 24px; height: 24px;
+  display: grid; place-items: center;
 }
 /* Fallback fold tint (always overridden per-sender below — .env-art only
    ever renders inside a [data-sender] card) */
@@ -1123,8 +1119,11 @@ body[data-user="ryland"] .mood-pill.selected {
 .archive-env-small { width: 48px; height: 34px; margin: 0 auto .4rem; position: relative; }
 .aes-body {
   width: 100%; height: 100%;
-  background: var(--paper-mid);
-  border: 1px solid var(--env-border);
+  background: color-mix(in srgb, var(--user-lt) 8%, var(--paper));
+  /* The border does the defining — in the original it is far darker than any
+     face (#ae854c against #e5d2bd), which is what makes the shape read at
+     card size. */
+  border: 1px solid var(--user);
   border-radius: 1px; position: relative;
 }
 /* Same three-triangle fold shading as .env-art/.env-big — apex at 41.18%
@@ -1140,8 +1139,8 @@ body[data-user="ryland"] .mood-pill.selected {
 /* Three faces, far apart in value, or the fold does not read. The original app
    used a pale face against a distinctly darker fold; these were 14% and 26% of
    the same tint mixed into gold, which is neither paper nor separated. */
-.aes-tri-left, .aes-tri-right { background: color-mix(in srgb, var(--user-lt)  9%, var(--paper)); }
-.aes-tri-bottom               { background: color-mix(in srgb, var(--user-lt) 46%, var(--paper-edge)); }
+.aes-tri-left, .aes-tri-right { background: color-mix(in srgb, var(--user-lt)  8%, var(--paper)); }
+.aes-tri-bottom               { background: color-mix(in srgb, var(--user-lt) 22%, var(--paper)); }
 /* border + clip-path together renders an uneven sliver at sharp corners —
    base triangle in --env-border with a smaller inset fill on top instead. */
 .aes-flap {
@@ -1156,7 +1155,7 @@ body[data-user="ryland"] .mood-pill.selected {
   position: absolute;
   top: 1px; left: 1px; right: 1px;
   height: 12px;
-  background: color-mix(in srgb, var(--user-lt) 22%, var(--paper-mid));
+  background: color-mix(in srgb, var(--user-lt) 36%, var(--paper));
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 /* The actual wax, scaled down — this was a flat coloured disc with the seal
@@ -1165,11 +1164,16 @@ body[data-user="ryland"] .mood-pill.selected {
 .aes-seal {
   position: absolute; top: 14px; left: 50%;
   transform: translate(-50%, -50%);
-  width: 19px; height: 19px;
+  width: 15px; height: 15px;
   display: grid; place-items: center;
 }
+.env-art-seal .seal-img {
+  width: 24px; height: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .55));
+}
 .aes-seal .seal-img {
-  width: 19px; height: 19px;
+  width: 15px; height: 15px;
   object-fit: contain;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .55));
 }
