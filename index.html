@@ -6,7 +6,7 @@
   <title>Petrova Log</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
-  <meta name="theme-color" content="#1a1006">
+  <meta name="theme-color" content="var(--user)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Petrova Log">
@@ -56,18 +56,18 @@
           <circle cx="44" cy="35" r="27" fill="black"/>
         </mask>
       </defs>
-      <circle cx="36" cy="36" r="30" fill="rgba(230,239,228,0.88)" mask="url(#crescent-mask)"/>
+      <circle cx="36" cy="36" r="30" fill="var(--user)" fill-opacity="0.88" mask="url(#crescent-mask)"/>
     </svg>
 
     <!-- the Petrova line — a faint thread of red light across the sky -->
     <svg class="petrova-line" viewBox="0 0 1440 600" width="1440" height="600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="petrova-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"   stop-color="#ff3b30" stop-opacity="0"/>
-          <stop offset="15%"  stop-color="#ff3b30" stop-opacity=".55"/>
-          <stop offset="50%"  stop-color="#ff5a45" stop-opacity=".8"/>
-          <stop offset="85%"  stop-color="#ff3b30" stop-opacity=".55"/>
-          <stop offset="100%" stop-color="#ff3b30" stop-opacity="0"/>
+          <stop offset="0%"   stop-color="var(--petrova)" stop-opacity="0"/>
+          <stop offset="15%"  stop-color="var(--petrova)" stop-opacity=".55"/>
+          <stop offset="50%"  stop-color="var(--petrova)" stop-opacity=".8"/>
+          <stop offset="85%"  stop-color="var(--petrova)" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="var(--petrova)" stop-opacity="0"/>
         </linearGradient>
       </defs>
       <line x1="-60" y1="90" x2="1500" y2="330" stroke="url(#petrova-grad)" stroke-width="1.4"/>
@@ -77,38 +77,38 @@
     <!-- sparkle stars scattered in the sky -->
     <svg class="scene-stars" viewBox="0 0 1440 600" width="1440" height="600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
       <!-- 4-pointed sparkle stars -->
-      <path d="M120 80 L122 88 L130 90 L122 92 L120 100 L118 92 L110 90 L118 88Z" fill="rgba(230,239,228,0.43)"/>
-      <path d="M380 45 L381.5 51 L388 52.5 L381.5 54 L380 60 L378.5 54 L372 52.5 L378.5 51Z" fill="rgba(230,239,228,0.53)"/>
-      <path d="M750 30 L752 40 L762 42 L752 44 L750 54 L748 44 L738 42 L748 40Z" fill="rgba(230,239,228,0.37)"/>
-      <path d="M1050 65 L1051.5 72 L1058 73.5 L1051.5 75 L1050 82 L1048.5 75 L1042 73.5 L1048.5 72Z" fill="rgba(230,239,228,0.46)"/>
-      <path d="M1300 40 L1301.5 46 L1308 47.5 L1301.5 49 L1300 55 L1298.5 49 L1292 47.5 L1298.5 46Z" fill="rgba(230,239,228,0.5)"/>
-      <path d="M220 160 L221 165 L226 166 L221 167 L220 172 L219 167 L214 166 L219 165Z" fill="rgba(230,239,228,0.31)"/>
-      <path d="M900 120 L901.5 127 L908 128.5 L901.5 130 L900 137 L898.5 130 L892 128.5 L898.5 127Z" fill="rgba(230,239,228,0.4)"/>
+      <path d="M120 80 L122 88 L130 90 L122 92 L120 100 L118 92 L110 90 L118 88Z" fill="var(--user)" fill-opacity="0.43"/>
+      <path d="M380 45 L381.5 51 L388 52.5 L381.5 54 L380 60 L378.5 54 L372 52.5 L378.5 51Z" fill="var(--user)" fill-opacity="0.53"/>
+      <path d="M750 30 L752 40 L762 42 L752 44 L750 54 L748 44 L738 42 L748 40Z" fill="var(--user)" fill-opacity="0.37"/>
+      <path d="M1050 65 L1051.5 72 L1058 73.5 L1051.5 75 L1050 82 L1048.5 75 L1042 73.5 L1048.5 72Z" fill="var(--user)" fill-opacity="0.46"/>
+      <path d="M1300 40 L1301.5 46 L1308 47.5 L1301.5 49 L1300 55 L1298.5 49 L1292 47.5 L1298.5 46Z" fill="var(--user)" fill-opacity="0.5"/>
+      <path d="M220 160 L221 165 L226 166 L221 167 L220 172 L219 167 L214 166 L219 165Z" fill="var(--user)" fill-opacity="0.31"/>
+      <path d="M900 120 L901.5 127 L908 128.5 L901.5 130 L900 137 L898.5 130 L892 128.5 L898.5 127Z" fill="var(--user)" fill-opacity="0.4"/>
       <!-- 8-pointed stars -->
-      <path d="M550 90 L551.8 96.2 L556 92 L552 96.2 L558 98 L552 99.8 L556 104 L551.8 99.8 L550 106 L548.2 99.8 L544 104 L548 99.8 L542 98 L548 96.2 L544 92 L548.2 96.2Z" fill="rgba(230,239,228,0.28)"/>
-      <path d="M1200 55 L1201.5 59.5 L1205 56 L1201.5 59.5 L1206 61 L1201.5 62.5 L1205 66 L1201.5 62.5 L1200 67 L1198.5 62.5 L1195 66 L1198.5 62.5 L1194 61 L1198.5 59.5 L1195 56 L1198.5 59.5Z" fill="rgba(230,239,228,0.34)"/>
+      <path d="M550 90 L551.8 96.2 L556 92 L552 96.2 L558 98 L552 99.8 L556 104 L551.8 99.8 L550 106 L548.2 99.8 L544 104 L548 99.8 L542 98 L548 96.2 L544 92 L548.2 96.2Z" fill="var(--user)" fill-opacity="0.28"/>
+      <path d="M1200 55 L1201.5 59.5 L1205 56 L1201.5 59.5 L1206 61 L1201.5 62.5 L1205 66 L1201.5 62.5 L1200 67 L1198.5 62.5 L1195 66 L1198.5 62.5 L1194 61 L1198.5 59.5 L1195 56 L1198.5 59.5Z" fill="var(--user)" fill-opacity="0.34"/>
       <!-- additional scattered sparkle + dot stars -->
-      <path d="M70 215 L71.5 221 L78 222.5 L71.5 224 L70 230 L68.5 224 L62 222.5 L68.5 221Z" fill="rgba(230,239,228,0.37)"/>
-      <path d="M470 100 L471.5 106 L478 107.5 L471.5 109 L470 115 L468.5 109 L462 107.5 L468.5 106Z" fill="rgba(230,239,228,0.43)"/>
-      <path d="M660 170 L661.5 175 L666 176 L661.5 177 L660 182 L658.5 177 L654 176 L658.5 175Z" fill="rgba(230,239,228,0.31)"/>
-      <path d="M1000 35 L1001.5 41 L1008 42.5 L1001.5 44 L1000 50 L998.5 44 L992 42.5 L998.5 41Z" fill="rgba(230,239,228,0.53)"/>
-      <path d="M1380 130 L1381.5 136 L1388 137.5 L1381.5 139 L1380 145 L1378.5 139 L1372 137.5 L1378.5 136Z" fill="rgba(230,239,228,0.4)"/>
-      <circle cx="300" cy="200" r="1.6" fill="rgba(230,239,228,0.34)"/>
-      <circle cx="820" cy="75" r="1.8" fill="rgba(230,239,228,0.43)"/>
-      <circle cx="1130" cy="190" r="1.5" fill="rgba(230,239,228,0.28)"/>
-      <circle cx="160" cy="120" r="1.4" fill="rgba(230,239,228,0.31)"/>
+      <path d="M70 215 L71.5 221 L78 222.5 L71.5 224 L70 230 L68.5 224 L62 222.5 L68.5 221Z" fill="var(--user)" fill-opacity="0.37"/>
+      <path d="M470 100 L471.5 106 L478 107.5 L471.5 109 L470 115 L468.5 109 L462 107.5 L468.5 106Z" fill="var(--user)" fill-opacity="0.43"/>
+      <path d="M660 170 L661.5 175 L666 176 L661.5 177 L660 182 L658.5 177 L654 176 L658.5 175Z" fill="var(--user)" fill-opacity="0.31"/>
+      <path d="M1000 35 L1001.5 41 L1008 42.5 L1001.5 44 L1000 50 L998.5 44 L992 42.5 L998.5 41Z" fill="var(--user)" fill-opacity="0.53"/>
+      <path d="M1380 130 L1381.5 136 L1388 137.5 L1381.5 139 L1380 145 L1378.5 139 L1372 137.5 L1378.5 136Z" fill="var(--user)" fill-opacity="0.4"/>
+      <circle cx="300" cy="200" r="1.6" fill="var(--user)" fill-opacity="0.34"/>
+      <circle cx="820" cy="75" r="1.8" fill="var(--user)" fill-opacity="0.43"/>
+      <circle cx="1130" cy="190" r="1.5" fill="var(--user)" fill-opacity="0.28"/>
+      <circle cx="160" cy="120" r="1.4" fill="var(--user)" fill-opacity="0.31"/>
     </svg>
 
     <!-- animated swimming fish in the ocean -->
     <div class="scene-fish" aria-hidden="true">
-      <svg class="swim-fish sf-1" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(230,239,228,.68)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(230,239,228,.68)"/></svg>
-      <svg class="swim-fish sf-2" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(230,239,228,.65)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(230,239,228,.65)"/></svg>
-      <svg class="swim-fish sf-3" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(65,205,200,.62)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(65,205,200,.62)"/></svg>
-      <svg class="swim-fish sf-4" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(230,239,228,.60)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(230,239,228,.60)"/></svg>
-      <svg class="swim-fish sf-5" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(230,239,228,.68)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(230,239,228,.68)"/></svg>
-      <svg class="swim-fish sf-6" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(61,107,71,.63)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(61,107,71,.63)"/></svg>
-      <svg class="swim-fish sf-right sf-7" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(230,239,228,.66)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(230,239,228,.66)"/></svg>
-      <svg class="swim-fish sf-right sf-8" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="rgba(230,239,228,.62)"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="rgba(230,239,228,.62)"/></svg>
+      <svg class="swim-fish sf-1" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="var(--user)" fill-opacity=".68"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="var(--user)" fill-opacity=".68"/></svg>
+      <svg class="swim-fish sf-2" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="var(--user)" fill-opacity=".65"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="var(--user)" fill-opacity=".65"/></svg>
+      <svg class="swim-fish sf-3" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="var(--star)" fill-opacity=".62"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="var(--star)" fill-opacity=".62"/></svg>
+      <svg class="swim-fish sf-4" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="var(--user)" fill-opacity=".60"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="var(--user)" fill-opacity=".60"/></svg>
+      <svg class="swim-fish sf-5" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="var(--user)" fill-opacity=".68"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="var(--user)" fill-opacity=".68"/></svg>
+      <svg class="swim-fish sf-6" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="var(--user)" fill-opacity=".63"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="var(--user)" fill-opacity=".63"/></svg>
+      <svg class="swim-fish sf-right sf-7" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="var(--user)" fill-opacity=".66"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="var(--user)" fill-opacity=".66"/></svg>
+      <svg class="swim-fish sf-right sf-8" viewBox="0 0 40 18" xmlns="http://www.w3.org/2000/svg"><path d="M5 9 C8 4 28 3 34 9 C28 15 8 14 5 9Z" fill="var(--user)" fill-opacity=".62"/><path d="M5 9 L-4 3 L-2 9 L-4 15Z" fill="var(--user)" fill-opacity=".62"/></svg>
     </div>
 
     <!-- layered ocean waves at the foot of the screen -->
@@ -157,70 +157,44 @@
 
   <!-- Ryland: 4-pointed sparkle star glints -->
   <div class="scene-space-stars" aria-hidden="true">
-    <svg class="glint-star gs-1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.88)"/></svg>
-    <svg class="glint-star gs-2" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.80)"/></svg>
-    <svg class="glint-star gs-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.92)"/></svg>
-    <svg class="glint-star gs-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.75)"/></svg>
-    <svg class="glint-star gs-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.82)"/></svg>
-    <svg class="glint-star gs-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.78)"/></svg>
-    <svg class="glint-star gs-7" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.70)"/></svg>
-    <svg class="glint-star gs-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.85)"/></svg>
-    <svg class="glint-star gs-9"  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.80)"/></svg>
-    <svg class="glint-star gs-10" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.74)"/></svg>
-    <svg class="glint-star gs-11" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.90)"/></svg>
-    <svg class="glint-star gs-12" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.68)"/></svg>
-    <svg class="glint-star gs-13" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.86)"/></svg>
-    <svg class="glint-star gs-14" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.76)"/></svg>
-    <svg class="glint-star gs-15" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.82)"/></svg>
-    <svg class="glint-star gs-16" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.72)"/></svg>
+    <svg class="glint-star gs-1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".88"/></svg>
+    <svg class="glint-star gs-2" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".80"/></svg>
+    <svg class="glint-star gs-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".92"/></svg>
+    <svg class="glint-star gs-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".75"/></svg>
+    <svg class="glint-star gs-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".82"/></svg>
+    <svg class="glint-star gs-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".78"/></svg>
+    <svg class="glint-star gs-7" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".70"/></svg>
+    <svg class="glint-star gs-8" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".85"/></svg>
+    <svg class="glint-star gs-9"  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".80"/></svg>
+    <svg class="glint-star gs-10" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".74"/></svg>
+    <svg class="glint-star gs-11" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".90"/></svg>
+    <svg class="glint-star gs-12" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".68"/></svg>
+    <svg class="glint-star gs-13" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".86"/></svg>
+    <svg class="glint-star gs-14" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".76"/></svg>
+    <svg class="glint-star gs-15" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".82"/></svg>
+    <svg class="glint-star gs-16" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".72"/></svg>
 
     <!-- Two featured star clusters, no connecting lines — just denser groupings -->
     <svg class="constellation rocky-shape" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <g transform="translate(20,12) scale(0.462)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.85)"/></g>
-      <g transform="translate(78,18) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.75)"/></g>
-      <g transform="translate(38,62) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.8)"/></g>
-      <g transform="translate(50,67) scale(0.374)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.85)"/></g>
-      <g transform="translate(62,72) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.8)"/></g>
-      <g transform="translate(18,118) scale(0.506)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.92)"/></g>
-      <g transform="translate(72,122) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.78)"/></g>
+      <g transform="translate(20,12) scale(0.462)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".85"/></g>
+      <g transform="translate(78,18) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".75"/></g>
+      <g transform="translate(38,62) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".8"/></g>
+      <g transform="translate(50,67) scale(0.374)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".85"/></g>
+      <g transform="translate(62,72) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".8"/></g>
+      <g transform="translate(18,118) scale(0.506)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".92"/></g>
+      <g transform="translate(72,122) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".78"/></g>
     </svg>
     <svg class="constellation pleiades-shape" viewBox="0 0 46 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <g transform="translate(10,6) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.85)"/></g>
-      <g transform="translate(19,3) scale(0.286)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.7)"/></g>
-      <g transform="translate(27,9) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.9)"/></g>
-      <g transform="translate(33,5) scale(0.264)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.65)"/></g>
-      <g transform="translate(16,16) scale(0.308)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.75)"/></g>
-      <g transform="translate(24,20) scale(0.286)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.7)"/></g>
-      <g transform="translate(8,22) scale(0.264)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.6)"/></g>
+      <g transform="translate(10,6) scale(0.352)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".85"/></g>
+      <g transform="translate(19,3) scale(0.286)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".7"/></g>
+      <g transform="translate(27,9) scale(0.396)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".9"/></g>
+      <g transform="translate(33,5) scale(0.264)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".65"/></g>
+      <g transform="translate(16,16) scale(0.308)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".75"/></g>
+      <g transform="translate(24,20) scale(0.286)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".7"/></g>
+      <g transform="translate(8,22) scale(0.264)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="var(--user)" fill-opacity=".6"/></g>
     </svg>
 
-    <!-- Earth as a wireframe globe: the graticule only, no coastlines.
-         Drawn from the actual projection — a parallel at latitude φ has radius
-         R·cos φ and sits R·sin φ up the axis, squashed by the tilt; a meridian
-         closes to nothing as it turns edge-on. Gold on dark, so the sky and the
-         wax seals speak the same language. -->
-    <svg class="ryland-moon" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <radialGradient id="earth-face" cx="34%" cy="28%" r="80%">
-          <stop offset="0%"   stop-color="#2c5039"/>
-          <stop offset="58%"  stop-color="#193122"/>
-          <stop offset="100%" stop-color="#0b1710"/>
-        </radialGradient>
-      </defs>
-      <circle cx="36.0" cy="36.0" r="30.0" fill="url(#earth-face)"/>
-      <g fill="none" stroke="#c4a882" stroke-linecap="round">
-        <ellipse cx="36.0" cy="11.2" rx="15.0" ry="4.5" stroke-width="0.9" opacity=".24"/>
-        <ellipse cx="36.0" cy="21.7" rx="26.0" ry="7.8" stroke-width="0.9" opacity=".34"/>
-        <ellipse cx="36.0" cy="36.0" rx="30.0" ry="9.0" stroke-width="1.15" opacity=".5"/>
-        <ellipse cx="36.0" cy="50.3" rx="26.0" ry="7.8" stroke-width="0.9" opacity=".34"/>
-        <ellipse cx="36.0" cy="60.8" rx="15.0" ry="4.5" stroke-width="0.9" opacity=".24"/>
-        <ellipse cx="36.0" cy="36.0" rx="15.0" ry="30.0" stroke-width="0.9" opacity=".30"/>
-        <ellipse cx="36.0" cy="36.0" rx="26.0" ry="30.0" stroke-width="0.9" opacity=".22"/>
-        <!-- the meridian facing us, edge-on, and the axis -->
-        <path d="M36.0 6.0 V66.0" stroke-width="0.9" opacity="0.30"/>
-      </g>
-      <circle cx="36.0" cy="36.0" r="30.0" fill="none" stroke="#c4a882" stroke-width="1.2" opacity=".62"/>
-    </svg>
+    <!-- (the globe lived here; removed) -->
   </div>
 
 
@@ -287,7 +261,7 @@
           <circle cx="100" cy="100" r="14" stroke-width="1"/>
         </g>
         <!-- secondary (diagonal) points -->
-        <g fill="#5aaba0" fill-opacity="0.30">
+        <g fill="var(--star)" fill-opacity="0.30">
           <path d="M100 100 L132 68 L112 88 Z"/>
           <path d="M100 100 L132 132 L112 112 Z"/>
           <path d="M100 100 L68 132 L88 112 Z"/>
@@ -300,9 +274,9 @@
           <path d="M100 100 L94 106 L100 182 L106 106 Z"/>
           <path d="M100 100 L94 94 L18 100 L94 106 Z"/>
         </g>
-        <circle cx="100" cy="100" r="5" fill="#c8a84a" fill-opacity="0.6"/>
+        <circle cx="100" cy="100" r="5" fill="var(--gold)" fill-opacity="0.6"/>
         <!-- cardinal letters -->
-        <g fill="#5aaba0" fill-opacity="0.55" font-family="'Space Mono', monospace" font-size="13" text-anchor="middle">
+        <g fill="var(--star)" fill-opacity="0.55" font-family="'Space Mono', monospace" font-size="13" text-anchor="middle">
           <text x="100" y="14">N</text>
           <text x="190" y="105">E</text>
           <text x="100" y="198">S</text>
@@ -382,92 +356,47 @@
   <!-- Rocky fauna: brittle stars + crabs -->
   <div class="scene-fauna fauna-rocky" aria-hidden="true">
     <!-- Brittle star 1 — filled tapered arms, 72° apart -->
-    <svg class="drift-star star-1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="6.5" fill="rgba(230,239,228,.68)"/>
-      <circle cx="40" cy="40" r="4"   fill="rgba(230,239,228,.30)"/>
-      <path fill="rgba(230,239,228,.54)" transform="rotate(0   40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.50)" transform="rotate(72  40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.52)" transform="rotate(144 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.48)" transform="rotate(216 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.52)" transform="rotate(288 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-    </svg>
     <!-- Brittle star 2 — slightly wavy arms, lighter blue -->
-    <svg class="drift-star star-2" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="5.5" fill="rgba(230,239,228,.62)"/>
-      <circle cx="40" cy="40" r="3.5" fill="rgba(230,239,228,.28)"/>
-      <path fill="rgba(230,239,228,.48)" transform="rotate(0   40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.44)" transform="rotate(72  40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.46)" transform="rotate(144 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.42)" transform="rotate(216 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.46)" transform="rotate(288 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-    </svg>
     <!-- Brittle star 3 — broader arms, deeper blue -->
-    <svg class="drift-star star-3" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="7"   fill="rgba(230,239,228,.65)"/>
-      <circle cx="40" cy="40" r="4.5" fill="rgba(230,239,228,.28)"/>
-      <path fill="rgba(230,239,228,.55)" transform="rotate(0   40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
-      <path fill="rgba(230,239,228,.50)" transform="rotate(72  40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
-      <path fill="rgba(230,239,228,.53)" transform="rotate(144 40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
-      <path fill="rgba(230,239,228,.48)" transform="rotate(216 40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
-      <path fill="rgba(230,239,228,.52)" transform="rotate(288 40 40)" d="M37 36 C34 26 36.5 14 40 3 C43.5 14 46 26 43 36 Z"/>
-    </svg>
     <svg class="swim-crab crab-1" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(230,239,228,.28)"/>
-      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(230,239,228,.26)"/>
-      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(230,239,228,.26)"/>
-      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(230,239,228,.26)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(230,239,228,.26)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <circle cx="25" cy="13" r="2" fill="rgba(230,239,228,.38)"/>
-      <circle cx="35" cy="13" r="2" fill="rgba(230,239,228,.38)"/>
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="var(--user)" fill-opacity=".28"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="var(--user)" fill-opacity=".26"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="var(--user)" fill-opacity=".26"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="var(--user)" stroke-opacity=".26" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="var(--user)" stroke-opacity=".26" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="var(--user)" fill-opacity=".38"/>
+      <circle cx="35" cy="13" r="2" fill="var(--user)" fill-opacity=".38"/>
     </svg>
     <svg class="swim-crab crab-2 crab-right" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(230,239,228,.24)"/>
-      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(230,239,228,.22)"/>
-      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(230,239,228,.22)"/>
-      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(230,239,228,.22)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(230,239,228,.22)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <circle cx="25" cy="13" r="2" fill="rgba(230,239,228,.32)"/>
-      <circle cx="35" cy="13" r="2" fill="rgba(230,239,228,.32)"/>
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="var(--user)" fill-opacity=".24"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="var(--user)" fill-opacity=".22"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="var(--user)" fill-opacity=".22"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="var(--user)" stroke-opacity=".22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="var(--user)" stroke-opacity=".22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="var(--user)" fill-opacity=".32"/>
+      <circle cx="35" cy="13" r="2" fill="var(--user)" fill-opacity=".32"/>
     </svg>
     <!-- Brittle star 4 — smaller, tilted start -->
-    <svg class="drift-star star-4" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="5" fill="rgba(230,239,228,.62)"/>
-      <circle cx="40" cy="40" r="3" fill="rgba(230,239,228,.28)"/>
-      <path fill="rgba(230,239,228,.50)" transform="rotate(36  40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.46)" transform="rotate(108 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.48)" transform="rotate(180 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.44)" transform="rotate(252 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.48)" transform="rotate(324 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-    </svg>
     <!-- Brittle star 5 — medium, looser arms -->
-    <svg class="drift-star star-5" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="6" fill="rgba(230,239,228,.60)"/>
-      <circle cx="40" cy="40" r="3.8" fill="rgba(230,239,228,.26)"/>
-      <path fill="rgba(230,239,228,.52)" transform="rotate(0   40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.48)" transform="rotate(72  40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.50)" transform="rotate(144 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.46)" transform="rotate(216 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.50)" transform="rotate(288 40 40)" d="M37.5 36 C34 26 37 15 40 3 C43 15 46 26 42.5 36 Z"/>
-    </svg>
     <!-- Crab 3 — medium, between the others -->
     <svg class="swim-crab crab-3" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(230,239,228,.30)"/>
-      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(230,239,228,.28)"/>
-      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(230,239,228,.28)"/>
-      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(230,239,228,.28)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(230,239,228,.28)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <circle cx="25" cy="13" r="2" fill="rgba(230,239,228,.40)"/>
-      <circle cx="35" cy="13" r="2" fill="rgba(230,239,228,.40)"/>
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="var(--user)" fill-opacity=".30"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="var(--user)" fill-opacity=".28"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="var(--user)" fill-opacity=".28"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="var(--user)" stroke-opacity=".28" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="var(--user)" stroke-opacity=".28" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="var(--user)" fill-opacity=".40"/>
+      <circle cx="35" cy="13" r="2" fill="var(--user)" fill-opacity=".40"/>
     </svg>
     <!-- Crab 4 — smallest, far right -->
     <svg class="swim-crab crab-4 crab-right" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(230,239,228,.22)"/>
-      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(230,239,228,.20)"/>
-      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(230,239,228,.20)"/>
-      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(230,239,228,.20)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(230,239,228,.20)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <circle cx="25" cy="13" r="2" fill="rgba(230,239,228,.30)"/>
-      <circle cx="35" cy="13" r="2" fill="rgba(230,239,228,.30)"/>
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="var(--user)" fill-opacity=".22"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="var(--user)" fill-opacity=".20"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="var(--user)" fill-opacity=".20"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="var(--user)" stroke-opacity=".20" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="var(--user)" stroke-opacity=".20" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="var(--user)" fill-opacity=".30"/>
+      <circle cx="35" cy="13" r="2" fill="var(--user)" fill-opacity=".30"/>
     </svg>
   </div>
 
@@ -475,9 +404,9 @@
   <svg class="app-waves" viewBox="0 0 1440 220" width="1440" height="220" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <path fill="rgba(16,23,16,0.25)" d="M0 30 C 180 5 360 58 540 36 C 760 12 920 66 1140 42 C 1300 24 1380 48 1440 34 L1440 220 L0 220 Z"/>
     <g class="sail-boat">
-      <path d="M-20 8 C-14 14 14 14 20 8 L17 11 C10 16 -10 16 -17 11 Z" fill="rgba(230,239,228,.5)"/>
-      <line x1="0" y1="8" x2="0" y2="-22" stroke="rgba(230,239,228,.45)" stroke-width="1.2"/>
-      <path d="M0 -22 L0 6 L13 6 Z" fill="rgba(230,239,228,.4)"/>
+      <path d="M-20 8 C-14 14 14 14 20 8 L17 11 C10 16 -10 16 -17 11 Z" fill="var(--user)" fill-opacity=".5"/>
+      <line x1="0" y1="8" x2="0" y2="-22" stroke="var(--user)" stroke-opacity=".45" stroke-width="1.2"/>
+      <path d="M0 -22 L0 6 L13 6 Z" fill="var(--user)" fill-opacity=".4"/>
     </g>
     <path fill="rgba(16,23,16,0.45)" d="M0 70 C 200 44 380 96 600 72 C 820 50 1000 102 1220 78 C 1340 64 1400 84 1440 72 L1440 220 L0 220 Z"/>
     <path fill="rgba(10,15,11,0.68)" d="M0 110 C 220 88 420 130 660 114 C 900 98 1080 136 1280 118 C 1370 108 1410 122 1440 116 L1440 220 L0 220 Z"/>

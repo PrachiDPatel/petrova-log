@@ -60,7 +60,12 @@
   --ryland-glow:  rgba(111, 164, 124, .45);
   --ryland-hot:   #8fc79c;   /* what Ryland glows */
   --ryland-hot-rgb: 143 199 156;
-  --ryland-foot:  #061009;   /* how the page bottoms out for him */
+  --ryland-foot:  #061009;
+  /* His night: green-black. */
+  --ryland-space-0: #050806;  --ryland-space-0-rgb:  5  8  6;
+  --ryland-space-1: #0a0f0b;  --ryland-space-1-rgb: 10 15 11;
+  --ryland-space-2: #101710;  --ryland-space-2-rgb: 16 23 16;
+  --ryland-space-3: #18211a;
   --ryland-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2770%27%20height%3D%2736%27%20viewBox%3D%270%200%2070%2036%27%3E%3Cpath%20d%3D%27M0%209%20C%2017.5%204%2017.5%204%2035%209%20C%2052.5%2014%2052.5%2014%2070%209%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.045%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2020%20C%2017.5%2025%2017.5%2025%2035%2020%20C%2052.5%2015%2052.5%2015%2070%2020%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.035%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2030%20C%2017.5%2027%2017.5%2027%2035%2030%20C%2052.5%2033%2052.5%2033%2070%2030%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.03%29%27%20stroke-width%3D%27.8%27%20fill%3D%27none%27%2F%3E%3C%2Fsvg%3E");
   --ryland-rgb:  61 107  71;
 
@@ -73,7 +78,14 @@
   --rocky-glow:   rgba(192, 138, 78, .45);
   --rocky-hot:    #e8a03c;   /* Rocky glows amber, not gold — warmer reads hotter */
   --rocky-hot-rgb: 232 160  60;
-  --rocky-foot:   #1b1104;   /* warm amber, not green */
+  --rocky-foot:   #1b1104;
+  /* His night: brown-black through to gold. The sky was green for both, which
+     is why his whole page still read forest even once every component had been
+     rewired — the ground underneath them had not moved. */
+  --rocky-space-0: #090603;  --rocky-space-0-rgb:  9  6  3;
+  --rocky-space-1: #110b05;  --rocky-space-1-rgb: 17 11  5;
+  --rocky-space-2: #1a1108;  --rocky-space-2-rgb: 26 17  8;
+  --rocky-space-3: #26190c;
   /* Strata, not ripples. Erid is a rock; the wave tile was Orion's ocean. */
   --rocky-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2772%27%20height%3D%2738%27%20viewBox%3D%270%200%2072%2038%27%3E%3Cpath%20d%3D%27M0%207%20L14%205%20L31%209%20L48%204%20L62%208%20L72%206%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.05%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2018%20L11%2021%20L27%2016%20L43%2020%20L58%2015%20L72%2019%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.038%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2029%20L16%2027%20L30%2031%20L47%2026%20L60%2030%20L72%2028%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.032%29%27%20stroke-width%3D%27.85%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M20%205%20L22%2018%20M52%204%20L50%2015%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.028%29%27%20stroke-width%3D%27.7%27%20fill%3D%27none%27%2F%3E%3C%2Fsvg%3E");
   --rocky-rgb:  125  69  34;
@@ -97,9 +109,9 @@
 
   /* ── stars ────────────────────────────────────────────────────────────────
      Warm white, very slightly green, so they belong to this sky. */
-  --star:         #e6efe4;
-  --star-rgb:   230 239 228;
-  --star-dim:     rgba(230, 239, 228, .45);
+  --star:         #ece8e0;
+  --star-rgb:   236 232 224;
+  --star-dim:     rgba(236, 232, 224, .45);
 
   /* ── seal, when no particular person owns it ──────────────────────────── */
   --seal:         var(--petrova-deep);
@@ -125,8 +137,16 @@
   --user-hot-rgb: var(--ryland-hot-rgb);
   --user-foot:  var(--ryland-foot);
   --ripple-tile: var(--ryland-texture);
+  --space-0: var(--ryland-space-0);  --space-0-rgb: var(--ryland-space-0-rgb);
+  --space-1: var(--ryland-space-1);  --space-1-rgb: var(--ryland-space-1-rgb);
+  --space-2: var(--ryland-space-2);  --space-2-rgb: var(--ryland-space-2-rgb);
+  --space-3: var(--ryland-space-3);
   --user-foot: var(--ryland-foot);
   --ripple-tile: var(--ryland-texture);
+  --space-0: var(--ryland-space-0);  --space-0-rgb: var(--ryland-space-0-rgb);
+  --space-1: var(--ryland-space-1);  --space-1-rgb: var(--ryland-space-1-rgb);
+  --space-2: var(--ryland-space-2);  --space-2-rgb: var(--ryland-space-2-rgb);
+  --space-3: var(--ryland-space-3);
 
   /* ── legacy names ────────────────────────────────────────────────────────
      The stylesheet grew up with these, and 2400 lines still say them. Rather
@@ -174,6 +194,10 @@ body[data-user="ryland"] {
   --user-hot-rgb: var(--ryland-hot-rgb);
   --user-foot: var(--ryland-foot);
   --ripple-tile: var(--ryland-texture);
+  --space-0: var(--ryland-space-0);  --space-0-rgb: var(--ryland-space-0-rgb);
+  --space-1: var(--ryland-space-1);  --space-1-rgb: var(--ryland-space-1-rgb);
+  --space-2: var(--ryland-space-2);  --space-2-rgb: var(--ryland-space-2-rgb);
+  --space-3: var(--ryland-space-3);
 }
 
 body[data-user="rocky"] {
@@ -187,6 +211,10 @@ body[data-user="rocky"] {
   --user-hot-rgb: var(--rocky-hot-rgb);
   --user-foot: var(--rocky-foot);
   --ripple-tile: var(--rocky-texture);
+  --space-0: var(--rocky-space-0);  --space-0-rgb: var(--rocky-space-0-rgb);
+  --space-1: var(--rocky-space-1);  --space-1-rgb: var(--rocky-space-1-rgb);
+  --space-2: var(--rocky-space-2);  --space-2-rgb: var(--rocky-space-2-rgb);
+  --space-3: var(--rocky-space-3);
 }
 
 /* ── who wrote a given letter ─────────────────────────────────────────────────
@@ -204,6 +232,10 @@ body[data-user="rocky"] {
   --user-hot-rgb: var(--ryland-hot-rgb);
   --user-foot: var(--ryland-foot);
   --ripple-tile: var(--ryland-texture);
+  --space-0: var(--ryland-space-0);  --space-0-rgb: var(--ryland-space-0-rgb);
+  --space-1: var(--ryland-space-1);  --space-1-rgb: var(--ryland-space-1-rgb);
+  --space-2: var(--ryland-space-2);  --space-2-rgb: var(--ryland-space-2-rgb);
+  --space-3: var(--ryland-space-3);
 }
 
 [data-sender="rocky"], .is-rocky {
@@ -217,4 +249,8 @@ body[data-user="rocky"] {
   --user-hot-rgb: var(--rocky-hot-rgb);
   --user-foot: var(--rocky-foot);
   --ripple-tile: var(--rocky-texture);
+  --space-0: var(--rocky-space-0);  --space-0-rgb: var(--rocky-space-0-rgb);
+  --space-1: var(--rocky-space-1);  --space-1-rgb: var(--rocky-space-1-rgb);
+  --space-2: var(--rocky-space-2);  --space-2-rgb: var(--rocky-space-2-rgb);
+  --space-3: var(--rocky-space-3);
 }

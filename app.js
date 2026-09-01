@@ -92,24 +92,24 @@ function sealGlyph(sender) {
 // paths drawn for each person's page background, so it's their world, not a sticker.
 const SENDER_MOTIF = {
   ryland: `<svg class="sender-motif" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g transform="translate(38,8) scale(2.1)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.9)"/></g>
-    <g transform="translate(6,40) scale(1.3)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.7)"/></g>
-    <g transform="translate(52,55) scale(1.6)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.8)"/></g>
-    <g transform="translate(20,76) scale(1.0)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.6)"/></g>
+    <g transform="translate(38,8) scale(2.1)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".9"/></g>
+    <g transform="translate(6,40) scale(1.3)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".7"/></g>
+    <g transform="translate(52,55) scale(1.6)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".8"/></g>
+    <g transform="translate(20,76) scale(1.0)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="var(--user)" fill-opacity=".6"/></g>
   </svg>`,
   // Erid is a rock. Peaks and boulders, not a brittle star and a crab — those
   // were the ocean fauna of the app this was forked from, and they had been
   // sitting in the corner of every one of Rocky's cards ever since.
   rocky: `<svg class="sender-motif" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="rgba(230,239,228,.72)">
+    <g fill="var(--user)" fill-opacity=".72">
       <path d="M4.0 66.0 11.0 62.0 17.0 64.0 24.0 57.0 30.0 59.0 36.0 51.0 41.0 53.0 46.0 43.0 49.0 35.0 52.0 28.0 55.0 34.0 58.0 42.0 62.0 47.0 65.0 43.0 70.0 49.0 75.0 45.0 80.0 51.0 86.0 56.0 92.0 61.0 97.0 65.0 L96.9 65.2 91.7 61.4 85.5 56.6 79.2 51.8 74.7 46.5 69.6 50.9 64.4 45.4 61.6 49.9 55.0 43.6 51.4 35.5 52.7 32.4 52.6 36.4 49.1 44.4 42.8 55.3 37.2 53.1 30.9 60.8 24.6 58.5 17.4 65.1 11.1 62.8 4.2 66.4 Z"/>
     </g>
-    <g fill="rgba(230,239,228,.36)">
+    <g fill="var(--user)" fill-opacity=".36">
       <path d="M51.4 33.6 L53.0 41.5 L52.1 41.8 L50.5 34.0 Z"/>
       <path d="M54.6 36.4 L57.4 44.0 L56.6 44.3 L53.8 36.8 Z"/>
       <path d="M47.4 40.4 L45.2 46.6 L44.4 46.3 L46.6 40.1 Z"/>
     </g>
-    <g fill="rgba(230,239,228,.30)">
+    <g fill="var(--user)" fill-opacity=".30">
       <path d="M27 70.5 C29 68.2 32.6 67.8 34.2 69.6 C35.8 71.4 34.4 74.2 31.6 74.6 C28.8 75 25.8 72.8 27 70.5 Z"/>
       <path d="M69 72.5 C70.8 70 74.6 70 76 72.3 C77.3 74.5 75 76.6 72.2 76.2 C69.8 75.8 68 74.2 69 72.5 Z"/>
     </g>

@@ -27,6 +27,19 @@ Sign in as either character with the shared demo password.
 | **Late-night cutoff** | Written before 5am local time? It files under the previous day |
 | **Archive** | Every past day, browsable |
 
+## Style guide
+
+Colour lives in exactly one file, and a linter enforces it:
+
+```bash
+npm run lint     # fails on any hardcoded colour outside tokens.css
+```
+
+See [STYLE-GUIDE.md](STYLE-GUIDE.md) for the rules — the short version is that
+components read `--user-*` and never name a person, so an archive can show both
+writers' envelopes in their own colours and adding a third person touches one
+file.
+
 ## How it's built
 
 Static HTML, CSS and JavaScript. No framework, no bundler, no build step — the
@@ -41,6 +54,8 @@ styles.css            all styling, including the per-writer palettes
 firebase-config.js    project config + the two characters
 assets/               wax seals and the hero background
 functions/notify.js   optional push notifications (Cloudflare Pages Function)
+tokens.css            every colour in the project, and nothing else
+tools/lint-tokens.mjs enforces that
 tools/cut-seal.mjs    gives a seal PNG a real alpha channel (see below)
 ```
 

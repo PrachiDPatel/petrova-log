@@ -296,7 +296,7 @@ body::after {
   top: 26%; left: 0;
   width: 100%; height: 70%;
   pointer-events: none;
-  filter: drop-shadow(0 0 6px rgba(255,59,48,.35));
+  filter: drop-shadow(0 0 6px rgb(var(--petrova-rgb) / .35));
   animation: petrovaShimmer 7s ease-in-out infinite;
 }
 @keyframes petrovaShimmer {
@@ -367,10 +367,10 @@ body::after {
   text-align: center;
   box-shadow:
     0 0 0 1px var(--paper-edge),
-    0 0 0 7px rgba(242,234,214,.06),
-    0 0 0 8px rgba(200,168,74,.22),
+    0 0 0 7px rgb(var(--gold-rgb) / .06),
+    0 0 0 8px rgb(var(--gold-rgb) / .22),
     6px 12px 48px rgba(0,0,0,.78),
-    0 0 70px rgba(248,240,170,.10),
+    0 0 70px rgb(var(--gold-rgb) / .10),
     0 0 120px rgb(var(--user-rgb) / .16);
 }
 
@@ -405,8 +405,8 @@ body::after {
   content: '';
   position: absolute; inset: 0;
   background:
-    linear-gradient(135deg, transparent 50%, rgba(160,120,70,.10) 50%),
-    linear-gradient(225deg, transparent 50%, rgba(140,100,55,.08) 50%);
+    linear-gradient(135deg, transparent 50%, rgb(var(--gold-rgb) / .10) 50%),
+    linear-gradient(225deg, transparent 50%, rgb(var(--gold-rgb) / .08) 50%);
 }
 .le-flap {
   position: absolute;
@@ -428,7 +428,7 @@ body::after {
   background: var(--seal); border: 2px solid var(--seal-rim);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: .55rem; color: rgba(245,237,216,.85);
+  font-size: .55rem; color: rgb(var(--gold-rgb) / .85);
   box-shadow: 0 1px 5px rgba(0,0,0,.4);
   z-index: 2;
 }
@@ -561,7 +561,7 @@ body::after {
 .form-error {
   font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .75rem;
-  color: #b85c4a;
+  color: var(--petrova);
   font-style: italic;
 }
 .pw-wrap { position: relative; display: flex; align-items: center; }
@@ -596,7 +596,7 @@ body::after {
   border-radius: 50px;
   position: relative;
   transition: background .25s, transform .2s, box-shadow .2s;
-  box-shadow: 0 2px 14px rgba(150,96,60,.40);
+  box-shadow: 0 2px 14px rgb(var(--gold-rgb) / .40);
   margin-top: .4rem;
 }
 .btn-wax::after {
@@ -609,7 +609,7 @@ body::after {
 .btn-wax:hover:not(:disabled) {
   background: var(--seal-rim);
   transform: translateY(-1px);
-  box-shadow: 0 5px 22px rgba(150,96,60,.50);
+  box-shadow: 0 5px 22px rgb(var(--gold-rgb) / .50);
 }
 .btn-wax:disabled { opacity: .45; cursor: not-allowed; }
 .btn-send { align-self: flex-end; }
@@ -829,7 +829,7 @@ body::after {
   opacity: 1;
 }
 body[data-user="ryland"] .mood-pill.selected {
-  background: rgba(42,122,104,.14);
+  background: rgb(var(--user-rgb) / .14);
   border-color: var(--ocean-lt);
 }
 
@@ -1000,7 +1000,7 @@ body[data-user="ryland"] .mood-pill.selected {
   background: var(--seal); border: 2px solid var(--seal-rim);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: .55rem; color: rgba(245,237,216,.85);
+  font-size: .55rem; color: rgb(var(--gold-rgb) / .85);
   box-shadow: 0 1px 5px rgba(0,0,0,.5);
 }
 /* Fallback fold tint (always overridden per-sender below — .env-art only
@@ -1135,15 +1135,17 @@ body[data-user="ryland"] .mood-pill.selected {
 .aes-tri-bottom { clip-path: polygon(0 100%, 50% 41.18%, 100% 100%); }
 /* Fallback (always overridden per-sender below — .aes-* only ever renders
    inside a [data-sender] card) */
-.aes-tri-left, .aes-tri-right { background: var(--star); }
-.aes-tri-bottom                { background: var(--star); }
+/* Paper tinted toward whoever wrote it, so the flap cannot disagree with the
+   body — it was a fixed brown over a tinted envelope. */
+.aes-tri-left, .aes-tri-right { background: color-mix(in srgb, var(--user-lt) 14%, var(--gold)); }
+.aes-tri-bottom               { background: color-mix(in srgb, var(--user-lt) 26%, var(--gold)); }
 /* border + clip-path together renders an uneven sliver at sharp corners —
    base triangle in --env-border with a smaller inset fill on top instead. */
 .aes-flap {
   position: absolute;
   top: -1px; left: -1px; right: -1px;
   height: 14px;
-  background: var(--env-border);
+  background: var(--user);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 .aes-flap::after {
@@ -1151,17 +1153,22 @@ body[data-user="ryland"] .mood-pill.selected {
   position: absolute;
   top: 1px; left: 1px; right: 1px;
   height: 12px;
-  background: var(--paper-edge);
+  background: color-mix(in srgb, var(--user-lt) 34%, var(--gold));
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
+/* The actual wax, scaled down — this was a flat coloured disc with the seal
+   artwork sitting inside it, which is why the stamps read as crude at card
+   size while the full-size ones looked fine. */
 .aes-seal {
   position: absolute; top: 14px; left: 50%;
   transform: translate(-50%, -50%);
-  width: 14px; height: 14px;
-  background: var(--seal); border: 1.5px solid var(--seal-rim);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .38rem; color: rgba(245,237,216,.85);
+  width: 19px; height: 19px;
+  display: grid; place-items: center;
+}
+.aes-seal .seal-img {
+  width: 19px; height: 19px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .55));
 }
 .archive-card-name {
   font-family: 'Space Mono', ui-monospace, monospace;
@@ -1490,7 +1497,7 @@ body[data-user="ryland"] .mood-pill.selected {
   background: var(--seal); border: 3px solid var(--seal-rim);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; color: rgba(245,237,216,.85);
+  font-size: 1rem; color: rgb(var(--gold-rgb) / .85);
   box-shadow: 0 2px 10px rgba(0,0,0,.5);
   z-index: 4;
   transition: opacity .3s ease .2s, transform .3s ease .2s;
@@ -1545,7 +1552,7 @@ body[data-user="ryland"] .mood-pill.selected {
   z-index: 900; box-shadow: 0 4px 20px rgba(0,0,0,.5);
   white-space: nowrap; animation: fadeUp .3s ease;
 }
-.toast-error   { background: #a64c3c;        color: var(--paper); }
+.toast-error   { background: var(--petrova);        color: var(--paper); }
 .toast-success { background: var(--seafoam); color: var(--paper); }
 
 /* ═══════════════════════════════════════════════════
@@ -1669,15 +1676,16 @@ body[data-user="ryland"] .mood-pill.selected {
    foot no matter what — the last place a person's colour was still written
    into a rule instead of read from the channel. */
 body[data-user] {
+  /* Two stops and one whisper. The previous version stacked a radial hot-spot
+     over a three-stop linear and banded visibly across the middle of the page. */
   background-image:
-    radial-gradient(ellipse 140% 60% at 50% 108%, rgb(var(--user-hot-rgb) / .10), transparent 70%),
-    linear-gradient(180deg, var(--space-1) 0%, var(--space-0) 52%, var(--user-foot) 100%);
+    linear-gradient(180deg, var(--space-1) 0%, var(--space-0) 100%);
   /* Fully opaque — iOS Safari (26+) samples the background-color of
      sticky/fixed elements near the top of the viewport (.app-header here)
      to color the status bar/toolbar. A partially transparent value here is
      ambiguous for that sampling and can show through as a jarring band. */
-  --btn-border:    rgba(42,122,104,.32);
-  --btn-bg-hover:  rgba(42,122,104,.14);
+  --btn-border:    rgb(var(--user-rgb) / .32);
+  --btn-bg-hover:  rgb(var(--user-rgb) / .14);
   /* paper tinted pale green, Earth's continents */
   /* ocean-blue seal for Ryland's page */
 }
@@ -2237,18 +2245,18 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
 
 .env-card[data-sender="ryland"] {
   background-image:
-    radial-gradient(ellipse 130% 65% at 22% -12%, rgba(140,220,190,.08), transparent 55%),
+    radial-gradient(ellipse 130% 65% at 22% -12%, rgb(var(--user-hot-rgb) / .08), transparent 55%),
     var(--ripple-tile),
-    linear-gradient(145deg, rgba(8,32,28,.7) 0%, rgba(4,16,14,.8) 100%);
-  border-color: rgba(60,150,120,.26);
-  box-shadow: inset 0 1px 0 rgba(90,200,160,.07), 2px 4px 20px rgba(0,10,8,.5);
+    linear-gradient(145deg, rgb(var(--star-rgb) / .7) 0%, rgb(var(--star-rgb) / .8) 100%);
+  border-color: rgb(var(--user-hot-rgb) / .26);
+  box-shadow: inset 0 1px 0 rgb(var(--user-hot-rgb) / .07), 2px 4px 20px rgba(0,10,8,.5);
 }
 .env-card[data-sender="ryland"]:hover:not(.env-waiting) {
-  border-color: rgba(80,190,150,.36);
-  box-shadow: 4px 8px 30px rgba(0,25,20,.6);
+  border-color: rgb(var(--user-hot-rgb) / .36);
+  box-shadow: 4px 8px 30px rgb(var(--user-rgb) / .6);
 }
-.env-card[data-sender="ryland"] .env-card-label { color: rgba(210,235,225,.72); }
-.env-card[data-sender="ryland"] .env-card-sub   { color: rgba(175,215,195,.52); }
+.env-card[data-sender="ryland"] .env-card-label { color: rgb(var(--user-hot-rgb) / .72); }
+.env-card[data-sender="ryland"] .env-card-sub   { color: rgb(var(--user-hot-rgb) / .52); }
 /* Envelope paper + border color, themed per sender. Previously .env-art-body
    never overrode --paper-mid/--paper-edge at all, so both cards silently
    rendered on the same warm ambient tone no matter whose letter it was —
@@ -2261,22 +2269,11 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
 /* Solid, clearly-stepped tones (not translucent overlays, which read as
    near-identical against each other). Top flap darkest, bottom the middle
    shade, left/right lightest. */
-.env-card[data-sender="ryland"] .env-art-tri-left   { background: #e6f7f0; }
-.env-card[data-sender="ryland"] .env-art-tri-right  { background: #e5f6ef; }
-.env-card[data-sender="ryland"] .env-art-tri-bottom { background: #bfe4d4; }
-.env-card[data-sender="rocky"] .env-art-tri-left    { background: #e5d2bd; }
-.env-card[data-sender="rocky"] .env-art-tri-right   { background: #e4d2bd; }
-.env-card[data-sender="rocky"] .env-art-tri-bottom  { background: #d5c3aa; }
-.env-card[data-sender="ryland"] .env-art-seal,
-.archive-card[data-sender="ryland"] .aes-seal {
-  background: var(--user); border-color: var(--user);
-}
-/* --seal/--seal-rim are CSS vars that inherit straight through from body[data-user],
-   so Rocky's card silently picks up Ryland's color unless reset explicitly here. */
-.env-card[data-sender="rocky"] .env-art-seal,
-.archive-card[data-sender="rocky"] .aes-seal {
-  background: #6b4423; border-color: #3d2610;
-}
+.env-card[data-sender="ryland"] .env-art-tri-left   { background: var(--user-lt); }
+.env-card[data-sender="ryland"] .env-art-tri-right  { background: var(--user-lt); }
+.env-card[data-sender="ryland"] .env-art-tri-bottom { background: var(--user-lt); }
+.env-card[data-sender="rocky"] .env-art-tri-left    { background: var(--gold); }
+.env-card[data-sender="rocky"] .env-art-tri-right   { background: var(--gold); }
 
 /* Envelope paper + border color, themed per sender — same gap as .env-card
    had originally: .aes-body/.aes-flap never overrode --paper-mid/--paper-edge,
@@ -2284,22 +2281,22 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
    ambient tone instead of the letter-writer's own colors. */
 .archive-card[data-sender="ryland"] {
   background-image:
-    radial-gradient(ellipse 130% 70% at 25% -15%, rgba(140,220,190,.07), transparent 55%),
+    radial-gradient(ellipse 130% 70% at 25% -15%, rgb(var(--user-hot-rgb) / .07), transparent 55%),
     var(--ripple-tile),
-    linear-gradient(145deg, rgba(7,26,22,.68) 0%, rgba(3,12,10,.75) 100%);
-  border-color: rgba(60,150,120,.24);
-  box-shadow: inset 0 1px 0 rgba(90,200,160,.06), 1px 2px 10px rgba(0,10,8,.45);
+    linear-gradient(145deg, rgb(var(--user-rgb) / .68) 0%, rgba(3,12,10,.75) 100%);
+  border-color: rgb(var(--user-hot-rgb) / .24);
+  box-shadow: inset 0 1px 0 rgb(var(--user-hot-rgb) / .06), 1px 2px 10px rgba(0,10,8,.45);
 }
 .archive-card[data-sender="rocky"] {
 }
-.archive-card[data-sender="ryland"] .archive-card-name  { color: rgba(210,235,225,.72); }
-.archive-card[data-sender="ryland"] .archive-card-words { color: rgba(175,215,195,.48); }
-.archive-card[data-sender="ryland"] .aes-tri-left   { background: #e6f7f0; }
-.archive-card[data-sender="ryland"] .aes-tri-right  { background: #e5f6ef; }
-.archive-card[data-sender="ryland"] .aes-tri-bottom { background: #bfe4d4; }
-.archive-card[data-sender="rocky"] .aes-tri-left    { background: #e5d2bd; }
-.archive-card[data-sender="rocky"] .aes-tri-right   { background: #e4d2bd; }
-.archive-card[data-sender="rocky"] .aes-tri-bottom  { background: #d5c3aa; }
+.archive-card[data-sender="ryland"] .archive-card-name  { color: rgb(var(--user-hot-rgb) / .72); }
+.archive-card[data-sender="ryland"] .archive-card-words { color: rgb(var(--user-hot-rgb) / .48); }
+.archive-card[data-sender="ryland"] .aes-tri-left   { background: var(--user-lt); }
+.archive-card[data-sender="ryland"] .aes-tri-right  { background: var(--user-lt); }
+.archive-card[data-sender="ryland"] .aes-tri-bottom { background: var(--user-lt); }
+.archive-card[data-sender="rocky"] .aes-tri-left    { background: var(--gold); }
+.archive-card[data-sender="rocky"] .aes-tri-right   { background: var(--gold); }
+.archive-card[data-sender="rocky"] .aes-tri-bottom  { background: var(--gold); }
 
 /* Read modal — repaint the letter paper itself in the sender's palette,
    regardless of whose theme the rest of the app is in right now.
@@ -2309,20 +2306,20 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
 }
 #modal-read[data-sender="rocky"] {
 }
-#modal-read[data-sender="ryland"] .paper::before    { background: rgba(30,120,90,.2); }
+#modal-read[data-sender="ryland"] .paper::before    { background: rgb(var(--user-rgb) / .2); }
 #modal-read[data-sender="rocky"]  .paper::before    { background: rgb(var(--user-rgb) / .22); }
-#modal-read[data-sender="ryland"] .paper-footer     { border-top-color: rgba(40,140,100,.2); }
+#modal-read[data-sender="ryland"] .paper-footer     { border-top-color: rgb(var(--user-hot-rgb) / .2); }
 #modal-read[data-sender="rocky"]  .paper-footer     { border-top-color: rgb(var(--user-rgb) / .2); }
 
 /* Envelope-open animation fold shading — was always steel blue regardless of
    sender; now matches each sender's own envelope-edge tone. Left/right are
    the lightest shade, bottom is the middle shade, top flap stays darkest. */
-#modal-read[data-sender="ryland"] .env-big-tri-left   { background: #e6f7f0; }
-#modal-read[data-sender="ryland"] .env-big-tri-right   { background: #e5f6ef; }
-#modal-read[data-sender="ryland"] .env-big-tri-bottom  { background: #bfe4d4; }
-#modal-read[data-sender="rocky"]  .env-big-tri-left    { background: #e5d2bd; }
-#modal-read[data-sender="rocky"]  .env-big-tri-right   { background: #e4d2bd; }
-#modal-read[data-sender="rocky"]  .env-big-tri-bottom  { background: #d5c3aa; }
+#modal-read[data-sender="ryland"] .env-big-tri-left   { background: var(--user-lt); }
+#modal-read[data-sender="ryland"] .env-big-tri-right   { background: var(--user-lt); }
+#modal-read[data-sender="ryland"] .env-big-tri-bottom  { background: var(--user-lt); }
+#modal-read[data-sender="rocky"]  .env-big-tri-left    { background: var(--gold); }
+#modal-read[data-sender="rocky"]  .env-big-tri-right   { background: var(--gold); }
+#modal-read[data-sender="rocky"]  .env-big-tri-bottom  { background: var(--gold); }
 
 /* Sender motif — small vector cluster (star-glints or brittle-star+crab) bleeding
    off the corner. Lives inside an overflow:hidden card/paper for a clean crop —
@@ -2381,9 +2378,9 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
   gap: 1rem;
   flex-wrap: wrap;
   padding: 0.6rem 1.1rem;
-  background: rgba(24, 14, 12, 0.96);
-  border-bottom: 1px solid rgba(214, 92, 72, 0.55);
-  color: #e9ded2;
+  background: rgb(var(--space-0-rgb) / 0.96);
+  border-bottom: 1px solid rgb(var(--petrova-rgb) / 0.55);
+  color: var(--star);
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 0.95rem;
   line-height: 1.35;
@@ -2398,25 +2395,25 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
   height: 7px;
   border-radius: 50%;
   /* the Petrova line, in miniature */
-  background: #d65c48;
-  box-shadow: 0 0 8px rgba(214, 92, 72, 0.9);
+  background: var(--petrova);
+  box-shadow: 0 0 8px rgb(var(--petrova-rgb) / 0.9);
 }
 
 .demo-reset {
   flex: none;
   padding: 0.2rem 0.7rem;
   background: transparent;
-  border: 1px solid rgba(233, 222, 210, 0.4);
+  border: 1px solid rgb(var(--star-rgb) / 0.4);
   border-radius: 3px;
-  color: #e9ded2;
+  color: var(--star);
   font: inherit;
   font-size: 0.85rem;
   cursor: pointer;
   transition: background 140ms ease, border-color 140ms ease;
 }
 .demo-reset:hover {
-  background: rgba(233, 222, 210, 0.12);
-  border-color: rgba(233, 222, 210, 0.75);
+  background: rgb(var(--gold-rgb) / 0.12);
+  border-color: rgb(var(--gold-rgb) / 0.75);
 }
 
 /* Push the app down so the banner never covers the nav. */
@@ -2430,10 +2427,10 @@ body.has-demo-banner { padding-top: 3rem; }
   z-index: 9999;
   max-width: min(30rem, calc(100vw - 2rem));
   padding: 0.65rem 1.1rem;
-  background: rgba(24, 14, 12, 0.96);
-  border: 1px solid rgba(214, 92, 72, 0.5);
+  background: rgb(var(--space-0-rgb) / 0.96);
+  border: 1px solid rgb(var(--petrova-rgb) / 0.5);
   border-radius: 4px;
-  color: #e9ded2;
+  color: var(--star);
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 0.95rem;
   text-align: center;
@@ -2467,9 +2464,9 @@ body.has-demo-banner { padding-top: 3rem; }
 /* The demo banner's dot pulses — it is the one thing on the page that wants to
    be noticed before someone starts typing a letter they assume will be kept. */
 @keyframes demoDotPulse {
-  0%, 100% { transform: scale(1);    box-shadow: 0 0 8px  rgba(214, 92, 72, .9); }
-  50%      { transform: scale(1.35); box-shadow: 0 0 16px rgba(214, 92, 72, 1),
-                                                 0 0 28px rgba(214, 92, 72, .55); }
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 8px  rgb(var(--petrova-rgb) / .9); }
+  50%      { transform: scale(1.35); box-shadow: 0 0 16px rgb(var(--petrova-rgb) / 1),
+                                                 0 0 28px rgb(var(--petrova-rgb) / .55); }
 }
 .demo-banner::before {
   animation: demoDotPulse 2.1s ease-in-out infinite;
