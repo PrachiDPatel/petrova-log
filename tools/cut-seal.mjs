@@ -211,34 +211,87 @@ function cutBackground({ width, height, rgba }, tolerance) {
     else if (!outside[p]) specks++;
   }
 
-  // 3. A soft edge, from colour rather than from a fixed 1px ring.
+  // 3. Anti-alias the rim from neighbourhood coverage.
   //
-  //    Edge pixels in the source are the wax blended with the background, so how
-  //    far a pixel's colour sits from the background is exactly how opaque it
-  //    should be. The first version set every boundary pixel to a flat alpha,
-  //    which is what produced a visible dotted rim.
+  //    A hard binary mask leaves a stair-stepped edge, which is exactly what a
+  //    cheap cut-out looks like — and the previous attempt derived alpha from
+  //    colour distance, which returned full opacity for every edge pixel and so
+  //    did nothing at all. Coverage is the honest measure: what fraction of the
+  //    pixel's neighbourhood survived is what fraction of the pixel is wax.
   const out = Buffer.from(rgba);
   let cleared = 0, softened = 0;
   for (let p = 0; p < width * height; p++) {
     if (!kept[p]) { out[p * 4 + 3] = 0; cleared++; continue; }
 
     const x = p % width, y = (p / width) | 0;
-    let touchesEdge = false;
-    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1]]) {
-      const nx = x + dx, ny = y + dy;
-      if (nx < 0 || ny < 0 || nx >= width || ny >= height) continue;
-      if (!kept[ny * width + nx]) { touchesEdge = true; break; }
+    let inside = 0, counted = 0;
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= width || ny >= height) continue;
+        counted++;
+        if (kept[ny * width + nx]) inside++;
+      }
     }
-    if (!touchesEdge) continue;
-
-    const a = Math.round(255 * Math.min(1, dist(idx(x, y), br, bg, bb) / tolerance));
-    if (a < 255) { out[p * 4 + 3] = a; softened++; }
+    if (inside === counted) continue;          // fully interior
+    out[p * 4 + 3] = Math.round(255 * (inside / counted));
+    softened++;
   }
 
-  return { rgba: out, cleared, specks, softened, background: [br, bg, bb] };
+  return { rgba: out, cleared, specks, softened, background: [br, bg, bb], kept };
 }
 
-const [file, tol] = process.argv.slice(2);
+/**
+ * Trim a seal to a wax silhouette.
+ *
+ * Real sealing wax is pressed, not cut: the edge is a soft lobed blob, never a
+ * compass circle. One of these seals is painted that way and the other is a
+ * flat disc, and side by side on the login screen the difference reads as two
+ * unrelated pieces of art rather than one set.
+ *
+ * The lobes are a few summed harmonics of the angle — smooth, seamless at the
+ * wrap, and deterministic, so re-running produces the same seal. Only ever
+ * removes: it cannot invent wax that was not in the source.
+ */
+function waxify({ width, height, rgba }, amount = 1) {
+  // Centre and mean radius of what is currently opaque.
+  let sx = 0, sy = 0, n = 0;
+  for (let p = 0; p < width * height; p++) {
+    if (rgba[p * 4 + 3] < 128) continue;
+    sx += p % width; sy += (p / width) | 0; n++;
+  }
+  if (!n) return { rgba, trimmed: 0 };
+  const cx = sx / n, cy = sy / n;
+  const radius = Math.sqrt(n / Math.PI);
+
+  const lobes = (t) =>
+    1
+    + 0.045 * amount * Math.sin(7 * t + 1.1)
+    + 0.030 * amount * Math.sin(11 * t + 2.7)
+    + 0.020 * amount * Math.sin(5 * t + 0.4)
+    + 0.014 * amount * Math.sin(13 * t + 5.2);
+
+  const out = Buffer.from(rgba);
+  let trimmed = 0;
+  for (let p = 0; p < width * height; p++) {
+    if (out[p * 4 + 3] === 0) continue;
+    const dx = (p % width) - cx, dy = ((p / width) | 0) - cy;
+    const r = Math.hypot(dx, dy);
+    const edge = radius * lobes(Math.atan2(dy, dx));
+
+    // One-pixel ramp across the boundary keeps the lobed edge smooth.
+    const cover = Math.max(0, Math.min(1, edge - r + 0.5));
+    if (cover >= 1) continue;
+    const a = Math.round(out[p * 4 + 3] * cover);
+    if (a !== out[p * 4 + 3]) { out[p * 4 + 3] = a; trimmed++; }
+  }
+  return { rgba: out, trimmed };
+}
+
+const args = process.argv.slice(2);
+const waxIdx = args.indexOf('--wax');
+const waxAmount = waxIdx >= 0 ? Number(args[waxIdx + 1]) || 1 : 0;
+const [file, tol] = args.filter((a, i) => !a.startsWith('--') && i !== waxIdx + 1);
 if (!file) {
   console.error('usage: node tools/cut-seal.mjs <file.png> [tolerance]');
   process.exit(1);
@@ -247,7 +300,12 @@ const tolerance = Number(tol) || 110;
 
 const buf = await readFile(file);
 const img = decode(buf);
-const { rgba, cleared, specks, softened, background } = cutBackground(img, tolerance);
+let { rgba, cleared, specks, softened, background } = cutBackground(img, tolerance);
+
+let trimmed = 0;
+if (waxAmount > 0) {
+  ({ rgba, trimmed } = waxify({ width: img.width, height: img.height, rgba }, waxAmount));
+}
 
 const backup = file.replace(/\.png$/, '.orig.png');
 try {
@@ -262,5 +320,6 @@ const pct = ((cleared / (img.width * img.height)) * 100).toFixed(1);
 console.log(
   `${file}: ${img.width}×${img.height}, background rgb(${background.join(',')}) — ` +
   `cleared ${cleared} px (${pct}%), discarded ${specks} px not connected to the seal, ` +
-  `softened ${softened} edge px. Now RGBA.`
+  `softened ${softened} edge px` +
+  (trimmed ? `, waxed ${trimmed} px into a lobed edge` : '') + `. Now RGBA.`
 );

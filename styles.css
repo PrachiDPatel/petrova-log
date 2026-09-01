@@ -4,7 +4,7 @@
    palette: Ryland earth green/blue · Rocky brown/sea-foam · astrophage red
 ═══════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
   --env-border: #7a4c28;
@@ -57,7 +57,7 @@ html {
   overscroll-behavior: none;
 }
 body {
-  font-family: 'IM Fell English', Georgia, serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   background-color: var(--bg);
   min-height: 100vh;
   color: var(--ink);
@@ -448,29 +448,34 @@ body::after {
 }
 
 /* Brand */
+/* Michroma is a wide face — it needs far less size and much more tracking
+   than the script it replaces, or it runs off the card. */
 .brand {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.8rem;
+  font-family: 'Michroma', 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
   color: var(--ink);
-  line-height: 1;
+  line-height: 1.2;
 }
 .login-card .brand {
-  font-size: 3.5rem;
-  text-shadow: 0 1px 0 rgba(255,255,255,.4);
+  font-size: 1.6rem;
+  letter-spacing: .1em;
 }
 .tagline {
-  font-family: 'Playfair Display', serif;
-  font-size: .72rem;
-  font-style: italic;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: .64rem;
+  font-style: normal;
+  text-transform: uppercase;
   color: var(--ink-soft);
-  letter-spacing: .18rem;
+  letter-spacing: .26rem;
   margin-top: .25rem;
   margin-bottom: 1.75rem;
 }
 
 /* Login form */
 #login-form { display: flex; flex-direction: column; gap: .8rem; align-items: center; }
-.who-prompt { font-family: 'Playfair Display', serif; font-size: .8rem; text-transform: uppercase; letter-spacing: .18rem; opacity: .65; margin: 0 0 .4rem; }
+.who-prompt { font-family: 'Space Mono', ui-monospace, monospace; font-size: .8rem; text-transform: uppercase; letter-spacing: .18rem; opacity: .65; margin: 0 0 .4rem; }
 
 .seal-choices {
   display: flex;
@@ -518,7 +523,7 @@ body::after {
   filter: drop-shadow(0 5px 14px rgba(120,90,60,.55)) drop-shadow(0 2px 4px rgba(0,0,0,.35));
 }
 .seal-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-style: italic;
   font-size: .8rem;
   color: var(--seal);
@@ -545,7 +550,7 @@ body::after {
 .field { text-align: left; }
 .field label {
   display: block;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .65rem;
   text-transform: uppercase;
   letter-spacing: .18rem;
@@ -566,7 +571,7 @@ body::after {
 .field input:focus { border-bottom-color: var(--ocean-lt); }
 .field input::placeholder { color: var(--paper-edge); font-style: italic; }
 .form-error {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .75rem;
   color: #b85c4a;
   font-style: italic;
@@ -597,7 +602,7 @@ body::after {
   color: var(--paper);
   border: none;
   padding: .65rem 1.75rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .85rem;
   letter-spacing: .06rem;
   border-radius: 50px;
@@ -644,7 +649,7 @@ body::after {
   display: flex; flex-direction: column; align-items: center; line-height: 1.1;
 }
 .nav-from {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .65rem; font-style: italic; letter-spacing: .04rem;
   color: var(--ocean-lt); opacity: .75;
   margin-top: .3rem;
@@ -654,7 +659,7 @@ body::after {
   border: 1px solid var(--btn-border, rgba(74,128,168,.3));
   color: var(--paper-mid);
   padding: .35rem .9rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .75rem;
   border-radius: var(--radius);
   transition: all .2s; white-space: nowrap;
@@ -741,7 +746,7 @@ body::after {
 
 /* Section labels */
 .section-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .65rem;
   text-transform: uppercase;
   letter-spacing: .3rem;
@@ -760,7 +765,7 @@ body::after {
   gap: .5rem;
 }
 .today-date {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Michroma', 'Space Grotesk', sans-serif;
   font-size: 1.8rem;
   color: var(--paper);
   text-shadow: 0 0 30px rgba(74,128,168,.4);
@@ -769,7 +774,7 @@ body::after {
   background: transparent;
   border: none;
   color: var(--ocean-lt);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: 1.5rem;
   line-height: 1;
   padding: .05rem .3rem;
@@ -790,7 +795,7 @@ body::after {
   text-align: center;
 }
 .mood-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .58rem;
   text-transform: uppercase;
   letter-spacing: .25rem;
@@ -809,7 +814,7 @@ body::after {
   background: transparent;
   border: 1px solid var(--paper-edge);
   color: var(--ink-soft);
-  font-family: 'IM Fell English', serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   font-size: .72rem;
   padding: .25rem .7rem;
   border-radius: 2rem;
@@ -832,7 +837,7 @@ body[data-user="ryland"] .mood-pill.selected {
 /* Mood on archive cards — always reserves a line (blank via &nbsp; when unset)
    so cards with and without a mood stay the same height in the flowing grid. */
 .archive-card-mood {
-  font-family: 'IM Fell English', serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   font-size: .63rem;
   line-height: 1.3;
   font-style: italic;
@@ -848,7 +853,7 @@ body[data-user="ryland"] .mood-pill.selected {
   text-align: center;
 }
 .read-mood {
-  font-family: 'IM Fell English', serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   font-style: italic;
   font-size: .82rem;
   color: var(--ink-soft);
@@ -858,7 +863,7 @@ body[data-user="ryland"] .mood-pill.selected {
 /* Streak */
 .streak-display {
   margin-top: .4rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .72rem;
   color: var(--gold-lt);
   letter-spacing: .08rem;
@@ -927,7 +932,7 @@ body[data-user="ryland"] .mood-pill.selected {
 /* Sender personality corner decoration — see .sender-motif near the end of this file */
 
 .env-card-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .78rem;
   color: rgba(210,230,252,.7);
   font-style: italic;
@@ -937,7 +942,7 @@ body[data-user="ryland"] .mood-pill.selected {
 .env-card-sub {
   font-size: .65rem; color: var(--paper-edge);
   opacity: .85; margin-top: .2rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
 }
 
 /* CSS envelope illustration */
@@ -1012,7 +1017,7 @@ body[data-user="ryland"] .mood-pill.selected {
   border-radius: 1px;
   display: flex; align-items: center; justify-content: center;
   color: rgba(200,220,240,.5);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .7rem; font-style: italic;
 }
 
@@ -1053,7 +1058,7 @@ body[data-user="ryland"] .mood-pill.selected {
 .archive-month-header::-webkit-details-marker { display: none; }
 .archive-month-header::marker { content: ''; }
 .archive-month-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: 1rem; font-style: italic;
   color: var(--star);
   display: inline-flex; align-items: center; gap: .55rem;
@@ -1067,7 +1072,7 @@ body[data-user="ryland"] .mood-pill.selected {
 }
 .archive-month[open] .archive-month-name::before { transform: rotate(90deg); }
 .archive-month-count {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .68rem; font-style: italic;
   color: var(--ocean-lt); opacity: .65;
   white-space: nowrap;
@@ -1082,7 +1087,7 @@ body[data-user="ryland"] .mood-pill.selected {
 
 .archive-group { flex: 0 0 auto; margin-bottom: 0; }
 .archive-group-date {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .72rem; font-style: italic;
   color: var(--paper-mid); opacity: .55;
   margin-bottom: .6rem; letter-spacing: .06rem;
@@ -1160,15 +1165,15 @@ body[data-user="ryland"] .mood-pill.selected {
   font-size: .38rem; color: rgba(245,237,216,.85);
 }
 .archive-card-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .68rem; color: rgba(220,235,252,.72); font-style: italic;
 }
 .archive-card-words {
   font-size: .6rem; color: rgba(180,210,240,.48);
-  font-family: 'Playfair Display', serif; margin-top: .1rem;
+  font-family: 'Space Mono', ui-monospace, monospace; margin-top: .1rem;
 }
 .placeholder-text {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .82rem; font-style: italic;
   color: var(--paper-mid); text-align: center;
   opacity: .55; padding: 2rem 0;
@@ -1207,7 +1212,7 @@ body[data-user="ryland"] .mood-pill.selected {
 
 /* Date line */
 .paper-date-line {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .72rem; font-style: italic;
   color: var(--ink-soft); opacity: .55;
   margin-bottom: .75rem; text-align: right;
@@ -1215,7 +1220,7 @@ body[data-user="ryland"] .mood-pill.selected {
 
 /* Salutation */
 .salutation-field {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Michroma', 'Space Grotesk', sans-serif;
   font-size: 2rem; color: var(--ink);
   margin-bottom: .25rem; outline: none;
   min-width: 2px; display: block;
@@ -1232,7 +1237,7 @@ body[data-user="ryland"] .mood-pill.selected {
   margin-top: 1.25rem; margin-bottom: .25rem;
 }
 .signoff-field {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Michroma', 'Space Grotesk', sans-serif;
   font-size: 1.8rem; color: var(--ink);
   outline: none; min-width: 2px;
 }
@@ -1272,13 +1277,13 @@ body[data-user="ryland"] .mood-pill.selected {
   text-align: center;
 }
 .settings-title {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Michroma', 'Space Grotesk', sans-serif;
   font-size: 1.8rem;
   color: var(--ink);
   margin-bottom: .2rem;
 }
 .settings-desc {
-  font-family: 'IM Fell English', serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   font-style: italic;
   font-size: .85rem;
   color: var(--ink-soft);
@@ -1291,7 +1296,7 @@ body[data-user="ryland"] .mood-pill.selected {
   align-items: stretch;
 }
 .settings-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .6rem;
   text-transform: uppercase;
   letter-spacing: .2rem;
@@ -1305,13 +1310,13 @@ body[data-user="ryland"] .mood-pill.selected {
   border: 1px solid var(--paper-edge);
   border-radius: 4px;
   padding: .45rem .6rem;
-  font-family: 'IM Fell English', serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   font-size: .9rem;
   color: var(--ink);
   width: 100%;
 }
 .settings-status {
-  font-family: 'IM Fell English', serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   font-style: italic;
   font-size: .82rem;
   color: var(--ink-soft);
@@ -1330,7 +1335,7 @@ body[data-user="ryland"] .mood-pill.selected {
 #letter-body {
   width: 100%; min-height: 340px;
   background: transparent; border: none; outline: none;
-  font-family: 'IM Fell English', serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem; line-height: 2rem;
   color: var(--ink); resize: none; caret-color: var(--ink);
 }
@@ -1348,11 +1353,11 @@ body[data-user="ryland"] .mood-pill.selected {
 /* Word count */
 .wc-wrap { display: flex; flex-direction: column; gap: .2rem; }
 .wc-num {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: 1.1rem; font-weight: 600; color: var(--ink);
 }
 .wc-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .72rem; color: var(--ink-soft); font-style: italic;
 }
 .wc-bar {
@@ -1370,14 +1375,14 @@ body[data-user="ryland"] .mood-pill.selected {
 /* Read actions */
 .read-actions { display: flex; align-items: center; gap: .75rem; }
 .edit-timer {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .68rem; color: var(--gold); font-style: italic;
 }
 .btn-text {
   background: transparent; border: 1px solid var(--env-border);
   color: var(--ocean-lt);
   padding: .25rem .7rem;
-  font-family: 'Playfair Display', serif; font-size: .72rem;
+  font-family: 'Space Mono', ui-monospace, monospace; font-size: .72rem;
   border-radius: 1px; transition: all .2s;
 }
 .btn-text:hover { background: rgba(74,128,168,.1); }
@@ -1390,7 +1395,7 @@ body[data-user="ryland"] .mood-pill.selected {
   padding: 1rem 1.5rem; text-align: center; margin-bottom: 1.25rem;
 }
 .aw-text {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .82rem; color: var(--ink-soft); font-style: italic;
 }
 
@@ -1500,7 +1505,7 @@ body[data-user="ryland"] .mood-pill.selected {
 .env-big-seal .seal-starfish  { width: 19px; height: 19px; }
 
 .env-opening-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .72rem; font-style: italic;
   color: var(--ocean-lt); opacity: .5;
   margin-top: 1.25rem; letter-spacing: .15rem;
@@ -1512,7 +1517,7 @@ body[data-user="ryland"] .mood-pill.selected {
 .phase-letter { animation: fadeUp .4s ease; }
 .paper-read { margin-bottom: .5rem; }
 .read-content {
-  font-family: 'IM Fell English', serif;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem; line-height: 2rem; color: var(--ink);
   white-space: pre-wrap; word-wrap: break-word;
   padding: 0 .25rem; min-height: 160px;
@@ -1524,7 +1529,7 @@ body[data-user="ryland"] .mood-pill.selected {
   border: 1px solid rgba(74,128,168,.3);
   color: rgba(200,220,240,.6);
   padding: .4rem 1.25rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .72rem; font-style: italic;
   border-radius: 1px; opacity: .6; transition: opacity .2s;
 }
@@ -1537,7 +1542,7 @@ body[data-user="ryland"] .mood-pill.selected {
   position: fixed; bottom: 2rem; left: 50%;
   transform: translateX(-50%);
   padding: .7rem 1.5rem; border-radius: 2px;
-  font-family: 'Playfair Display', serif; font-size: .82rem;
+  font-family: 'Space Mono', ui-monospace, monospace; font-size: .82rem;
   z-index: 900; box-shadow: 0 4px 20px rgba(0,0,0,.5);
   white-space: nowrap; animation: fadeUp .3s ease;
 }
