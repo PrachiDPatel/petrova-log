@@ -288,10 +288,77 @@ function waxify({ width, height, rgba }, amount = 1) {
   return { rgba: out, trimmed };
 }
 
+/**
+ * Press a raised rim into a flat seal.
+ *
+ * A real wax seal has a lip: the stamp displaces wax outward, so the edge sits
+ * proud of the engraved face and catches the light on one side while falling
+ * into shadow on the other. One of these seals is painted that way; the other
+ * was drawn as a flat disc with the device running straight to the edge, which
+ * is why they read as unrelated even once both were cut correctly.
+ *
+ * So the rim is shaded into the pixels rather than drawn as a CSS ring — a ring
+ * in CSS traces the border box, not the artwork, which is the exact bug that
+ * put a pale disc behind both seals in the first place.
+ *
+ * Colours are derived from the seal's own average, so this works on any art
+ * without being told what colour the wax is.
+ */
+function pressRim({ width, height, rgba }, widthFrac = 0.16) {
+  let sx = 0, sy = 0, n = 0, sr = 0, sg = 0, sb = 0;
+  for (let p = 0; p < width * height; p++) {
+    if (rgba[p * 4 + 3] < 128) continue;
+    sx += p % width; sy += (p / width) | 0; n++;
+    sr += rgba[p * 4]; sg += rgba[p * 4 + 1]; sb += rgba[p * 4 + 2];
+  }
+  if (!n) return { rgba, rimmed: 0 };
+
+  const cx = sx / n, cy = sy / n;
+  const radius = Math.sqrt(n / Math.PI);
+  const inner = radius * (1 - widthFrac);
+
+  // Light from the upper left, as in the painted seal.
+  const lx = -0.62, ly = -0.78;
+
+  const out = Buffer.from(rgba);
+  let rimmed = 0;
+  for (let p = 0; p < width * height; p++) {
+    if (out[p * 4 + 3] === 0) continue;
+    const dx = (p % width) - cx, dy = ((p / width) | 0) - cy;
+    const r = Math.hypot(dx, dy);
+    if (r <= inner) continue;
+
+    // 0 at the inner lip, 1 at the outer edge.
+    let t = Math.min(1, (r - inner) / Math.max(1e-6, radius - inner));
+    t = t * t * (3 - 2 * t);                    // smoothstep, so no hard seam
+
+    // Surface normal on a rounded lip points outward; how much it faces the
+    // light decides whether this part of the rim brightens or falls away.
+    const lambert = r > 0 ? (dx / r) * lx + (dy / r) * ly : 0;
+
+    // Sit the rim darker than the face, then modulate along the light.
+    const shade = (1 - 0.30 * t) + 0.34 * t * lambert;
+
+    for (let c = 0; c < 3; c++) {
+      out[p * 4 + c] = Math.max(0, Math.min(255, Math.round(out[p * 4 + c] * shade)));
+    }
+    rimmed++;
+  }
+  return { rgba: out, rimmed };
+}
+
 const args = process.argv.slice(2);
 const waxIdx = args.indexOf('--wax');
 const waxAmount = waxIdx >= 0 ? Number(args[waxIdx + 1]) || 1 : 0;
-const [file, tol] = args.filter((a, i) => !a.startsWith('--') && i !== waxIdx + 1);
+const rimIdx = args.indexOf('--rim');
+const rimWidth = rimIdx >= 0 ? Number(args[rimIdx + 1]) || 0.16 : 0;
+// Drop the flag and, only when the flag is actually present, its value.
+// (`waxIdx + 1` is 0 when the flag is absent, which previously ate the
+// filename — the first positional argument.)
+const skip = new Set();
+if (waxIdx >= 0) { skip.add(waxIdx); skip.add(waxIdx + 1); }
+if (rimIdx >= 0) { skip.add(rimIdx); skip.add(rimIdx + 1); }
+const [file, tol] = args.filter((a, i) => !skip.has(i) && !a.startsWith('--'));
 if (!file) {
   console.error('usage: node tools/cut-seal.mjs <file.png> [tolerance]');
   process.exit(1);
@@ -301,6 +368,11 @@ const tolerance = Number(tol) || 110;
 const buf = await readFile(file);
 const img = decode(buf);
 let { rgba, cleared, specks, softened, background } = cutBackground(img, tolerance);
+
+let rimmed = 0;
+if (rimWidth > 0) {
+  ({ rgba, rimmed } = pressRim({ width: img.width, height: img.height, rgba }, rimWidth));
+}
 
 let trimmed = 0;
 if (waxAmount > 0) {
@@ -321,5 +393,6 @@ console.log(
   `${file}: ${img.width}×${img.height}, background rgb(${background.join(',')}) — ` +
   `cleared ${cleared} px (${pct}%), discarded ${specks} px not connected to the seal, ` +
   `softened ${softened} edge px` +
+  (rimmed ? `, pressed a rim into ${rimmed} px` : '') +
   (trimmed ? `, waxed ${trimmed} px into a lobed edge` : '') + `. Now RGBA.`
 );
