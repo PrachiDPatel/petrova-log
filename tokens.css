@@ -1,0 +1,179 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE PETROVA LOG — DESIGN TOKENS
+
+   The single source of truth for colour. Nothing else in this project should
+   contain a colour literal; if you find one, it is a bug, and it is how blue
+   from the app this was forked from survived three rounds of retheming.
+
+   Load this BEFORE styles.css.
+
+   ── The rules ──────────────────────────────────────────────────────────────
+   1. Ryland is green. All of him. Every surface, edge, glow and envelope.
+   2. Rocky is brown through gold. All of him. Never blue, never navy.
+   3. The sky is a very dark forest green, near black.
+   4. The accent is the Petrova line: red. Never blue.
+   5. Anything that is neither person and needs emphasis is red or near-black.
+
+   ── How per-person colour works ────────────────────────────────────────────
+   Components never name a person. They read --user-*, and the block at the
+   bottom of this file points those at the signed-in person's ramp via
+   body[data-user]. Per-letter surfaces use [data-sender] the same way, so an
+   archive can show both people's envelopes side by side without either one
+   fighting over a shared variable.
+
+   Adding a third person would mean adding one ramp and one mapping block
+   here, and touching nothing else.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── the sky ──────────────────────────────────────────────────────────────
+     Dark forest green, not navy. Kept near black so the wax seals and the
+     gold engraving carry the colour rather than competing with the ground. */
+  --space-0:      #050806;   /* deepest — page base */
+  --space-1:      #0a0f0b;   /* panels, cards */
+  --space-2:      #101710;   /* raised surfaces */
+  --space-3:      #18211a;   /* hover, borders */
+  --space-nav:    #070b08;
+  --space-0-rgb:   5   8   6;
+  --space-1-rgb:  10  15  11;
+  --space-2-rgb:  16  23  16;
+
+  /* ── the Petrova line ─────────────────────────────────────────────────────
+     The one non-person accent. It is red because the line is red. */
+  --petrova:      #d65c48;
+  --petrova-deep: #8f3325;
+  --petrova-glow: rgba(214, 92, 72, .55);
+  --petrova-rgb: 214  92  72;
+
+  /* ── Ryland · Earth · green ───────────────────────────────────────────── */
+  --ryland:       #3d6b47;
+  --ryland-deep:  #16281b;
+  --ryland-mid:   #24422c;
+  --ryland-lt:    #6fa47c;
+  --ryland-glow:  rgba(111, 164, 124, .45);
+  --ryland-rgb:  61 107  71;
+
+  /* ── Rocky · Erid · brown through gold ────────────────────────────────── */
+  --rocky:        #7d4522;
+  --rocky-deep:   #2c1608;
+  --rocky-mid:    #4a2711;
+  --rocky-lt:     #c08a4e;
+  --rocky-gold:   #d9a441;
+  --rocky-glow:   rgba(192, 138, 78, .45);
+  --rocky-rgb:  125  69  34;
+
+  /* ── paper and ink ────────────────────────────────────────────────────────
+     Letters are read on warm paper. The ruled lines used to be blue; they are
+     now a warm grey-brown, which is what ruled paper actually looks like. */
+  --paper:        #f2ead6;
+  --paper-mid:    #e8dcc0;
+  --paper-edge:   #c8b898;
+  --paper-line:   rgba(120, 100, 70, .12);
+  --ink:          #241f18;
+  --ink-soft:     #5c5245;
+  --ink-faint:    #8a7f6d;
+
+  /* ── metal ────────────────────────────────────────────────────────────── */
+  --gold:         #c4a882;
+  --gold-lt:      #d9c49a;
+  --gold-deep:    #8a6f45;
+  --gold-rgb:   196 168 130;
+
+  /* ── stars ────────────────────────────────────────────────────────────────
+     Warm white, very slightly green, so they belong to this sky. */
+  --star:         #e6efe4;
+  --star-rgb:   230 239 228;
+  --star-dim:     rgba(230, 239, 228, .45);
+
+  /* ── seal, when no particular person owns it ──────────────────────────── */
+  --seal:         var(--petrova-deep);
+  --seal-rim:     #451f0c;
+  --env-border:   #7a4c28;
+
+  /* ── state ────────────────────────────────────────────────────────────── */
+  --danger:       #c4443a;
+  --ok:           var(--ryland-lt);
+
+  --radius: 2px;
+
+  /* ── the generic per-person channel ───────────────────────────────────────
+     Defaults to Ryland so an un-themed render is still coherent rather than
+     falling back to a browser blue. */
+  --user:       var(--ryland);
+  --user-deep:  var(--ryland-deep);
+  --user-mid:   var(--ryland-mid);
+  --user-lt:    var(--ryland-lt);
+  --user-glow:  var(--ryland-glow);
+  --user-rgb:   var(--ryland-rgb);
+
+  /* ── legacy names ────────────────────────────────────────────────────────
+     The stylesheet grew up with these, and 2400 lines still say them. Rather
+     than rename every use, they are resolved from the ramps above — so they
+     now switch with the signed-in person automatically, and there is still
+     only one place a colour is decided.
+
+     `--ocean` and `--seafoam` are the old app's names for what is really "the
+     current person's accent". Kept as aliases rather than renamed because a
+     find-and-replace across 2400 lines is exactly the kind of change that
+     leaves relics behind. */
+  --bg:         var(--space-0);
+  --bg-mid:     var(--space-1);
+  --bg-nav:     var(--space-nav);
+  --ocean:      var(--user);
+  --ocean-lt:   var(--user-lt);
+  --ocean-pale: rgb(var(--user-rgb) / .16);
+  --seafoam:    var(--user-lt);
+}
+
+/* The login screen belongs to neither person, so it locks the accent to gold
+   rather than inheriting whoever signed in last. */
+#screen-login {
+  --user:      var(--gold-deep);
+  --user-deep: var(--space-1);
+  --user-mid:  var(--space-2);
+  --user-lt:   var(--gold);
+  --user-glow: rgba(196, 168, 130, .4);
+  --user-rgb:  var(--gold-rgb);
+}
+
+/* ── who is signed in ─────────────────────────────────────────────────────── */
+
+body[data-user="ryland"] {
+  --user:      var(--ryland);
+  --user-deep: var(--ryland-deep);
+  --user-mid:  var(--ryland-mid);
+  --user-lt:   var(--ryland-lt);
+  --user-glow: var(--ryland-glow);
+  --user-rgb:  var(--ryland-rgb);
+}
+
+body[data-user="rocky"] {
+  --user:      var(--rocky);
+  --user-deep: var(--rocky-deep);
+  --user-mid:  var(--rocky-mid);
+  --user-lt:   var(--rocky-lt);
+  --user-glow: var(--rocky-glow);
+  --user-rgb:  var(--rocky-rgb);
+}
+
+/* ── who wrote a given letter ─────────────────────────────────────────────────
+   Scoped by author rather than by viewer, so both people's envelopes can sit
+   on the same screen in their own colours. */
+
+[data-sender="ryland"], .is-ryland {
+  --user:      var(--ryland);
+  --user-deep: var(--ryland-deep);
+  --user-mid:  var(--ryland-mid);
+  --user-lt:   var(--ryland-lt);
+  --user-glow: var(--ryland-glow);
+  --user-rgb:  var(--ryland-rgb);
+}
+
+[data-sender="rocky"], .is-rocky {
+  --user:      var(--rocky);
+  --user-deep: var(--rocky-deep);
+  --user-mid:  var(--rocky-mid);
+  --user-lt:   var(--rocky-lt);
+  --user-glow: var(--rocky-glow);
+  --user-rgb:  var(--rocky-rgb);
+}

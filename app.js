@@ -104,29 +104,29 @@ function sealGlyph(sender) {
 // paths drawn for each person's page background, so it's their world, not a sticker.
 const SENDER_MOTIF = {
   ryland: `<svg class="sender-motif" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g transform="translate(38,8) scale(2.1)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.9)"/></g>
-    <g transform="translate(6,40) scale(1.3)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.7)"/></g>
-    <g transform="translate(52,55) scale(1.6)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.8)"/></g>
-    <g transform="translate(20,76) scale(1.0)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(216,222,245,.6)"/></g>
+    <g transform="translate(38,8) scale(2.1)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.9)"/></g>
+    <g transform="translate(6,40) scale(1.3)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.7)"/></g>
+    <g transform="translate(52,55) scale(1.6)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.8)"/></g>
+    <g transform="translate(20,76) scale(1.0)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.6)"/></g>
   </svg>`,
   rocky: `<svg class="sender-motif" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <g transform="translate(55,30) scale(.62)">
-      <circle cx="40" cy="40" r="6.5" fill="rgba(120,190,240,.85)"/>
-      <circle cx="40" cy="40" r="4"   fill="rgba(170,220,255,.4)"/>
-      <path fill="rgba(120,190,240,.7)"  transform="rotate(0   40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(120,190,240,.65)" transform="rotate(72  40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(120,190,240,.68)" transform="rotate(144 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(120,190,240,.6)"  transform="rotate(216 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(120,190,240,.65)" transform="rotate(288 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <circle cx="40" cy="40" r="6.5" fill="rgba(230,239,228,.85)"/>
+      <circle cx="40" cy="40" r="4"   fill="rgba(230,239,228,.4)"/>
+      <path fill="rgba(230,239,228,.7)"  transform="rotate(0   40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(230,239,228,.65)" transform="rotate(72  40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(230,239,228,.68)" transform="rotate(144 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(230,239,228,.6)"  transform="rotate(216 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+      <path fill="rgba(230,239,228,.65)" transform="rotate(288 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
     </g>
     <g transform="translate(6,58) scale(.55)">
-      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(120,190,240,.5)"/>
-      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(120,190,240,.46)"/>
-      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(120,190,240,.46)"/>
-      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(120,190,240,.46)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(120,190,240,.46)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <circle cx="25" cy="13" r="2" fill="rgba(120,190,240,.6)"/>
-      <circle cx="35" cy="13" r="2" fill="rgba(120,190,240,.6)"/>
+      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(230,239,228,.5)"/>
+      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(230,239,228,.46)"/>
+      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(230,239,228,.46)"/>
+      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(230,239,228,.46)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(230,239,228,.46)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="25" cy="13" r="2" fill="rgba(230,239,228,.6)"/>
+      <circle cx="35" cy="13" r="2" fill="rgba(230,239,228,.6)"/>
     </g>
   </svg>`
 };
@@ -199,7 +199,7 @@ onAuthStateChanged(auth, async user => {
     // html sits behind body and can't see body[data-user]'s scoped --bg override
     // (CSS vars only inherit downward), so match it by hand for overscroll bounce.
     document.documentElement.style.backgroundColor =
-      myConfig.name.toLowerCase() === 'ryland' ? '#0c1638' : '#060e1c';
+      myConfig.name.toLowerCase() === 'ryland' ? '#0a0f0b' : '#050806';
     showScreen('app');
 
     const cover = document.getElementById('transition-cover');
@@ -217,8 +217,8 @@ onAuthStateChanged(auth, async user => {
 
       if (sealEl) {
         sealEl.style.filter = user === 'ryland'
-          ? 'drop-shadow(0 0 18px rgba(90,110,230,.85)) drop-shadow(0 5px 14px rgba(0,0,0,.65))'
-          : 'drop-shadow(0 0 18px rgba(75,185,255,.85)) drop-shadow(0 5px 14px rgba(0,0,0,.65))';
+          ? 'drop-shadow(0 0 18px rgba(61,107,71,.85)) drop-shadow(0 5px 14px rgba(0,0,0,.65))'
+          : 'drop-shadow(0 0 18px rgba(230,239,228,.85)) drop-shadow(0 5px 14px rgba(0,0,0,.65))';
         sealEl.animate([
           { opacity: 0, transform: 'translateY(-20px) scale(0.72)' },
           { opacity: 1, transform: 'translateY(2px) scale(0.98)', offset: 0.55 },
@@ -229,8 +229,8 @@ onAuthStateChanged(auth, async user => {
 
       if (ripple) {
         ripple.style.border = user === 'ryland'
-          ? '2px solid rgba(90,110,230,0.65)'
-          : '2px solid rgba(80,185,255,0.65)';
+          ? '2px solid rgba(61,107,71,0.65)'
+          : '2px solid rgba(230,239,228,0.65)';
         ripple.animate([
           { transform: 'scale(1)',   opacity: 0.8 },
           { transform: 'scale(2.8)', opacity: 0   }
@@ -250,7 +250,7 @@ onAuthStateChanged(auth, async user => {
     // transition for this one snap so it's instant, like the html reset below.
     document.body.style.transition = 'none';
     delete document.body.dataset.user;
-    document.documentElement.style.backgroundColor = '#02060f';
+    document.documentElement.style.backgroundColor = '#050806';
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         document.body.style.transition = '';
@@ -284,9 +284,9 @@ function showTransitionCover(user) {
   }
 
   if (user === 'ryland') {
-    el.style.background = 'radial-gradient(ellipse at 50% 42%, #15184a 0%, #0a0c2e 60%, #050616 100%)';
+    el.style.background = 'radial-gradient(ellipse at 50% 42%, #0a0f0b 0%, #050806 60%, #050806 100%)';
   } else if (user === 'rocky') {
-    el.style.background = 'radial-gradient(ellipse at 50% 42%, #0b2240 0%, #061528 60%, #030d1e 100%)';
+    el.style.background = 'radial-gradient(ellipse at 50% 42%, #0a0f0b 0%, #0a0f0b 60%, #050806 100%)';
   }
   el.style.opacity = '1';
   el.style.pointerEvents = 'all';
@@ -625,6 +625,9 @@ async function renderArchive() {
         byMonth[monthKey][date].forEach(letter => {
           const card = document.createElement('div');
           card.className = 'archive-card';
+          // Whose letter this is, so tokens.css can colour it. Without this an
+          // archive shows every envelope in the signed-in person's colours,
+          // which is how Rocky's cards ended up green.
           card.dataset.sender = senderTag(letter.fromEmail);
           card.innerHTML = `
             <div class="archive-env-small">
