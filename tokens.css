@@ -52,22 +52,22 @@
   --petrova-glow: rgba(214, 92, 72, .55);
   --petrova-rgb: 214  92  72;
 
-  /* ── Ryland · Earth · green ───────────────────────────────────────────── */
-  --ryland:       #3d6b47;
-  --ryland-deep:  #16281b;
-  --ryland-mid:   #24422c;
-  --ryland-lt:    #6fa47c;
-  --ryland-glow:  rgba(111, 164, 124, .45);
-  --ryland-hot:   #8fc79c;   /* what Ryland glows */
-  --ryland-hot-rgb: 143 199 156;
-  --ryland-foot:  #061009;
-  /* His night: green-black. */
-  --ryland-space-0: #050806;  --ryland-space-0-rgb:  5  8  6;
-  --ryland-space-1: #0a0f0b;  --ryland-space-1-rgb: 10 15 11;
-  --ryland-space-2: #101710;  --ryland-space-2-rgb: 16 23 16;
-  --ryland-space-3: #18211a;
+  /* ── Ryland · Earth · deep blue ───────────────────────────────────────── */
+  --ryland:       #2f4f7d;
+  --ryland-deep:  #101e33;
+  --ryland-mid:   #1b3050;
+  --ryland-lt:    #6d92c4;
+  --ryland-glow:  rgba(109, 146, 196, .45);
+  --ryland-hot:   #8fb4e8;   /* what Ryland glows */
+  --ryland-hot-rgb: 143 180 232;
+  --ryland-foot:  #050b16;
+  /* His night: blue-black. */
+  --ryland-space-0: #05070c;  --ryland-space-0-rgb:  5  7 12;
+  --ryland-space-1: #090d14;  --ryland-space-1-rgb:  9 13 20;
+  --ryland-space-2: #0f151f;  --ryland-space-2-rgb: 15 21 31;
+  --ryland-space-3: #172030;
   --ryland-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2770%27%20height%3D%2736%27%20viewBox%3D%270%200%2070%2036%27%3E%3Cpath%20d%3D%27M0%209%20C%2017.5%204%2017.5%204%2035%209%20C%2052.5%2014%2052.5%2014%2070%209%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.045%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2020%20C%2017.5%2025%2017.5%2025%2035%2020%20C%2052.5%2015%2052.5%2015%2070%2020%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.035%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2030%20C%2017.5%2027%2017.5%2027%2035%2030%20C%2052.5%2033%2052.5%2033%2070%2030%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.03%29%27%20stroke-width%3D%27.8%27%20fill%3D%27none%27%2F%3E%3C%2Fsvg%3E");
-  --ryland-rgb:  61 107  71;
+  --ryland-rgb:  47  79 125;
 
   /* ── Rocky · Erid · brown through gold ────────────────────────────────── */
   --rocky:        #7d4522;
