@@ -1137,8 +1137,11 @@ body[data-user="ryland"] .mood-pill.selected {
    inside a [data-sender] card) */
 /* Paper tinted toward whoever wrote it, so the flap cannot disagree with the
    body — it was a fixed brown over a tinted envelope. */
-.aes-tri-left, .aes-tri-right { background: color-mix(in srgb, var(--user-lt) 14%, var(--gold)); }
-.aes-tri-bottom               { background: color-mix(in srgb, var(--user-lt) 26%, var(--gold)); }
+/* Three faces, far apart in value, or the fold does not read. The original app
+   used a pale face against a distinctly darker fold; these were 14% and 26% of
+   the same tint mixed into gold, which is neither paper nor separated. */
+.aes-tri-left, .aes-tri-right { background: color-mix(in srgb, var(--user-lt)  9%, var(--paper)); }
+.aes-tri-bottom               { background: color-mix(in srgb, var(--user-lt) 46%, var(--paper-edge)); }
 /* border + clip-path together renders an uneven sliver at sharp corners —
    base triangle in --env-border with a smaller inset fill on top instead. */
 .aes-flap {
@@ -1153,7 +1156,7 @@ body[data-user="ryland"] .mood-pill.selected {
   position: absolute;
   top: 1px; left: 1px; right: 1px;
   height: 12px;
-  background: color-mix(in srgb, var(--user-lt) 34%, var(--gold));
+  background: color-mix(in srgb, var(--user-lt) 22%, var(--paper-mid));
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 /* The actual wax, scaled down — this was a flat coloured disc with the seal
