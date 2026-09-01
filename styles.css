@@ -828,7 +828,7 @@ body::after {
   color: var(--ink);
   opacity: 1;
 }
-body[data-user="ryland"] .mood-pill.selected {
+body[data-user] .mood-pill.selected {
   background: rgb(var(--user-rgb) / .14);
   border-color: var(--user-lt);
 }
@@ -1001,8 +1001,9 @@ body[data-user="ryland"] .mood-pill.selected {
 }
 /* Fallback fold tint (always overridden per-sender below — .env-art only
    ever renders inside a [data-sender] card) */
-.env-art-tri-left, .env-art-tri-right   { background: var(--star); }
-.env-art-tri-bottom                     { background: var(--star); }
+.env-art-tri-left  { background: var(--env-left); }
+.env-art-tri-right { background: var(--env-right); }
+.env-art-tri-bottom { background: var(--env-bottom); }
 
 /* Empty envelope art */
 .env-art-empty {
@@ -1119,11 +1120,10 @@ body[data-user="ryland"] .mood-pill.selected {
 .archive-env-small { width: 48px; height: 34px; margin: 0 auto .4rem; position: relative; }
 .aes-body {
   width: 100%; height: 100%;
-  background: color-mix(in srgb, var(--user-lt) 8%, var(--paper));
-  /* The border does the defining — in the original it is far darker than any
-     face (#ae854c against #e5d2bd), which is what makes the shape read at
-     card size. */
-  border: 1px solid var(--user);
+  background: var(--env-base);
+  /* The border does the defining — it is far darker than any face, which is
+     what makes the shape read at card size. */
+  border: 1px solid var(--env-border);
   border-radius: 1px; position: relative;
 }
 /* Same three-triangle fold shading as .env-art/.env-big — apex at 41.18%
@@ -1139,15 +1139,16 @@ body[data-user="ryland"] .mood-pill.selected {
 /* Three faces, far apart in value, or the fold does not read. The original app
    used a pale face against a distinctly darker fold; these were 14% and 26% of
    the same tint mixed into gold, which is neither paper nor separated. */
-.aes-tri-left, .aes-tri-right { background: color-mix(in srgb, var(--user-lt)  8%, var(--paper)); }
-.aes-tri-bottom               { background: color-mix(in srgb, var(--user-lt) 22%, var(--paper)); }
+.aes-tri-left   { background: var(--env-left); }
+.aes-tri-right  { background: var(--env-right); }
+.aes-tri-bottom { background: var(--env-bottom); }
 /* border + clip-path together renders an uneven sliver at sharp corners —
    base triangle in --env-border with a smaller inset fill on top instead. */
 .aes-flap {
   position: absolute;
   top: -1px; left: -1px; right: -1px;
   height: 14px;
-  background: var(--user);
+  background: var(--env-border);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 .aes-flap::after {
@@ -1155,7 +1156,7 @@ body[data-user="ryland"] .mood-pill.selected {
   position: absolute;
   top: 1px; left: 1px; right: 1px;
   height: 12px;
-  background: color-mix(in srgb, var(--user-lt) 36%, var(--paper));
+  background: var(--env-flap);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 /* The actual wax, scaled down — this was a flat coloured disc with the seal
@@ -2049,7 +2050,7 @@ body[data-user="ryland"]::before {
 /* Depth vignette for Ryland — top can take a heavier touch since it's already
    dark blue; bottom stays light-handed since any dark wash on the teal-blue
    reads as muddy/desaturated rather than "darker" */
-body[data-user="ryland"]::after {
+body[data-user]::after {
   background:
     radial-gradient(ellipse 100% 28% at 50% 0%,   rgb(var(--space-0-rgb) / .4) 0%, transparent 100%),
     radial-gradient(ellipse 100% 18% at 50% 100%, rgb(var(--space-0-rgb) / .12) 0%, transparent 100%);
@@ -2062,24 +2063,24 @@ body[data-user="ryland"] .compass-rose { display: none; }
 
 /* Envelope cards — waiting/empty ambient state still follows whoever's logged in;
    actual letter cards are styled by sender further down (SENDER STYLE section) */
-body[data-user="ryland"] .env-card.env-waiting {
+body[data-user] .env-card.env-waiting {
   background:
     radial-gradient(ellipse 90% 60% at 50% 12%, rgb(var(--user-rgb) / .20), transparent 70%),
     linear-gradient(160deg, var(--space-0) 0%, var(--space-0) 45%, var(--space-0) 100%);
   border-color: rgb(var(--user-rgb) / .30);
 }
-body[data-user="ryland"] .env-card.env-empty {
+body[data-user] .env-card.env-empty {
   border-color: rgb(var(--user-rgb) / .30);
   background: rgb(var(--space-0-rgb) / .6);
 }
-body[data-user="ryland"] .waiting-dots span { background: rgb(var(--user-rgb) / .55); }
+body[data-user] .waiting-dots span { background: rgb(var(--user-rgb) / .55); }
 
 
 /* ── Ryland: ultramarine overrides for hardcoded blue elements ── */
-body[data-user="ryland"] .app-header {
+body[data-user] .app-header {
   border-bottom-color: rgb(var(--user-rgb) / .22);
 }
-body[data-user="ryland"] .paper-footer {
+body[data-user] .paper-footer {
   border-top-color: rgb(var(--user-rgb) / .20);
 }
 
@@ -2126,24 +2127,24 @@ body[data-user="rocky"] .fauna-rocky { display: block; }
 body[data-user="ryland"] .scene-space-stars { display: block; }
 
 /* ── Ryland: replace hardcoded ocean-blue outlines with ultramarine ── */
-body[data-user="ryland"] .nav-btn {
+body[data-user] .nav-btn {
   border-color: rgb(var(--user-rgb) / .32);
 }
-body[data-user="ryland"] .nav-btn:hover,
-body[data-user="ryland"] .nav-btn.active {
+body[data-user] .nav-btn:hover,
+body[data-user] .nav-btn.active {
   background: rgb(var(--user-rgb) / .14);
 }
-body[data-user="ryland"] .nav-hamburger {
+body[data-user] .nav-hamburger {
   border-color: rgb(var(--user-rgb) / .32);
 }
-body[data-user="ryland"] .nav-hamburger:hover {
+body[data-user] .nav-hamburger:hover {
   background: rgb(var(--user-rgb) / .14);
 }
-body[data-user="ryland"] .nav-popup {
+body[data-user] .nav-popup {
   border-color: rgb(var(--user-rgb) / .24);
 }
-body[data-user="ryland"] .floral-rule span:not(.rule-line) { color: var(--user-lt); }
-body[data-user="ryland"] .rule-line { background: var(--user-lt); }
+body[data-user] .floral-rule span:not(.rule-line) { color: var(--user-lt); }
+body[data-user] .rule-line { background: var(--user-lt); }
 .glint-star {
   position: absolute;
   height: auto;
@@ -2250,83 +2251,33 @@ body[data-user="ryland"] .rule-line { background: var(--user-lt); }
    explicit override here.
 ═══════════════════════════════════════════════════ */
 
-.env-card[data-sender="ryland"] {
-  background-image:
-    radial-gradient(ellipse 130% 65% at 22% -12%, rgb(var(--user-hot-rgb) / .08), transparent 55%),
-    var(--ripple-tile),
-    linear-gradient(145deg, rgb(var(--star-rgb) / .7) 0%, rgb(var(--star-rgb) / .8) 100%);
-  border-color: rgb(var(--user-hot-rgb) / .26);
-  box-shadow: inset 0 1px 0 rgb(var(--user-hot-rgb) / .07), 2px 4px 20px rgb(var(--space-0-rgb) / .5);
-}
-.env-card[data-sender="ryland"]:hover:not(.env-waiting) {
-  border-color: rgb(var(--user-hot-rgb) / .36);
-  box-shadow: 4px 8px 30px rgb(var(--user-rgb) / .6);
-}
-.env-card[data-sender="ryland"] .env-card-label { color: rgb(var(--user-hot-rgb) / .72); }
-.env-card[data-sender="ryland"] .env-card-sub   { color: rgb(var(--user-hot-rgb) / .52); }
 /* Envelope paper + border color, themed per sender. Previously .env-art-body
    never overrode --paper-mid/--paper-edge at all, so both cards silently
    rendered on the same warm ambient tone no matter whose letter it was —
    that's why Ryland's card still read as "brown". Now scoped like
    #modal-read[data-sender] already does. */
-.env-card[data-sender="ryland"] {
-}
-.env-card[data-sender="rocky"] {
-}
 /* Solid, clearly-stepped tones (not translucent overlays, which read as
    near-identical against each other). Top flap darkest, bottom the middle
    shade, left/right lightest. */
-.env-card[data-sender="ryland"] .env-art-tri-left   { background: var(--user-lt); }
-.env-card[data-sender="ryland"] .env-art-tri-right  { background: var(--user-lt); }
-.env-card[data-sender="ryland"] .env-art-tri-bottom { background: var(--user-lt); }
-.env-card[data-sender="rocky"] .env-art-tri-left    { background: var(--gold); }
-.env-card[data-sender="rocky"] .env-art-tri-right   { background: var(--gold); }
 
 /* Envelope paper + border color, themed per sender — same gap as .env-card
    had originally: .aes-body/.aes-flap never overrode --paper-mid/--paper-edge,
    so a partner's archive card silently rendered in whoever is logged in's
    ambient tone instead of the letter-writer's own colors. */
-.archive-card[data-sender="ryland"] {
-  background-image:
-    radial-gradient(ellipse 130% 70% at 25% -15%, rgb(var(--user-hot-rgb) / .07), transparent 55%),
-    var(--ripple-tile),
-    linear-gradient(145deg, rgb(var(--user-rgb) / .68) 0%, rgb(var(--space-0-rgb) / .75) 100%);
-  border-color: rgb(var(--user-hot-rgb) / .24);
-  box-shadow: inset 0 1px 0 rgb(var(--user-hot-rgb) / .06), 1px 2px 10px rgb(var(--space-0-rgb) / .45);
-}
-.archive-card[data-sender="rocky"] {
-}
-.archive-card[data-sender="ryland"] .archive-card-name  { color: rgb(var(--user-hot-rgb) / .72); }
-.archive-card[data-sender="ryland"] .archive-card-words { color: rgb(var(--user-hot-rgb) / .48); }
-.archive-card[data-sender="ryland"] .aes-tri-left   { background: var(--user-lt); }
-.archive-card[data-sender="ryland"] .aes-tri-right  { background: var(--user-lt); }
-.archive-card[data-sender="ryland"] .aes-tri-bottom { background: var(--user-lt); }
-.archive-card[data-sender="rocky"] .aes-tri-left    { background: var(--gold); }
-.archive-card[data-sender="rocky"] .aes-tri-right   { background: var(--gold); }
-.archive-card[data-sender="rocky"] .aes-tri-bottom  { background: var(--gold); }
 
 /* Read modal — repaint the letter paper itself in the sender's palette,
    regardless of whose theme the rest of the app is in right now.
    #modal-read[data-sender] outranks body[data-user] (id beats no-id),
    so this wins even though .paper etc. already use these same vars. */
-#modal-read[data-sender="ryland"] {
-}
-#modal-read[data-sender="rocky"] {
-}
-#modal-read[data-sender="ryland"] .paper::before    { background: rgb(var(--user-rgb) / .2); }
-#modal-read[data-sender="rocky"]  .paper::before    { background: rgb(var(--user-rgb) / .22); }
-#modal-read[data-sender="ryland"] .paper-footer     { border-top-color: rgb(var(--user-hot-rgb) / .2); }
-#modal-read[data-sender="rocky"]  .paper-footer     { border-top-color: rgb(var(--user-rgb) / .2); }
+#modal-read[data-sender] .paper::before { background: rgb(var(--user-rgb) / .21); }
+#modal-read[data-sender] .paper-footer  { border-top-color: rgb(var(--user-rgb) / .2); }
 
 /* Envelope-open animation fold shading — was always steel blue regardless of
    sender; now matches each sender's own envelope-edge tone. Left/right are
    the lightest shade, bottom is the middle shade, top flap stays darkest. */
-#modal-read[data-sender="ryland"] .env-big-tri-left   { background: var(--user-lt); }
-#modal-read[data-sender="ryland"] .env-big-tri-right   { background: var(--user-lt); }
-#modal-read[data-sender="ryland"] .env-big-tri-bottom  { background: var(--user-lt); }
-#modal-read[data-sender="rocky"]  .env-big-tri-left    { background: var(--gold); }
-#modal-read[data-sender="rocky"]  .env-big-tri-right   { background: var(--gold); }
-#modal-read[data-sender="rocky"]  .env-big-tri-bottom  { background: var(--gold); }
+#modal-read[data-sender] .env-big-tri-left   { background: var(--env-left); }
+#modal-read[data-sender] .env-big-tri-right  { background: var(--env-right); }
+#modal-read[data-sender] .env-big-tri-bottom { background: var(--env-bottom); }
 
 /* Sender motif — small vector cluster (star-glints or brittle-star+crab) bleeding
    off the corner. Lives inside an overflow:hidden card/paper for a clean crop —

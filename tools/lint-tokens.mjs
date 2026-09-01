@@ -54,6 +54,32 @@ function parse(text) {
   return v && v.length >= 3 ? v.slice(0, 3).map((x) => Math.round(parseFloat(x))) : null;
 }
 
+/**
+ * A selector that names a person and sets a colour.
+ *
+ * The first check only sees literals, so a rule like
+ *   .archive-card[data-sender="rocky"] .aes-tri-left { background: var(--gold); }
+ * passes it — every value is a token. But it hardcodes WHICH person gets WHICH
+ * token, which is the same bug one level up, and 21 of these were silently
+ * overriding the envelope palette.
+ *
+ * Layout and visibility keyed to a person are fine; colour is not.
+ */
+const PAINTS = /(?:^|[;{\s])(?:background|color|border[a-z-]*color|fill|stroke|box-shadow|filter|outline-color)\s*:/;
+
+function personNamedPaint(src) {
+  const hits = [];
+  const rule = /([^{}]*\[data-(?:user|sender)="[a-z0-9_-]+"\][^{}]*)\{([^}]*)\}/gi;
+  for (const m of src.matchAll(rule)) {
+    const selector = m[1].trim().split('\n').pop().trim();
+    if (selector.startsWith('/*')) continue;
+    if (!PAINTS.test(m[2])) continue;
+    const line = src.slice(0, m.index).split('\n').length;
+    hits.push({ line, selector: selector.slice(0, 72) });
+  }
+  return hits;
+}
+
 const listAll = process.argv.includes('--list');
 let total = 0;
 const report = [];
@@ -94,12 +120,18 @@ for (const file of FILES) {
   }
 }
 
+// Only styles.css is checked for this — tokens.css is where people are named.
+let personHits = [];
+try {
+  personHits = personNamedPaint(await readFile('styles.css', 'utf8'));
+} catch { /* no stylesheet, nothing to check */ }
+
 const red = (s) => `\x1b[31m${s}\x1b[0m`;
 const green = (s) => `\x1b[32m${s}\x1b[0m`;
 const dim = (s) => `\x1b[2m${s}\x1b[0m`;
 
-if (!total) {
-  console.log(green(`✓ No hardcoded colours outside ${SOURCE_OF_TRUTH}.`));
+if (!total && !personHits.length) {
+  console.log(green(`✓ No hardcoded colours outside ${SOURCE_OF_TRUTH}, and no rule paints a named person.`));
   process.exit(0);
 }
 
@@ -114,8 +146,26 @@ for (const { file, hits } of report) {
     console.log(dim(`      … ${hits.length - show.length} more (run with --list)`));
   }
 }
-console.log(
-  `\nEvery hue belongs in ${SOURCE_OF_TRUTH}. Components read --user-* so they\n` +
-  `never name a person; neutral greys and pure black/white are exempt.`
-);
+if (personHits.length) {
+  console.log(red(`\n✗ ${personHits.length} rule(s) name a person and set a colour:\n`));
+  for (const h of (listAll ? personHits : personHits.slice(0, 10))) {
+    console.log(dim(`      ${String(h.line).padStart(5)}  ${h.selector}`));
+  }
+  if (!listAll && personHits.length > 10) {
+    console.log(dim(`      … ${personHits.length - 10} more (run with --list)`));
+  }
+  console.log(
+    `\n  These pass the literal check — every value is a token — but they hardcode\n` +
+    `  which person gets which token, which is the same bug one level up. Move the\n` +
+    `  difference into that person's ramp in ${SOURCE_OF_TRUTH} and let the rule read\n` +
+    `  --user-*. Layout and visibility keyed to a person are fine; colour is not.`
+  );
+}
+
+if (total) {
+  console.log(
+    `\nEvery hue belongs in ${SOURCE_OF_TRUTH}. Components read --user-* so they\n` +
+    `never name a person; neutral greys and pure black/white are exempt.`
+  );
+}
 process.exit(1);

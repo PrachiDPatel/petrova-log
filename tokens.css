@@ -65,6 +65,17 @@
   --ryland-space-0: #05070c;  --ryland-space-0-rgb:  5  7 12;
   --ryland-space-1: #090d14;  --ryland-space-1-rgb:  9 13 20;
   --ryland-space-2: #0f151f;  --ryland-space-2-rgb: 15 21 31;
+  /* Envelope, face by face. Taken from dev-tools/envelope-color-picker in the
+     private app — the faces sit close together and the border is much darker,
+     which is what makes a folded shape read. */
+  --ryland-env-flap:   #18264e;
+  --ryland-env-border: #0b1021;
+  --ryland-env-left:   #141c3d;
+  --ryland-env-right:  #131c3d;
+  --ryland-env-bottom: #101732;
+  --ryland-env-base:   #0b1021;
+  --ryland-env-seal:   #0b1021;
+  --ryland-env-rim:    #070c1d;
   --ryland-space-3: #172030;
   --ryland-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2770%27%20height%3D%2736%27%20viewBox%3D%270%200%2070%2036%27%3E%3Cpath%20d%3D%27M0%209%20C%2017.5%204%2017.5%204%2035%209%20C%2052.5%2014%2052.5%2014%2070%209%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.045%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2020%20C%2017.5%2025%2017.5%2025%2035%2020%20C%2052.5%2015%2052.5%2015%2070%2020%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.035%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2030%20C%2017.5%2027%2017.5%2027%2035%2030%20C%2052.5%2033%2052.5%2033%2070%2030%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.03%29%27%20stroke-width%3D%27.8%27%20fill%3D%27none%27%2F%3E%3C%2Fsvg%3E");
   --ryland-rgb:  47  79 125;
@@ -85,6 +96,17 @@
   --rocky-space-0: #090603;  --rocky-space-0-rgb:  9  6  3;
   --rocky-space-1: #110b05;  --rocky-space-1-rgb: 17 11  5;
   --rocky-space-2: #1a1108;  --rocky-space-2-rgb: 26 17  8;
+  /* Envelope, face by face. Taken from dev-tools/envelope-color-picker in the
+     private app — the faces sit close together and the border is much darker,
+     which is what makes a folded shape read. */
+  --rocky-env-flap:   #985e2f;
+  --rocky-env-border: #542d0d;
+  --rocky-env-left:   #874f22;
+  --rocky-env-right:  #874f22;
+  --rocky-env-bottom: #6c3b13;
+  --rocky-env-base:   #553011;
+  --rocky-env-seal:   #401c03;
+  --rocky-env-rim:    #280f01;
   --rocky-space-3: #26190c;
   /* Strata, not ripples. Erid is a rock; the wave tile was Orion's ocean. */
   --rocky-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2772%27%20height%3D%2738%27%20viewBox%3D%270%200%2072%2038%27%3E%3Cpath%20d%3D%27M0%207%20L14%205%20L31%209%20L48%204%20L62%208%20L72%206%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.05%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2018%20L11%2021%20L27%2016%20L43%2020%20L58%2015%20L72%2019%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.038%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2029%20L16%2027%20L30%2031%20L47%2026%20L60%2030%20L72%2028%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.032%29%27%20stroke-width%3D%27.85%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M20%205%20L22%2018%20M52%204%20L50%2015%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.028%29%27%20stroke-width%3D%27.7%27%20fill%3D%27none%27%2F%3E%3C%2Fsvg%3E");
@@ -133,6 +155,14 @@
   --user-lt:    var(--ryland-lt);
   --user-glow:  var(--ryland-glow);
   --user-rgb:   var(--ryland-rgb);
+  --env-flap: var(--ryland-env-flap);
+  --env-border: var(--ryland-env-border);
+  --env-left: var(--ryland-env-left);
+  --env-right: var(--ryland-env-right);
+  --env-bottom: var(--ryland-env-bottom);
+  --env-base: var(--ryland-env-base);
+  --env-seal: var(--ryland-env-seal);
+  --env-rim: var(--ryland-env-rim);
   --user-hot:   var(--ryland-hot);
   --user-hot-rgb: var(--ryland-hot-rgb);
   --user-foot:  var(--ryland-foot);
@@ -189,6 +219,14 @@ body[data-user="ryland"] {
   --space-1: var(--ryland-space-1);  --space-1-rgb: var(--ryland-space-1-rgb);
   --space-2: var(--ryland-space-2);  --space-2-rgb: var(--ryland-space-2-rgb);
   --space-3: var(--ryland-space-3);
+  --env-flap: var(--ryland-env-flap);
+  --env-border: var(--ryland-env-border);
+  --env-left: var(--ryland-env-left);
+  --env-right: var(--ryland-env-right);
+  --env-bottom: var(--ryland-env-bottom);
+  --env-base: var(--ryland-env-base);
+  --env-seal: var(--ryland-env-seal);
+  --env-rim: var(--ryland-env-rim);
 }
 
 body[data-user="rocky"] {
@@ -206,6 +244,14 @@ body[data-user="rocky"] {
   --space-1: var(--rocky-space-1);  --space-1-rgb: var(--rocky-space-1-rgb);
   --space-2: var(--rocky-space-2);  --space-2-rgb: var(--rocky-space-2-rgb);
   --space-3: var(--rocky-space-3);
+  --env-flap: var(--rocky-env-flap);
+  --env-border: var(--rocky-env-border);
+  --env-left: var(--rocky-env-left);
+  --env-right: var(--rocky-env-right);
+  --env-bottom: var(--rocky-env-bottom);
+  --env-base: var(--rocky-env-base);
+  --env-seal: var(--rocky-env-seal);
+  --env-rim: var(--rocky-env-rim);
 }
 
 /* ── who wrote a given letter ─────────────────────────────────────────────────
@@ -233,6 +279,14 @@ body[data-user="rocky"] {
   --space-1: var(--ryland-space-1);  --space-1-rgb: var(--ryland-space-1-rgb);
   --space-2: var(--ryland-space-2);  --space-2-rgb: var(--ryland-space-2-rgb);
   --space-3: var(--ryland-space-3);
+  --env-flap: var(--ryland-env-flap);
+  --env-border: var(--ryland-env-border);
+  --env-left: var(--ryland-env-left);
+  --env-right: var(--ryland-env-right);
+  --env-bottom: var(--ryland-env-bottom);
+  --env-base: var(--ryland-env-base);
+  --env-seal: var(--ryland-env-seal);
+  --env-rim: var(--ryland-env-rim);
 }
 
 [data-sender="rocky"], .is-rocky {
@@ -250,4 +304,12 @@ body[data-user="rocky"] {
   --space-1: var(--rocky-space-1);  --space-1-rgb: var(--rocky-space-1-rgb);
   --space-2: var(--rocky-space-2);  --space-2-rgb: var(--rocky-space-2-rgb);
   --space-3: var(--rocky-space-3);
+  --env-flap: var(--rocky-env-flap);
+  --env-border: var(--rocky-env-border);
+  --env-left: var(--rocky-env-left);
+  --env-right: var(--rocky-env-right);
+  --env-bottom: var(--rocky-env-bottom);
+  --env-base: var(--rocky-env-base);
+  --env-seal: var(--rocky-env-seal);
+  --env-rim: var(--rocky-env-rim);
 }
