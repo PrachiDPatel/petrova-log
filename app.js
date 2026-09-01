@@ -101,19 +101,17 @@ const SENDER_MOTIF = {
   // were the ocean fauna of the app this was forked from, and they had been
   // sitting in the corner of every one of Rocky's cards ever since.
   rocky: `<svg class="sender-motif" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="none" stroke="rgba(230,239,228,.62)" stroke-width="3.4"
-       stroke-linejoin="round" stroke-linecap="round">
-      <path d="M8 74 L30 34 L44 56 L56 38 L78 74 Z"/>
-      <path d="M30 34 L38 47"/>
-      <path d="M56 38 L63 50"/>
+    <g fill="rgba(230,239,228,.72)">
+      <path d="M4.0 66.0 11.0 62.0 17.0 64.0 24.0 57.0 30.0 59.0 36.0 51.0 41.0 53.0 46.0 43.0 49.0 35.0 52.0 28.0 55.0 34.0 58.0 42.0 62.0 47.0 65.0 43.0 70.0 49.0 75.0 45.0 80.0 51.0 86.0 56.0 92.0 61.0 97.0 65.0 L96.9 65.2 91.7 61.4 85.5 56.6 79.2 51.8 74.7 46.5 69.6 50.9 64.4 45.4 61.6 49.9 55.0 43.6 51.4 35.5 52.7 32.4 52.6 36.4 49.1 44.4 42.8 55.3 37.2 53.1 30.9 60.8 24.6 58.5 17.4 65.1 11.1 62.8 4.2 66.4 Z"/>
     </g>
-    <g fill="rgba(230,239,228,.34)">
-      <path d="M14 88 L23 78 L34 82 L31 92 L18 93 Z"/>
-      <path d="M62 90 L69 82 L79 85 L77 93 L66 94 Z"/>
+    <g fill="rgba(230,239,228,.36)">
+      <path d="M51.4 33.6 L53.0 41.5 L52.1 41.8 L50.5 34.0 Z"/>
+      <path d="M54.6 36.4 L57.4 44.0 L56.6 44.3 L53.8 36.8 Z"/>
+      <path d="M47.4 40.4 L45.2 46.6 L44.4 46.3 L46.6 40.1 Z"/>
     </g>
-    <g fill="rgba(230,239,228,.55)">
-      <circle cx="86" cy="20" r="2.1"/>
-      <circle cx="16" cy="24" r="1.5"/>
+    <g fill="rgba(230,239,228,.30)">
+      <path d="M27 70.5 C29 68.2 32.6 67.8 34.2 69.6 C35.8 71.4 34.4 74.2 31.6 74.6 C28.8 75 25.8 72.8 27 70.5 Z"/>
+      <path d="M69 72.5 C70.8 70 74.6 70 76 72.3 C77.3 74.5 75 76.6 72.2 76.2 C69.8 75.8 68 74.2 69 72.5 Z"/>
     </g>
   </svg>`
 };
