@@ -180,8 +180,9 @@ body::after {
   inset: 0;
   width: 120px;
   height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
+  /* Same reason as .seal-art below: the art is its own shape now, so a
+     circular clip only crops the wax edge off. */
+  object-fit: contain;
   /* No CSS border — the artwork already has its own wax-seal edge baked in;
      adding a second circular frame on top just doubles up and, worse, the
      login screen locks one shared --seal-rim for both buttons regardless of
@@ -495,19 +496,26 @@ body::after {
 /* No CSS border — the artwork already has its own wax-seal edge baked in,
    and the login screen locks one shared --seal-rim for both buttons
    regardless of sender, so a CSS ring here wouldn't even be the right color. */
+/* drop-shadow, not box-shadow.
+   A box-shadow traces the BORDER BOX — with border-radius:50% that is a
+   perfect 110px circle — while the wax inside is smaller and irregular. The
+   result was a dark ring outlining a circle the artwork never filled, with
+   bare paper showing between the two: exactly the pale disc that made these
+   look wrong, and something no amount of re-cutting the PNG could fix.
+   drop-shadow follows the ALPHA CHANNEL instead, so it traces the real wax
+   silhouette. It only works because the seals now genuinely have alpha. */
 .seal-art {
   width: 110px;
   height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 4px 14px rgba(0,0,0,.45);
-  transition: box-shadow .2s ease;
+  object-fit: contain;   /* `cover` cropped the non-square art */
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,.42));
+  transition: filter .2s ease;
 }
 #btn-ryland:hover:not(:disabled) .seal-art {
-  box-shadow: 0 6px 22px rgba(90,190,140,.5), 0 2px 5px rgba(0,0,0,.4);
+  filter: drop-shadow(0 5px 14px rgba(90,190,140,.55)) drop-shadow(0 2px 4px rgba(0,0,0,.35));
 }
 #btn-rocky:hover:not(:disabled) .seal-art {
-  box-shadow: 0 6px 22px rgba(120,90,60,.5), 0 2px 5px rgba(0,0,0,.4);
+  filter: drop-shadow(0 5px 14px rgba(120,90,60,.55)) drop-shadow(0 2px 4px rgba(0,0,0,.35));
 }
 .seal-name {
   font-family: 'Playfair Display', serif;

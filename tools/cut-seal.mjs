@@ -131,14 +131,14 @@ function encode({ width, height, rgba }) {
 // ── the actual work ─────────────────────────────────────────────────────────
 function cutBackground({ width, height, rgba }, tolerance) {
   const idx = (x, y) => (y * width + x) * 4;
-  const near = (i, r, g, b) =>
-    Math.abs(rgba[i] - r) + Math.abs(rgba[i + 1] - g) + Math.abs(rgba[i + 2] - b) <= tolerance;
+  const dist = (i, r, g, b) =>
+    Math.abs(rgba[i] - r) + Math.abs(rgba[i + 1] - g) + Math.abs(rgba[i + 2] - b);
 
   // The background colour is whatever dominates the border.
   const tally = new Map();
   const edge = [];
-  for (let x = 0; x < width; x++) { edge.push([x, 0], [x, height - 1]); }
-  for (let y = 0; y < height; y++) { edge.push([0, y], [width - 1, y]); }
+  for (let x = 0; x < width; x++) edge.push([x, 0], [x, height - 1]);
+  for (let y = 0; y < height; y++) edge.push([0, y], [width - 1, y]);
   for (const [x, y] of edge) {
     const i = idx(x, y);
     const key = `${rgba[i]},${rgba[i + 1]},${rgba[i + 2]}`;
@@ -147,13 +147,16 @@ function cutBackground({ width, height, rgba }, tolerance) {
   const [best] = [...tally.entries()].sort((a, b) => b[1] - a[1])[0];
   const [br, bg, bb] = best.split(',').map(Number);
 
-  // Flood inward from every border pixel that matches. Only background actually
-  // connected to the edge is cleared, so the same colour inside the wax stays.
-  const seen = new Uint8Array(width * height);
+  // 1. Flood inward from the border. Only background actually connected to the
+  //    edge is cleared, so the same colour inside the wax survives.
+  const outside = new Uint8Array(width * height);
   const stack = [];
   for (const [x, y] of edge) {
     const p = y * width + x;
-    if (!seen[p] && near(idx(x, y), br, bg, bb)) { seen[p] = 1; stack.push(p); }
+    if (!outside[p] && dist(idx(x, y), br, bg, bb) <= tolerance) {
+      outside[p] = 1;
+      stack.push(p);
+    }
   }
   while (stack.length) {
     const p = stack.pop();
@@ -162,30 +165,77 @@ function cutBackground({ width, height, rgba }, tolerance) {
       const nx = x + dx, ny = y + dy;
       if (nx < 0 || ny < 0 || nx >= width || ny >= height) continue;
       const np = ny * width + nx;
-      if (seen[np] || !near(idx(nx, ny), br, bg, bb)) continue;
-      seen[np] = 1;
+      if (outside[np] || dist(idx(nx, ny), br, bg, bb) > tolerance) continue;
+      outside[np] = 1;
       stack.push(np);
     }
   }
 
-  for (let p = 0; p < width * height; p++) if (seen[p]) rgba[p * 4 + 3] = 0;
-
-  // Feather: a kept pixel touching a cleared one goes half-transparent, so the
-  // edge reads as wax rather than as something cut out with scissors.
-  const copy = Buffer.from(rgba);
-  let cleared = 0, feathered = 0;
+  // 2. Keep ONLY the largest surviving blob — the seal.
+  //
+  //    This is the step the first version lacked, and it is what the art
+  //    actually needs. One seal shipped with a dashed cut-line drawn around it
+  //    by the image generator; the flood flowed around those dashes rather than
+  //    through them, leaving a ring of floating specks. The other carried a drop
+  //    shadow and a stray sparkle. None of that is the seal, and none of it is
+  //    connected to the seal, so a connectivity test removes all of it at once
+  //    without knowing anything about what the leftovers were.
+  const kept = new Uint8Array(width * height);
+  let bestSize = 0, bestLabel = 0;
+  const label = new Int32Array(width * height);
+  let next = 0;
+  for (let p0 = 0; p0 < width * height; p0++) {
+    if (outside[p0] || label[p0]) continue;
+    next++;
+    let size = 0;
+    const q = [p0];
+    label[p0] = next;
+    while (q.length) {
+      const p = q.pop();
+      size++;
+      const x = p % width, y = (p / width) | 0;
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= width || ny >= height) continue;
+        const np = ny * width + nx;
+        if (outside[np] || label[np]) continue;
+        label[np] = next;
+        q.push(np);
+      }
+    }
+    if (size > bestSize) { bestSize = size; bestLabel = next; }
+  }
+  let specks = 0;
   for (let p = 0; p < width * height; p++) {
-    if (seen[p]) { cleared++; continue; }
+    if (!outside[p] && label[p] === bestLabel) kept[p] = 1;
+    else if (!outside[p]) specks++;
+  }
+
+  // 3. A soft edge, from colour rather than from a fixed 1px ring.
+  //
+  //    Edge pixels in the source are the wax blended with the background, so how
+  //    far a pixel's colour sits from the background is exactly how opaque it
+  //    should be. The first version set every boundary pixel to a flat alpha,
+  //    which is what produced a visible dotted rim.
+  const out = Buffer.from(rgba);
+  let cleared = 0, softened = 0;
+  for (let p = 0; p < width * height; p++) {
+    if (!kept[p]) { out[p * 4 + 3] = 0; cleared++; continue; }
+
     const x = p % width, y = (p / width) | 0;
-    let touching = 0;
-    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+    let touchesEdge = false;
+    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1]]) {
       const nx = x + dx, ny = y + dy;
       if (nx < 0 || ny < 0 || nx >= width || ny >= height) continue;
-      if (seen[ny * width + nx]) touching++;
+      if (!kept[ny * width + nx]) { touchesEdge = true; break; }
     }
-    if (touching) { copy[p * 4 + 3] = 140; feathered++; }
+    if (!touchesEdge) continue;
+
+    const a = Math.round(255 * Math.min(1, dist(idx(x, y), br, bg, bb) / tolerance));
+    if (a < 255) { out[p * 4 + 3] = a; softened++; }
   }
-  return { rgba: copy, cleared, feathered, background: [br, bg, bb] };
+
+  return { rgba: out, cleared, specks, softened, background: [br, bg, bb] };
 }
 
 const [file, tol] = process.argv.slice(2);
@@ -193,11 +243,11 @@ if (!file) {
   console.error('usage: node tools/cut-seal.mjs <file.png> [tolerance]');
   process.exit(1);
 }
-const tolerance = Number(tol) || 60;
+const tolerance = Number(tol) || 110;
 
 const buf = await readFile(file);
 const img = decode(buf);
-const { rgba, cleared, feathered, background } = cutBackground(img, tolerance);
+const { rgba, cleared, specks, softened, background } = cutBackground(img, tolerance);
 
 const backup = file.replace(/\.png$/, '.orig.png');
 try {
@@ -211,5 +261,6 @@ await writeFile(file, encode({ width: img.width, height: img.height, rgba }));
 const pct = ((cleared / (img.width * img.height)) * 100).toFixed(1);
 console.log(
   `${file}: ${img.width}×${img.height}, background rgb(${background.join(',')}) — ` +
-  `cleared ${cleared} px (${pct}%), feathered ${feathered}. Now RGBA.`
+  `cleared ${cleared} px (${pct}%), discarded ${specks} px not connected to the seal, ` +
+  `softened ${softened} edge px. Now RGBA.`
 );
