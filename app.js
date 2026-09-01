@@ -82,8 +82,8 @@ function senderTag(email) {
 
 // Wax-seal icon — AI-generated stamp art per sender (see assets/).
 const STAMP_IMG = {
-  ryland: `<img class="seal-img" src="assets/stamp-ryland.png" alt="Ryland's stamp">`,
-  rocky:  `<img class="seal-img" src="assets/stamp-rocky.png" alt="Rocky's stamp">`
+  ryland: `<img class="seal-img" src="assets/stamp-ryland.webp" alt="Ryland's stamp">`,
+  rocky:  `<img class="seal-img" src="assets/stamp-rocky.webp" alt="Rocky's stamp">`
 };
 
 // Floral-rule divider glyphs — per user, SVG so they render correctly in any font

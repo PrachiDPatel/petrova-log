@@ -98,18 +98,71 @@ function chunk(type, data) {
   return Buffer.concat([len, body, crc]);
 }
 
+/**
+ * Adaptive scanline filtering.
+ *
+ * PNG lets each row pick one of five filters, and the choice is what makes the
+ * deflate that follows actually work. Writing filter 0 on every row is correct
+ * but barely compresses: it shipped a 512x512 seal at 390 KB, when the same
+ * image with per-row filtering is a fraction of that. The heuristic is the one
+ * from the PNG spec — pick the filter whose output has the smallest sum of
+ * absolute values, since bytes near zero are what deflate collapses.
+ */
+function filterScanline(cur, prev, bpp, out) {
+  const len = cur.length;
+  const candidates = [];
+
+  const paeth = (a, b, c) => {
+    const p = a + b - c;
+    const pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c);
+    return pa <= pb && pa <= pc ? a : pb <= pc ? b : c;
+  };
+
+  for (let type = 0; type < 5; type++) {
+    const buf = Buffer.alloc(len);
+    let score = 0;
+    for (let i = 0; i < len; i++) {
+      const a = i >= bpp ? cur[i - bpp] : 0;
+      const b = prev ? prev[i] : 0;
+      const c = prev && i >= bpp ? prev[i - bpp] : 0;
+      let v;
+      if (type === 0) v = cur[i];
+      else if (type === 1) v = cur[i] - a;
+      else if (type === 2) v = cur[i] - b;
+      else if (type === 3) v = cur[i] - ((a + b) >> 1);
+      else v = cur[i] - paeth(a, b, c);
+      v &= 0xff;
+      buf[i] = v;
+      score += v < 128 ? v : 256 - v;   // signed distance from zero
+    }
+    candidates.push({ type, buf, score });
+  }
+
+  const best = candidates.reduce((m, c) => (c.score < m.score ? c : m));
+  out.type = best.type;
+  return best.buf;
+}
+
 export function encode({ width, height, rgba }) {
   const stride = width * 4;
+  const bpp = 4;
   const raw = Buffer.alloc(height * (stride + 1));
+
   for (let y = 0; y < height; y++) {
-    raw[y * (stride + 1)] = 0; // filter: none. Simple and lossless.
-    rgba.copy(raw, y * (stride + 1) + 1, y * stride, (y + 1) * stride);
+    const cur = rgba.subarray(y * stride, (y + 1) * stride);
+    const prev = y > 0 ? rgba.subarray((y - 1) * stride, y * stride) : null;
+    const pick = {};
+    const filtered = filterScanline(cur, prev, bpp, pick);
+    raw[y * (stride + 1)] = pick.type;
+    filtered.copy(raw, y * (stride + 1) + 1);
   }
+
   const ihdr = Buffer.alloc(13);
   ihdr.writeUInt32BE(width, 0);
   ihdr.writeUInt32BE(height, 4);
   ihdr[8] = 8;  // bit depth
-  ihdr[9] = 6;  // colour type: RGBA — the whole point
+  ihdr[9] = 6;  // colour type: RGBA
+
   return Buffer.concat([
     Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
     chunk('IHDR', ihdr),
