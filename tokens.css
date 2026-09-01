@@ -38,6 +38,13 @@
   --space-1-rgb:  10  15  11;
   --space-2-rgb:  16  23  16;
 
+  /* ── astrophage ───────────────────────────────────────────────────────────
+     The red the hero photo is washed with on the login screen. Its own token
+     because it is a scene colour, not the Petrova accent, and the two want to
+     be tuned independently. */
+  --astrophage:     #c62a20;
+  --astrophage-rgb: 198  42  32;
+
   /* ── the Petrova line ─────────────────────────────────────────────────────
      The one non-person accent. It is red because the line is red. */
   --petrova:      #d65c48;
@@ -51,6 +58,10 @@
   --ryland-mid:   #24422c;
   --ryland-lt:    #6fa47c;
   --ryland-glow:  rgba(111, 164, 124, .45);
+  --ryland-hot:   #8fc79c;   /* what Ryland glows */
+  --ryland-hot-rgb: 143 199 156;
+  --ryland-foot:  #061009;   /* how the page bottoms out for him */
+  --ryland-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2770%27%20height%3D%2736%27%20viewBox%3D%270%200%2070%2036%27%3E%3Cpath%20d%3D%27M0%209%20C%2017.5%204%2017.5%204%2035%209%20C%2052.5%2014%2052.5%2014%2070%209%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.045%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2020%20C%2017.5%2025%2017.5%2025%2035%2020%20C%2052.5%2015%2052.5%2015%2070%2020%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.035%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2030%20C%2017.5%2027%2017.5%2027%2035%2030%20C%2052.5%2033%2052.5%2033%2070%2030%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.03%29%27%20stroke-width%3D%27.8%27%20fill%3D%27none%27%2F%3E%3C%2Fsvg%3E");
   --ryland-rgb:  61 107  71;
 
   /* ── Rocky · Erid · brown through gold ────────────────────────────────── */
@@ -60,6 +71,11 @@
   --rocky-lt:     #c08a4e;
   --rocky-gold:   #d9a441;
   --rocky-glow:   rgba(192, 138, 78, .45);
+  --rocky-hot:    #e8a03c;   /* Rocky glows amber, not gold — warmer reads hotter */
+  --rocky-hot-rgb: 232 160  60;
+  --rocky-foot:   #1b1104;   /* warm amber, not green */
+  /* Strata, not ripples. Erid is a rock; the wave tile was Orion's ocean. */
+  --rocky-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2772%27%20height%3D%2738%27%20viewBox%3D%270%200%2072%2038%27%3E%3Cpath%20d%3D%27M0%207%20L14%205%20L31%209%20L48%204%20L62%208%20L72%206%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.05%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2018%20L11%2021%20L27%2016%20L43%2020%20L58%2015%20L72%2019%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.038%29%27%20stroke-width%3D%271%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M0%2029%20L16%2027%20L30%2031%20L47%2026%20L60%2030%20L72%2028%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.032%29%27%20stroke-width%3D%27.85%27%20fill%3D%27none%27%2F%3E%3Cpath%20d%3D%27M20%205%20L22%2018%20M52%204%20L50%2015%27%20stroke%3D%27rgba%28255%2C255%2C255%2C.028%29%27%20stroke-width%3D%27.7%27%20fill%3D%27none%27%2F%3E%3C%2Fsvg%3E");
   --rocky-rgb:  125  69  34;
 
   /* ── paper and ink ────────────────────────────────────────────────────────
@@ -105,6 +121,12 @@
   --user-lt:    var(--ryland-lt);
   --user-glow:  var(--ryland-glow);
   --user-rgb:   var(--ryland-rgb);
+  --user-hot:   var(--ryland-hot);
+  --user-hot-rgb: var(--ryland-hot-rgb);
+  --user-foot:  var(--ryland-foot);
+  --ripple-tile: var(--ryland-texture);
+  --user-foot: var(--ryland-foot);
+  --ripple-tile: var(--ryland-texture);
 
   /* ── legacy names ────────────────────────────────────────────────────────
      The stylesheet grew up with these, and 2400 lines still say them. Rather
@@ -134,6 +156,9 @@
   --user-lt:   var(--gold);
   --user-glow: rgba(196, 168, 130, .4);
   --user-rgb:  var(--gold-rgb);
+  --user-hot:  var(--gold-lt);
+  --user-hot-rgb: var(--gold-rgb);
+  --user-foot: var(--space-0);
 }
 
 /* ── who is signed in ─────────────────────────────────────────────────────── */
@@ -145,6 +170,10 @@ body[data-user="ryland"] {
   --user-lt:   var(--ryland-lt);
   --user-glow: var(--ryland-glow);
   --user-rgb:  var(--ryland-rgb);
+  --user-hot:  var(--ryland-hot);
+  --user-hot-rgb: var(--ryland-hot-rgb);
+  --user-foot: var(--ryland-foot);
+  --ripple-tile: var(--ryland-texture);
 }
 
 body[data-user="rocky"] {
@@ -154,6 +183,10 @@ body[data-user="rocky"] {
   --user-lt:   var(--rocky-lt);
   --user-glow: var(--rocky-glow);
   --user-rgb:  var(--rocky-rgb);
+  --user-hot:  var(--rocky-hot);
+  --user-hot-rgb: var(--rocky-hot-rgb);
+  --user-foot: var(--rocky-foot);
+  --ripple-tile: var(--rocky-texture);
 }
 
 /* ── who wrote a given letter ─────────────────────────────────────────────────
@@ -167,6 +200,10 @@ body[data-user="rocky"] {
   --user-lt:   var(--ryland-lt);
   --user-glow: var(--ryland-glow);
   --user-rgb:  var(--ryland-rgb);
+  --user-hot:  var(--ryland-hot);
+  --user-hot-rgb: var(--ryland-hot-rgb);
+  --user-foot: var(--ryland-foot);
+  --ripple-tile: var(--ryland-texture);
 }
 
 [data-sender="rocky"], .is-rocky {
@@ -176,4 +213,8 @@ body[data-user="rocky"] {
   --user-lt:   var(--rocky-lt);
   --user-glow: var(--rocky-glow);
   --user-rgb:  var(--rocky-rgb);
+  --user-hot:  var(--rocky-hot);
+  --user-hot-rgb: var(--rocky-hot-rgb);
+  --user-foot: var(--rocky-foot);
+  --ripple-tile: var(--rocky-texture);
 }

@@ -113,7 +113,11 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--space-0);
+  /* Their ground, not a neutral one - data-sender is set before the reveal,
+     so tokens.css resolves --user-* to whoever is being stamped in. */
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 50%, rgb(var(--user-rgb) / .30), transparent 72%),
+    linear-gradient(180deg, var(--user-deep) 0%, var(--space-0) 78%);
   opacity: 0;
   pointer-events: none;
   display: flex;
@@ -152,7 +156,10 @@ body::after {
      adding a second circular frame on top just doubles up and, worse, the
      login screen locks one shared --seal-rim for both buttons regardless of
      sender, so it wouldn't even be the right color. */
-  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+  /* drop-shadow, not box-shadow: a box-shadow traces the 120px square this
+     image sits in, which showed as a hard-edged glowing rectangle behind the
+     wax. Same bug as the login seals had, one layer up. */
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, .55));
 }
 
 /* ripple ring — border and animation driven entirely by JS */
@@ -177,18 +184,27 @@ body::after {
   /* Hero photo sits under a heavy dark gradient so it reads as atmospheric
      red-tinted texture behind the stars, not a loud full-bleed photo —
      first background-image layer paints on top, so the gradient masks it. */
+  /* Three layers, back to front: the hero photo, an astrophage-red wash
+     blended into it, then a near-black gradient holding the whole thing down
+     so the card stays the brightest thing on screen. The wash is what pushes
+     the scene red — the photo on its own reads brown. */
   background-image:
-    linear-gradient(180deg, rgb(var(--space-0-rgb) / .88) 0%, rgb(var(--space-0-rgb) / .82) 45%, rgb(var(--space-0-rgb) / .94) 100%),
+    linear-gradient(180deg, rgb(var(--space-0-rgb) / .84) 0%, rgb(var(--space-0-rgb) / .74) 45%, rgb(var(--space-0-rgb) / .93) 100%),
+    radial-gradient(ellipse 130% 95% at 50% 34%,
+      rgb(var(--astrophage-rgb) / .52),
+      rgb(var(--astrophage-rgb) / .22) 52%,
+      transparent 80%),
     url('assets/hero-astrophage.jpg');
-  background-size: auto, cover;
-  background-position: center, center 30%;
-  background-repeat: no-repeat, no-repeat;
+  background-blend-mode: normal, overlay, normal;
+  background-size: auto, auto, cover;
+  background-position: center, center, center 30%;
+  background-repeat: no-repeat, no-repeat, no-repeat;
   /* Lock all CSS vars to the default theme so they never react to data-user changes */
 }
 /* Fade in when screens become visible */
 #screen-login:not(.hidden),
 #screen-app:not(.hidden) {
-  animation: fadeUp .45s ease;
+  animation: fadeInOnly .45s ease;
 }
 /* Stacking context above the background fauna/waves (z-index:1/0) so archive
    and all app content paints in front of the decorative layer. */
@@ -204,6 +220,14 @@ body::after {
 }
 
 /* Glowing crescent moon, upper right */
+/* The login screen is the Petrova line and the letter, nothing else. The moon
+   and the star field are inherited scenery from the app this was forked from
+   and they compete with the one thing worth looking at. */
+#screen-login .moon,
+#screen-login .scene-stars,
+#screen-login .stars,
+#screen-login .drift-star { display: none !important; }
+
 .moon {
   position: absolute;
   top: 20%; right: 16%;
@@ -266,7 +290,10 @@ body::after {
    its name. A slow shimmer keeps it from reading as a static graphic glitch. */
 .petrova-line {
   position: absolute;
-  top: 0; left: 0;
+  /* Sits low enough to cut across the card rather than skim the top corner.
+     The line is the tagline — "correspondence across the line" — so it should
+     actually cross something. */
+  top: 26%; left: 0;
   width: 100%; height: 70%;
   pointer-events: none;
   filter: drop-shadow(0 0 6px rgba(255,59,48,.35));
@@ -320,8 +347,16 @@ body::after {
   .bottle { width: 120px;  height: auto; left: 8%; top: 62%; }
 }
 
+@keyframes cardDrift {
+  0%, 100% { transform: translateY(0)      rotate(-0.12deg); }
+  50%      { transform: translateY(-7px)   rotate( 0.12deg); }
+}
+
 .login-card {
   position: relative; z-index: 1;
+  /* A slow drift, as if the page were floating. Long and small on purpose —
+     anything faster reads as a loading state rather than atmosphere. */
+  animation: cardDrift 7.5s ease-in-out infinite;
   background: var(--paper);
   background-image: repeating-linear-gradient(
     transparent, transparent 31px, var(--paper-line) 32px
@@ -339,15 +374,18 @@ body::after {
     0 0 120px rgb(var(--user-rgb) / .16);
 }
 
-/* romantic double-rule frame inside the card */
+/* Ornament rule inside the card: stars and ringed planets, no flowers. Drawn
+   as a mask rather than a background image so it still takes its colour from
+   the token — an <img> or background-image could not. */
 .login-card::before,
 .login-card::after {
-  content: '✦ · ❀ · ✦ · ❀ · ✦';
+  content: '';
   display: block;
-  font-size: .7rem;
-  color: var(--seal);
-  letter-spacing: .35rem;
-  opacity: .6;
+  height: 16px;
+  background-color: var(--seal);
+  opacity: .55;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22204%22%20height%3D%2216%22%20viewBox%3D%220%200%20204%2016%22%20fill%3D%22%23fff%22%3E%3Cpath%20d%3D%22M10%201.6%20C11.1%205.6%2012.4%206.9%2016.4%208%20C12.4%209.1%2011.1%2010.4%2010%2014.4%20C8.9%2010.4%207.6%209.1%203.5999999999999996%208%20C7.6%206.9%208.9%205.6%2010%201.6%20Z%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%228%22%20r%3D%221.05%22%2F%3E%3Ccircle%20cx%3D%2256%22%20cy%3D%228%22%20r%3D%223.6%22%2F%3E%3Cellipse%20cx%3D%2256%22%20cy%3D%228%22%20rx%3D%228.2%22%20ry%3D%222.5%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.3%22%20transform%3D%22rotate%28-18%2056%208%29%22%2F%3E%3Ccircle%20cx%3D%2281%22%20cy%3D%228%22%20r%3D%221.05%22%2F%3E%3Cpath%20d%3D%22M102%201.6%20C103.1%205.6%20104.4%206.9%20108.4%208%20C104.4%209.1%20103.1%2010.4%20102%2014.4%20C100.9%2010.4%2099.6%209.1%2095.6%208%20C99.6%206.9%20100.9%205.6%20102%201.6%20Z%22%2F%3E%3Ccircle%20cx%3D%22123%22%20cy%3D%228%22%20r%3D%221.05%22%2F%3E%3Ccircle%20cx%3D%22148%22%20cy%3D%228%22%20r%3D%223.6%22%2F%3E%3Cellipse%20cx%3D%22148%22%20cy%3D%228%22%20rx%3D%228.2%22%20ry%3D%222.5%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.3%22%20transform%3D%22rotate%28-18%20148%208%29%22%2F%3E%3Ccircle%20cx%3D%22173%22%20cy%3D%228%22%20r%3D%221.05%22%2F%3E%3Cpath%20d%3D%22M194%201.6%20C195.1%205.6%20196.4%206.9%20200.4%208%20C196.4%209.1%20195.1%2010.4%20194%2014.4%20C192.9%2010.4%20191.6%209.1%20187.6%208%20C191.6%206.9%20192.9%205.6%20194%201.6%20Z%22%2F%3E%3C%2Fsvg%3E") center / auto 16px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22204%22%20height%3D%2216%22%20viewBox%3D%220%200%20204%2016%22%20fill%3D%22%23fff%22%3E%3Cpath%20d%3D%22M10%201.6%20C11.1%205.6%2012.4%206.9%2016.4%208%20C12.4%209.1%2011.1%2010.4%2010%2014.4%20C8.9%2010.4%207.6%209.1%203.5999999999999996%208%20C7.6%206.9%208.9%205.6%2010%201.6%20Z%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%228%22%20r%3D%221.05%22%2F%3E%3Ccircle%20cx%3D%2256%22%20cy%3D%228%22%20r%3D%223.6%22%2F%3E%3Cellipse%20cx%3D%2256%22%20cy%3D%228%22%20rx%3D%228.2%22%20ry%3D%222.5%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.3%22%20transform%3D%22rotate%28-18%2056%208%29%22%2F%3E%3Ccircle%20cx%3D%2281%22%20cy%3D%228%22%20r%3D%221.05%22%2F%3E%3Cpath%20d%3D%22M102%201.6%20C103.1%205.6%20104.4%206.9%20108.4%208%20C104.4%209.1%20103.1%2010.4%20102%2014.4%20C100.9%2010.4%2099.6%209.1%2095.6%208%20C99.6%206.9%20100.9%205.6%20102%201.6%20Z%22%2F%3E%3Ccircle%20cx%3D%22123%22%20cy%3D%228%22%20r%3D%221.05%22%2F%3E%3Ccircle%20cx%3D%22148%22%20cy%3D%228%22%20r%3D%223.6%22%2F%3E%3Cellipse%20cx%3D%22148%22%20cy%3D%228%22%20rx%3D%228.2%22%20ry%3D%222.5%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.3%22%20transform%3D%22rotate%28-18%20148%208%29%22%2F%3E%3Ccircle%20cx%3D%22173%22%20cy%3D%228%22%20r%3D%221.05%22%2F%3E%3Cpath%20d%3D%22M194%201.6%20C195.1%205.6%20196.4%206.9%20200.4%208%20C196.4%209.1%20195.1%2010.4%20194%2014.4%20C192.9%2010.4%20191.6%209.1%20187.6%208%20C191.6%206.9%20192.9%205.6%20194%201.6%20Z%22%2F%3E%3C%2Fsvg%3E") center / auto 16px no-repeat;
 }
 .login-card::before { margin-bottom: 1.5rem; }
 .login-card::after  { margin-top: 1.75rem; }
@@ -464,12 +502,12 @@ body::after {
   filter: drop-shadow(0 3px 8px rgba(0,0,0,.42));
   transition: filter .2s ease;
 }
-#btn-ryland:hover:not(:disabled) .seal-art {
-  filter: drop-shadow(0 5px 14px rgba(90,190,140,.55)) drop-shadow(0 2px 4px rgba(0,0,0,.35));
+.seal-btn:hover:not(:disabled) .seal-art {
+  filter:
+    drop-shadow(0 5px 14px rgb(var(--user-hot-rgb) / .55))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, .35));
 }
-#btn-rocky:hover:not(:disabled) .seal-art {
-  filter: drop-shadow(0 5px 14px rgba(120,90,60,.55)) drop-shadow(0 2px 4px rgba(0,0,0,.35));
-}
+
 .seal-name {
   font-family: 'Space Mono', ui-monospace, monospace;
   font-style: italic;
@@ -485,16 +523,18 @@ body::after {
   .seal-art { width: 88px; height: 88px; }
   .seal-name { font-size: .72rem; }
 }
-#btn-ryland:hover:not(:disabled) .seal-name {
+/* One rule, not one per person. The button carries data-sender, so tokens.css
+   resolves --user-hot to whatever that person glows — green for Ryland, amber
+   for Rocky. The old pair of rules named each person and had Rocky glowing
+   --star, which is why his name lit up pale blue-white on a brown seal. */
+.seal-btn:hover:not(:disabled) .seal-name {
   opacity: 1;
-  color: var(--user);
-  text-shadow: 0 0 10px rgb(var(--user-rgb) / .65), 0 0 24px rgb(var(--user-rgb) / .30);
+  color: var(--user-hot);
+  text-shadow:
+    0 0 10px rgb(var(--user-hot-rgb) / .65),
+    0 0 24px rgb(var(--user-hot-rgb) / .30);
 }
-#btn-rocky:hover:not(:disabled) .seal-name {
-  opacity: 1;
-  color: var(--star);
-  text-shadow: 0 0 10px rgb(var(--star-rgb) / .65), 0 0 24px rgb(var(--star-rgb) / .30);
-}
+
 .field { text-align: left; }
 .field label {
   display: block;
@@ -686,6 +726,17 @@ body::after {
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Opacity only — deliberately no transform.
+   A transformed element becomes the containing block for any position:fixed
+   descendant, and both screens contain fixed scenery (the Petrova line, the
+   star field, Earth). Animating transform on the screen therefore dragged the
+   line down with it and snapped it back to the viewport when the animation
+   cleared — which is exactly the jump you see returning to the login screen. */
+@keyframes fadeInOnly {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 @keyframes starFieldIn {
   from { opacity: 0; }
@@ -1611,11 +1662,16 @@ body[data-user="ryland"] .mood-pill.selected {
    USER THEMES
 ═══════════════════════════════════════════════════ */
 
-/* ── Ryland: Earth — green and blue ────────────── */
-body[data-user="ryland"] {
-  /* Forest green, and darker at the foot rather than lighter — the old
-     gradient lifted to a teal that washed out the bottom third. */
-  background-image: linear-gradient(180deg, var(--space-1) 0%, var(--space-0) 55%, #030503 100%);
+/* ── the page ground ──────────────────────────────
+   One gradient for everyone, bottoming out in whoever is signed in: green for
+   Ryland, warm amber for Rocky. It was hard-coded green under a
+   body[data-user="ryland"] selector, so Rocky's page faded to green at the
+   foot no matter what — the last place a person's colour was still written
+   into a rule instead of read from the channel. */
+body[data-user] {
+  background-image:
+    radial-gradient(ellipse 140% 60% at 50% 108%, rgb(var(--user-hot-rgb) / .10), transparent 70%),
+    linear-gradient(180deg, var(--space-1) 0%, var(--space-0) 52%, var(--user-foot) 100%);
   /* Fully opaque — iOS Safari (26+) samples the background-color of
      sticky/fixed elements near the top of the viewport (.app-header here)
      to color the status bar/toolbar. A partially transparent value here is
@@ -2108,7 +2164,7 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
   position: absolute;
   top: 58%; left: 80%;
   width: 110px; height: auto;
-  filter: drop-shadow(0 0 14px rgb(var(--star-rgb) / .28)) drop-shadow(0 0 40px rgb(var(--star-rgb) / .1));
+  filter: drop-shadow(0 0 12px rgb(var(--ryland-rgb) / .40)) drop-shadow(0 0 44px rgb(var(--ryland-rgb) / .16));
 }
 @media (max-width: 600px) {
   .ryland-moon { width: 76px; }
@@ -2397,4 +2453,27 @@ body.has-demo-banner { padding-top: 3rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .demo-toast { transition-duration: 0.01ms; }
+}
+
+
+/* The drifting card is atmosphere, not information — nobody should have to
+   watch it move if they have asked the system not to animate. */
+@media (prefers-reduced-motion: reduce) {
+  .login-card { animation: none; }
+  .petrova-line { animation: none; }
+}
+
+
+/* The demo banner's dot pulses — it is the one thing on the page that wants to
+   be noticed before someone starts typing a letter they assume will be kept. */
+@keyframes demoDotPulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 8px  rgba(214, 92, 72, .9); }
+  50%      { transform: scale(1.35); box-shadow: 0 0 16px rgba(214, 92, 72, 1),
+                                                 0 0 28px rgba(214, 92, 72, .55); }
+}
+.demo-banner::before {
+  animation: demoDotPulse 2.1s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo-banner::before { animation: none; }
 }

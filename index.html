@@ -128,19 +128,18 @@
     </div>
 
     <h1 class="brand">Petrova Log</h1>
-    <p class="tagline">correspondence across the line</p>
 
     <div id="login-form">
       <p class="who-prompt">who's writing today?</p>
       <p id="login-error" class="form-error hidden"></p>
       <div class="seal-choices">
 
-        <button type="button" class="seal-btn" id="btn-ryland">
+        <button type="button" class="seal-btn" id="btn-ryland" data-sender="ryland">
           <img class="seal-art" src="assets/stamp-ryland.webp" alt="">
           <span class="seal-name">Ryland</span>
         </button>
 
-        <button type="button" class="seal-btn" id="btn-rocky">
+        <button type="button" class="seal-btn" id="btn-rocky" data-sender="rocky">
           <img class="seal-art" src="assets/stamp-rocky.webp" alt="">
           <span class="seal-name">Rocky</span>
         </button>
@@ -195,15 +194,32 @@
       <g transform="translate(8,22) scale(0.264)"><path d="M0,-10 C0,-1.5 1.5,0 10,0 C1.5,0 0,1.5 0,10 C0,1.5 -1.5,0 -10,0 C-1.5,0 0,-1.5 0,-10 Z" fill="rgba(230,239,228,.6)"/></g>
     </svg>
 
-    <!-- Moon, phase set by JS to match the real current moon phase -->
+    <!-- Earth. Drawn in the same gold-line-on-dark language as the wax seals,
+         so the sky and the stamps agree with each other. -->
     <svg class="ryland-moon" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
-        <mask id="ryland-moon-mask">
-          <circle cx="36" cy="36" r="30" fill="white"/>
-          <circle id="ryland-moon-shadow" cx="36" cy="36" r="30" fill="black"/>
-        </mask>
+        <radialGradient id="earth-face" cx="36%" cy="30%" r="78%">
+          <stop offset="0%"   stop-color="#2f5540"/>
+          <stop offset="62%"  stop-color="#1c3427"/>
+          <stop offset="100%" stop-color="#0d1a13"/>
+        </radialGradient>
       </defs>
-      <circle cx="36" cy="36" r="30" fill="rgba(230,239,228,.92)" mask="url(#ryland-moon-mask)"/>
+      <circle cx="36" cy="36" r="30" fill="url(#earth-face)"/>
+      <g fill="none" stroke="#c4a882" stroke-width="1.15"
+         stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+        <!-- the Americas -->
+        <path d="M25 20 c-3 3 -1 6 1 8 c-2 2 -4 5 -2 8 c2 3 1 6 3 8
+                 c2 2 2 6 4 7 c1 -3 0 -6 1 -9 c1 -4 -1 -7 -2 -10
+                 c2 -3 1 -6 -1 -8 c-1 -2 -3 -4 -4 -4 z"/>
+        <!-- Africa and Europe -->
+        <path d="M42 19 c4 1 7 0 9 2 c-1 3 -4 4 -4 7 c0 3 3 4 4 7
+                 c1 3 -1 6 -3 8 c-2 2 -5 3 -6 6 c-2 -3 -3 -7 -3 -11
+                 c0 -4 1 -8 1 -12 c0 -3 1 -5 2 -7 z"/>
+        <!-- the equator, and a meridian, as on the seals -->
+        <ellipse cx="36" cy="36" rx="30" ry="10" opacity=".38"/>
+        <ellipse cx="36" cy="36" rx="12" ry="30" opacity=".28"/>
+      </g>
+      <circle cx="36" cy="36" r="30" fill="none" stroke="#c4a882" stroke-width="1.1" opacity=".55"/>
     </svg>
   </div>
 

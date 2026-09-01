@@ -27,21 +27,9 @@ document.querySelector('.tc-seal-ryland .tc-seal-art').src =
 document.querySelector('.tc-seal-rocky .tc-seal-art').src =
   document.querySelector('#btn-rocky .seal-art')?.src ?? '';
 
-// Set the decorative moon to today's real phase (0 = new, 0.5 = full)
-(function setMoonPhase() {
-  const synodicMonth = 29.530588853;
-  const knownNewMoon = Date.UTC(2000, 0, 6, 18, 14, 0);
-  const daysSince = (Date.now() - knownNewMoon) / 86400000;
-  let phase = (daysSince % synodicMonth) / synodicMonth;
-  if (phase < 0) phase += 1;
-
-  const r = 30;
-  const d = r * (1 - Math.cos(2 * Math.PI * phase));
-  const offset = phase < 0.5 ? -d : d;
-
-  const shadow = document.getElementById('ryland-moon-shadow');
-  if (shadow) shadow.setAttribute('cx', 36 + offset);
-})();
+// The sky used to carry a moon whose phase was computed to match the real one.
+// It is Earth now, which has no phases from where these two are writing, so the
+// calculation and the element it drove are both gone.
 
 // ══════════════════════════════════════════════════════
 //  STATE
@@ -109,24 +97,23 @@ const SENDER_MOTIF = {
     <g transform="translate(52,55) scale(1.6)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.8)"/></g>
     <g transform="translate(20,76) scale(1.0)"><path d="M10 0 C10 8.5 11.5 10 20 10 C11.5 10 10 11.5 10 20 C10 11.5 8.5 10 0 10 C8.5 10 10 8.5 10 0 Z" fill="rgba(230,239,228,.6)"/></g>
   </svg>`,
+  // Erid is a rock. Peaks and boulders, not a brittle star and a crab — those
+  // were the ocean fauna of the app this was forked from, and they had been
+  // sitting in the corner of every one of Rocky's cards ever since.
   rocky: `<svg class="sender-motif" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g transform="translate(55,30) scale(.62)">
-      <circle cx="40" cy="40" r="6.5" fill="rgba(230,239,228,.85)"/>
-      <circle cx="40" cy="40" r="4"   fill="rgba(230,239,228,.4)"/>
-      <path fill="rgba(230,239,228,.7)"  transform="rotate(0   40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.65)" transform="rotate(72  40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.68)" transform="rotate(144 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.6)"  transform="rotate(216 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
-      <path fill="rgba(230,239,228,.65)" transform="rotate(288 40 40)" d="M37.5 36 C35.5 27 37 16 40 3 C43 16 44.5 27 42.5 36 Z"/>
+    <g fill="none" stroke="rgba(230,239,228,.62)" stroke-width="3.4"
+       stroke-linejoin="round" stroke-linecap="round">
+      <path d="M8 74 L30 34 L44 56 L56 38 L78 74 Z"/>
+      <path d="M30 34 L38 47"/>
+      <path d="M56 38 L63 50"/>
     </g>
-    <g transform="translate(6,58) scale(.55)">
-      <ellipse cx="30" cy="22" rx="14" ry="11" fill="rgba(230,239,228,.5)"/>
-      <path d="M16 18 C8 12 2 15 1 20 C1 24 5 26 9 24 C11 22 13 20 16 22Z" fill="rgba(230,239,228,.46)"/>
-      <path d="M44 18 C52 12 58 15 59 20 C59 24 55 26 51 24 C49 22 47 20 44 22Z" fill="rgba(230,239,228,.46)"/>
-      <path d="M18 26 L10 35 M22 29 L15 39 M26 31 L19 40" stroke="rgba(230,239,228,.46)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path d="M42 26 L50 35 M38 29 L45 39 M34 31 L41 40" stroke="rgba(230,239,228,.46)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <circle cx="25" cy="13" r="2" fill="rgba(230,239,228,.6)"/>
-      <circle cx="35" cy="13" r="2" fill="rgba(230,239,228,.6)"/>
+    <g fill="rgba(230,239,228,.34)">
+      <path d="M14 88 L23 78 L34 82 L31 92 L18 93 Z"/>
+      <path d="M62 90 L69 82 L79 85 L77 93 L66 94 Z"/>
+    </g>
+    <g fill="rgba(230,239,228,.55)">
+      <circle cx="86" cy="20" r="2.1"/>
+      <circle cx="16" cy="24" r="1.5"/>
     </g>
   </svg>`
 };
@@ -215,10 +202,16 @@ onAuthStateChanged(auth, async user => {
       const sealEl   = cover.querySelector(user === 'ryland' ? '.tc-seal-ryland' : '.tc-seal-rocky');
       const ripple   = cover.querySelector('.tc-ripple');
 
+      // Read the person's glow from tokens.css rather than naming them here.
+      // These two lines used to hardcode a colour each, and Rocky's was the
+      // star white — which is why his brown seal arrived in a grey halo.
+      cover.dataset.sender = user;
+      const hot = getComputedStyle(cover).getPropertyValue('--user-hot-rgb').trim()
+                  || '230 239 228';
+
       if (sealEl) {
-        sealEl.style.filter = user === 'ryland'
-          ? 'drop-shadow(0 0 18px rgba(61,107,71,.85)) drop-shadow(0 5px 14px rgba(0,0,0,.65))'
-          : 'drop-shadow(0 0 18px rgba(230,239,228,.85)) drop-shadow(0 5px 14px rgba(0,0,0,.65))';
+        sealEl.style.filter =
+          `drop-shadow(0 0 18px rgb(${hot} / .85)) drop-shadow(0 5px 14px rgba(0,0,0,.65))`;
         sealEl.animate([
           { opacity: 0, transform: 'translateY(-20px) scale(0.72)' },
           { opacity: 1, transform: 'translateY(2px) scale(0.98)', offset: 0.55 },
@@ -228,9 +221,7 @@ onAuthStateChanged(auth, async user => {
       }
 
       if (ripple) {
-        ripple.style.border = user === 'ryland'
-          ? '2px solid rgba(61,107,71,0.65)'
-          : '2px solid rgba(230,239,228,0.65)';
+        ripple.style.border = `2px solid rgb(${hot} / .65)`;
         ripple.animate([
           { transform: 'scale(1)',   opacity: 0.8 },
           { transform: 'scale(2.8)', opacity: 0   }
@@ -265,6 +256,10 @@ onAuthStateChanged(auth, async user => {
 function showTransitionCover(user) {
   coverPendingUser = user ?? null;
   const el = document.getElementById('transition-cover');
+  // Whose transition this is, so the cover can be their colour. Without it the
+  // screen was a neutral near-black for both, and Rocky's brown seal appeared
+  // on Ryland's ground.
+  if (user) el.dataset.sender = user;
   el.style.transition = 'none';
 
   // .tc-seal-ryland/.tc-seal-rocky both sit at inset:0 in the same wrapper —
