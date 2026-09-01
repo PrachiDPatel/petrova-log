@@ -28,7 +28,15 @@ const SOURCE_OF_TRUTH = 'tokens.css';
  * an actual hue must be a token.
  */
 function isNeutral(r, g, b) {
-  return Math.max(r, g, b) - Math.min(r, g, b) <= 10;
+  const max = Math.max(r, g, b);
+  const spread = max - Math.min(r, g, b);
+  // Relative, not absolute. A flat threshold of 10 called #0a0f0b neutral —
+  // spread 5 — when at that darkness it is a decidedly green black, and it was
+  // being painted inline over the transition screen where no stylesheet could
+  // reach it. Dark colours need a proportionally tighter bar.
+  if (max <= 40) return spread <= 2;
+  if (max <= 96) return spread <= 5;
+  return spread <= 10;
 }
 
 // `(?<!&)` keeps HTML numeric entities (&#9776; — the hamburger glyph) from

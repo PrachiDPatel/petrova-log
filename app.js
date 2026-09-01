@@ -184,7 +184,7 @@ onAuthStateChanged(auth, async user => {
     // html sits behind body and can't see body[data-user]'s scoped --bg override
     // (CSS vars only inherit downward), so match it by hand for overscroll bounce.
     document.documentElement.style.backgroundColor =
-      myConfig.name.toLowerCase() === 'ryland' ? '#0a0f0b' : '#050806';
+      myConfig.name.toLowerCase() === 'ryland' ? 'var(--space-1)' : 'var(--space-0)';
     showScreen('app');
 
     const cover = document.getElementById('transition-cover');
@@ -239,7 +239,7 @@ onAuthStateChanged(auth, async user => {
     // transition for this one snap so it's instant, like the html reset below.
     document.body.style.transition = 'none';
     delete document.body.dataset.user;
-    document.documentElement.style.backgroundColor = '#050806';
+    document.documentElement.style.backgroundColor = 'var(--space-0)';
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         document.body.style.transition = '';
@@ -276,11 +276,11 @@ function showTransitionCover(user) {
     rip.style.border = '';
   }
 
-  if (user === 'ryland') {
-    el.style.background = 'radial-gradient(ellipse at 50% 42%, #0a0f0b 0%, #050806 60%, #050806 100%)';
-  } else if (user === 'rocky') {
-    el.style.background = 'radial-gradient(ellipse at 50% 42%, #0a0f0b 0%, #0a0f0b 60%, #050806 100%)';
-  }
+  // No inline background here. It used to branch on the name and paint two
+  // hardcoded near-blacks, both of them Ryland's green — and an inline style
+  // beats every rule in the stylesheet, so the cover stayed green however the
+  // tokens were set. #transition-cover reads --user-* and --space-* from
+  // tokens.css, and el.dataset.sender above is what tells it whose they are.
   el.style.opacity = '1';
   el.style.pointerEvents = 'all';
 }

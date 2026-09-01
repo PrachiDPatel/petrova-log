@@ -73,7 +73,7 @@
   --rocky:        #7d4522;
   --rocky-deep:   #2c1608;
   --rocky-mid:    #4a2711;
-  --rocky-lt:     #c08a4e;
+  --rocky-lt:     #d9a441;   /* gold — his accent, and his headings */
   --rocky-gold:   #d9a441;
   --rocky-glow:   rgba(192, 138, 78, .45);
   --rocky-hot:    #e8a03c;   /* Rocky glows amber, not gold — warmer reads hotter */
@@ -148,23 +148,14 @@
   --space-2: var(--ryland-space-2);  --space-2-rgb: var(--ryland-space-2-rgb);
   --space-3: var(--ryland-space-3);
 
-  /* ── legacy names ────────────────────────────────────────────────────────
-     The stylesheet grew up with these, and 2400 lines still say them. Rather
-     than rename every use, they are resolved from the ramps above — so they
-     now switch with the signed-in person automatically, and there is still
-     only one place a colour is decided.
-
-     `--ocean` and `--seafoam` are the old app's names for what is really "the
-     current person's accent". Kept as aliases rather than renamed because a
-     find-and-replace across 2400 lines is exactly the kind of change that
-     leaves relics behind. */
-  --bg:         var(--space-0);
-  --bg-mid:     var(--space-1);
-  --bg-nav:     var(--space-nav);
-  --ocean:      var(--user);
-  --ocean-lt:   var(--user-lt);
-  --ocean-pale: rgb(var(--user-rgb) / .16);
-  --seafoam:    var(--user-lt);
+  /* No aliases here, deliberately.
+     `--ocean-lt: var(--user-lt)` used to live at :root, and a custom property
+     that references another resolves where it is DECLARED — so it froze to
+     whatever --user-lt was at :root (the default person) and descendants
+     inherited that computed value, never seeing body[data-user]'s override.
+     Section headings stayed green on Rocky's page for exactly this reason,
+     while passing the linter, because they were using a token — the wrong one.
+     The old names are substituted away in styles.css instead. */
 }
 
 /* The login screen belongs to neither person, so it locks the accent to gold
@@ -219,7 +210,13 @@ body[data-user="rocky"] {
 
 /* ── who wrote a given letter ─────────────────────────────────────────────────
    Scoped by author rather than by viewer, so both people's envelopes can sit
-   on the same screen in their own colours. */
+   on the same screen in their own colours.
+
+   These carry the FULL ramp, ground included — not just the accents. The
+   transition cover is marked with data-sender and painted before anyone is
+   signed in, so a partial ramp left it falling back to :root's default person
+   and arriving green under a brown seal. If a surface can appear before
+   body[data-user] exists, it needs everything. */
 
 [data-sender="ryland"], .is-ryland {
   --user:      var(--ryland);

@@ -18,12 +18,12 @@ input, textarea { font-family: inherit; }
 
 /* ─── BODY ───────────────────────────────────────── */
 html {
-  background-color: var(--bg);
+  background-color: var(--space-0);
   overscroll-behavior: none;
 }
 body {
   font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  background-color: var(--bg);
+  background-color: var(--space-0);
   min-height: 100vh;
   color: var(--ink);
   overflow-x: hidden;
@@ -556,7 +556,7 @@ body::after {
   outline: none;
   transition: border-color .25s;
 }
-.field input:focus { border-bottom-color: var(--ocean-lt); }
+.field input:focus { border-bottom-color: var(--user-lt); }
 .field input::placeholder { color: var(--paper-edge); font-style: italic; }
 .form-error {
   font-family: 'Space Mono', ui-monospace, monospace;
@@ -577,7 +577,7 @@ body::after {
 .btn-eye:hover { opacity: .9; }
 .login-footer {
   font-size: .85rem;
-  color: var(--ocean-lt);
+  color: var(--user-lt);
   letter-spacing: .3rem;
   opacity: .4;
 }
@@ -619,7 +619,7 @@ body::after {
 ═══════════════════════════════════════════════════ */
 .app-header {
   position: sticky; top: 0; z-index: 200;
-  background: var(--bg-nav);
+  background: var(--space-nav);
   border-bottom: 1px solid rgb(var(--user-rgb) / .22);
   backdrop-filter: blur(12px);
 }
@@ -639,7 +639,7 @@ body::after {
 .nav-from {
   font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .65rem; font-style: italic; letter-spacing: .04rem;
-  color: var(--ocean-lt); opacity: .75;
+  color: var(--user-lt); opacity: .75;
   margin-top: .3rem;
 }
 .nav-btn {
@@ -654,7 +654,7 @@ body::after {
 }
 .nav-btn:hover, .nav-btn.active {
   background: var(--btn-bg-hover, rgb(var(--user-rgb) / .12));
-  border-color: var(--ocean-lt);
+  border-color: var(--user-lt);
   color: var(--star);
 }
 .nav-left  { display: flex; align-items: center; gap: .5rem; flex: 1; }
@@ -672,7 +672,7 @@ body::after {
   transition: all .2s;
   flex-shrink: 0;
 }
-.nav-hamburger:hover { background: rgb(var(--user-rgb) / .12); border-color: var(--ocean-lt); }
+.nav-hamburger:hover { background: rgb(var(--user-rgb) / .12); border-color: var(--user-lt); }
 
 /* ═══════════════════════════════════════════════════
    VIEWS
@@ -749,7 +749,7 @@ body::after {
   font-size: .65rem;
   text-transform: uppercase;
   letter-spacing: .3rem;
-  color: var(--ocean-lt);
+  color: var(--user-lt);
   text-align: center;
   opacity: .65;
   margin-bottom: .6rem;
@@ -772,7 +772,7 @@ body::after {
 .date-adj-btn {
   background: transparent;
   border: none;
-  color: var(--ocean-lt);
+  color: var(--user-lt);
   font-family: 'Space Mono', ui-monospace, monospace;
   font-size: 1.5rem;
   line-height: 1;
@@ -821,16 +821,16 @@ body::after {
   transition: all .15s;
   opacity: .65;
 }
-.mood-pill:hover { opacity: 1; border-color: var(--ocean-lt); color: var(--ink); }
+.mood-pill:hover { opacity: 1; border-color: var(--user-lt); color: var(--ink); }
 .mood-pill.selected {
-  background: var(--ocean-pale);
-  border-color: var(--ocean-lt);
+  background: rgb(var(--user-rgb) / .16);
+  border-color: var(--user-lt);
   color: var(--ink);
   opacity: 1;
 }
 body[data-user="ryland"] .mood-pill.selected {
   background: rgb(var(--user-rgb) / .14);
-  border-color: var(--ocean-lt);
+  border-color: var(--user-lt);
 }
 
 /* Mood on archive cards — always reserves a line (blank via &nbsp; when unset)
@@ -926,7 +926,7 @@ body[data-user="ryland"] .mood-pill.selected {
   border-style: dashed; border-color: rgb(var(--user-rgb) / .35);
   background: rgb(var(--space-1-rgb) / .6);
 }
-.env-card.env-empty:hover { transform: translateY(-3px); border-color: var(--ocean-lt); }
+.env-card.env-empty:hover { transform: translateY(-3px); border-color: var(--user-lt); }
 
 /* Sender personality corner decoration — see .sender-motif near the end of this file */
 
@@ -1027,7 +1027,7 @@ body[data-user="ryland"] .mood-pill.selected {
 }
 .waiting-dots span {
   display: block; width: 5px; height: 5px;
-  background: var(--ocean-lt);
+  background: var(--user-lt);
   border-radius: 50%; opacity: .35;
   animation: dotBob 1.6s infinite ease-in-out;
 }
@@ -1066,14 +1066,14 @@ body[data-user="ryland"] .mood-pill.selected {
   content: '▸';
   display: inline-block;
   font-size: .65rem;
-  color: var(--ocean-lt);
+  color: var(--user-lt);
   transition: transform .2s ease;
 }
 .archive-month[open] .archive-month-name::before { transform: rotate(90deg); }
 .archive-month-count {
   font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .68rem; font-style: italic;
-  color: var(--ocean-lt); opacity: .65;
+  color: var(--user-lt); opacity: .65;
   white-space: nowrap;
 }
 .archive-month-body {
@@ -1259,15 +1259,15 @@ body[data-user="ryland"] .mood-pill.selected {
   display: flex; align-items: center; gap: .5rem;
   margin: .75rem 0 1rem; opacity: .4;
 }
-.floral-rule span { color: var(--ocean-lt); font-size: .8rem; }
-.rule-line { flex: 1; height: 1px; background: var(--ocean-lt); opacity: .5; }
+.floral-rule span { color: var(--user-lt); font-size: .8rem; }
+.rule-line { flex: 1; height: 1px; background: var(--user-lt); opacity: .5; }
 
 /* Inline SVG glyphs inside the floral rule */
 .rule-star {
   width: .9em; height: .9em;
   vertical-align: -0.1em;
   display: inline-block;
-  color: var(--ocean-lt);
+  color: var(--user-lt);
 }
 .rule-sparkle { width: .75em; height: .75em; }
 
@@ -1372,11 +1372,11 @@ body[data-user="ryland"] .mood-pill.selected {
   border-radius: 3px; overflow: hidden; margin-top: .15rem;
 }
 .wc-fill {
-  height: 100%; background: var(--ocean-lt);
+  height: 100%; background: var(--user-lt);
   border-radius: 3px; width: 0%;
   transition: width .3s ease, background .3s;
 }
-.wc-fill.done { background: var(--seafoam); }
+.wc-fill.done { background: var(--user-lt); }
 
 /* Read actions */
 .read-actions { display: flex; align-items: center; gap: .75rem; }
@@ -1386,7 +1386,7 @@ body[data-user="ryland"] .mood-pill.selected {
 }
 .btn-text {
   background: transparent; border: 1px solid var(--env-border);
-  color: var(--ocean-lt);
+  color: var(--user-lt);
   padding: .25rem .7rem;
   font-family: 'Space Mono', ui-monospace, monospace; font-size: .72rem;
   border-radius: 1px; transition: all .2s;
@@ -1513,7 +1513,7 @@ body[data-user="ryland"] .mood-pill.selected {
 .env-opening-label {
   font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .72rem; font-style: italic;
-  color: var(--ocean-lt); opacity: .5;
+  color: var(--user-lt); opacity: .5;
   margin-top: 1.25rem; letter-spacing: .15rem;
   animation: pulse 1.2s infinite ease-in-out;
 }
@@ -1553,7 +1553,7 @@ body[data-user="ryland"] .mood-pill.selected {
   white-space: nowrap; animation: fadeUp .3s ease;
 }
 .toast-error   { background: var(--petrova);        color: var(--paper); }
-.toast-success { background: var(--seafoam); color: var(--paper); }
+.toast-success { background: var(--user-lt); color: var(--paper); }
 
 /* ═══════════════════════════════════════════════════
    MOBILE  (≤ 600px)
@@ -1577,7 +1577,7 @@ body[data-user="ryland"] .mood-pill.selected {
   top: calc(100% + .4rem);
   right: .75rem;
   min-width: 160px;
-  background: var(--bg-nav);
+  background: var(--space-nav);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgb(var(--user-rgb) / .22);
@@ -2135,8 +2135,8 @@ body[data-user="ryland"] .nav-hamburger:hover {
 body[data-user="ryland"] .nav-popup {
   border-color: rgb(var(--user-rgb) / .24);
 }
-body[data-user="ryland"] .floral-rule span:not(.rule-line) { color: var(--ocean-lt); }
-body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
+body[data-user="ryland"] .floral-rule span:not(.rule-line) { color: var(--user-lt); }
+body[data-user="ryland"] .rule-line { background: var(--user-lt); }
 .glint-star {
   position: absolute;
   height: auto;
@@ -2249,7 +2249,7 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
     var(--ripple-tile),
     linear-gradient(145deg, rgb(var(--star-rgb) / .7) 0%, rgb(var(--star-rgb) / .8) 100%);
   border-color: rgb(var(--user-hot-rgb) / .26);
-  box-shadow: inset 0 1px 0 rgb(var(--user-hot-rgb) / .07), 2px 4px 20px rgba(0,10,8,.5);
+  box-shadow: inset 0 1px 0 rgb(var(--user-hot-rgb) / .07), 2px 4px 20px rgb(var(--space-0-rgb) / .5);
 }
 .env-card[data-sender="ryland"]:hover:not(.env-waiting) {
   border-color: rgb(var(--user-hot-rgb) / .36);
@@ -2283,9 +2283,9 @@ body[data-user="ryland"] .rule-line { background: var(--ocean-lt); }
   background-image:
     radial-gradient(ellipse 130% 70% at 25% -15%, rgb(var(--user-hot-rgb) / .07), transparent 55%),
     var(--ripple-tile),
-    linear-gradient(145deg, rgb(var(--user-rgb) / .68) 0%, rgba(3,12,10,.75) 100%);
+    linear-gradient(145deg, rgb(var(--user-rgb) / .68) 0%, rgb(var(--space-0-rgb) / .75) 100%);
   border-color: rgb(var(--user-hot-rgb) / .24);
-  box-shadow: inset 0 1px 0 rgb(var(--user-hot-rgb) / .06), 1px 2px 10px rgba(0,10,8,.45);
+  box-shadow: inset 0 1px 0 rgb(var(--user-hot-rgb) / .06), 1px 2px 10px rgb(var(--space-0-rgb) / .45);
 }
 .archive-card[data-sender="rocky"] {
 }
