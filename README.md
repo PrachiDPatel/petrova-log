@@ -4,7 +4,7 @@ A two-person letter-writing app themed after *Project Hail Mary*. Ryland writes
 from Earth, Rocky from Erid. One letter each per day, 250 words minimum, sealed
 with wax and delivered the instant it's sent.
 
-**[Live demo →](#)** · sign in by clicking a seal, no password
+**[Live demo →](https://petrova-log.pages.dev)** · sign in by clicking a seal, no password
 
 Write, edit and delete freely — the demo keeps your changes in your tab and
 never writes them back, so the next visitor finds the letters as they were.
