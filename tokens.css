@@ -68,12 +68,12 @@
   /* Envelope, face by face. Taken from dev-tools/envelope-color-picker in the
      private app — the faces sit close together and the border is much darker,
      which is what makes a folded shape read. */
-  --ryland-env-flap:   #5f74c8;
-  --ryland-env-border: #182763;
-  --ryland-env-left:   #3d51a4;
-  --ryland-env-right:  #3d52a4;
-  --ryland-env-bottom: #304491;
-  --ryland-env-base:   #304591;
+  --ryland-env-flap:   #849de1;
+  --ryland-env-border: #323f67;
+  --ryland-env-left:   #6376b0;
+  --ryland-env-right:  #6377b0;
+  --ryland-env-bottom: #495c92;
+  --ryland-env-base:   #596ea6;
   --ryland-env-seal:   #0b1021;
   --ryland-env-rim:    #070c1d;
   --ryland-space-3: #172030;
@@ -99,13 +99,13 @@
   /* Envelope, face by face. Taken from dev-tools/envelope-color-picker in the
      private app — the faces sit close together and the border is much darker,
      which is what makes a folded shape read. */
-  --rocky-env-flap:   #d9bda5;
+  --rocky-env-flap:   #dfb695;
   --rocky-env-border: #542d0d;
-  --rocky-env-left:   #b99679;
-  --rocky-env-right:  #ba9779;
-  --rocky-env-bottom: #8b6746;
-  --rocky-env-base:   #8c6846;
-  --rocky-env-seal:   #35210d;
+  --rocky-env-left:   #b28662;
+  --rocky-env-right:  #b28662;
+  --rocky-env-bottom: #976944;
+  --rocky-env-base:   #9c714f;
+  --rocky-env-seal:   #401c03;
   --rocky-env-rim:    #280f01;
   --rocky-space-3: #26190c;
   /* Strata, not ripples. Erid is a rock; the wave tile was Orion's ocean. */
